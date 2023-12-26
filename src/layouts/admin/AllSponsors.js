@@ -149,7 +149,7 @@ function AllSponsors(props) {
     sponsorList = paginatedData.map((item, index) => {
       return (
         <tr key={item.id}>
-          <td>{index+1}</td>
+          <td>{item.id}</td>
           <td>{capitalizeWord(item.event_title)}</td>
           <td>{capitalizeWord(item.first_name)}</td>
           <td>{capitalizeWord(item.last_name)}</td>
@@ -337,7 +337,7 @@ function AllSponsors(props) {
               <table className="table table-hover" width="100%" cellspacing="0">
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>Sponsor-ID</th>
                     <th>Event</th>
                     <th>First Name</th>
                     <th>Last Name</th>

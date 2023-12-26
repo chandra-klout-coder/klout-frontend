@@ -1,53 +1,43 @@
-import Dashboard from "../layouts/admin/Dashboard";
-import Profile from "../layouts/admin/Profile";
-
-import Event from "../layouts/admin/Event";
-import AllEvent from "../layouts/admin/AllEvent";
-import ViewEvent from "../layouts/admin/ViewEvent";
-
-import AllAttendee from "../layouts/admin/AllAttendee";
-import EditEvent from "../layouts/admin/EditEvent";
-import AddAttendee from "../layouts/admin/AddAttendee";
-import EditAttendee from "../layouts/admin/EditAttendee";
-import ViewAttendee from "../layouts/admin/ViewAttendee";
-import AllAttendeeList from "../layouts/admin/AllAttendeeList";
-
-import SendMailAttendee from "../layouts/admin/SendMailAttendee";
-import SendSmsAttendee from "../layouts/admin/SendSmsAttendee";
-
-import Blank from "../layouts/admin/Blank";
-import Settings from "../layouts/admin/Settings";
-import ActivityLog from "../layouts/admin/ActivityLog";
-import AllSponsors from "../layouts/admin/AllSponsors";
-import SponsorStatus from "../layouts/admin/SponsorStatus";
-import EmailMailing from "../layouts/admin/EmailMailing";
-import EmailManager from "../layouts/admin/EmailManager";
-import AllContacts from "../layouts/admin/AllContacts";
-import ContactStatus from "../layouts/admin/ContactStatus";
-import GetHelp from "../layouts/admin/GetHelp";
-import Faqs from "../layouts/admin/Faqs";
-import ChangePassword from "../layouts/admin/ChangePassword";
-import AllFeedbacks from "../layouts/admin/AllFeedbacks";
-
-//Reports
-import AllReports from "../layouts/admin/AllReports";
-import Reports from "../layouts/admin/Reports";
-
-import AddCompany from "../layouts/admin/AddCompany";
-import AddIndustry from "../layouts/admin/AddIndustry";
-import AddJobTitle from "../layouts/admin/AddJobTitle";
-
-import AddCountry from "../layouts/admin/AddCountry";
-
-//Sponsors
-import AddSponsors from "../layouts/admin/AddSponsors";
-import EditSponsors from "../layouts/admin/EditSponsors";
-import ViewSponsor from "../layouts/admin/ViewSponsor";
 import Page404 from "../errors/Page404";
-import Page404Dashboard from "../errors/Page404Dashboard";
-import AddState from "../layouts/admin/AddState";
+import Faqs from "../layouts/admin/Faqs";
+import Blank from "../layouts/admin/Blank";
+import Event from "../layouts/admin/Event";
+import Reports from "../layouts/admin/Reports";
+import GetHelp from "../layouts/admin/GetHelp";
 import AddCity from "../layouts/admin/AddCity";
+import Profile from "../layouts/admin/Profile";
+import AddState from "../layouts/admin/AddState";
+import AllEvent from "../layouts/admin/AllEvent";
+import Settings from "../layouts/admin/Settings";
 import AddSkills from "../layouts/admin/AddSkills";
+import ViewEvent from "../layouts/admin/ViewEvent";
+import EditEvent from "../layouts/admin/EditEvent";
+import Dashboard from "../layouts/admin/Dashboard";
+import AddCountry from "../layouts/admin/AddCountry";
+import AddCompany from "../layouts/admin/AddCompany";
+import AllReports from "../layouts/admin/AllReports";
+import ViewSponsor from "../layouts/admin/ViewSponsor";
+import AddSponsors from "../layouts/admin/AddSponsors";
+import AddJobTitle from "../layouts/admin/AddJobTitle";
+import AddIndustry from "../layouts/admin/AddIndustry";
+import AddAttendee from "../layouts/admin/AddAttendee";
+import AllContacts from "../layouts/admin/AllContacts";
+import AllSponsors from "../layouts/admin/AllSponsors";
+import AllAttendee from "../layouts/admin/AllAttendee";
+import ActivityLog from "../layouts/admin/ActivityLog";
+import ViewAttendee from "../layouts/admin/ViewAttendee";
+import EditAttendee from "../layouts/admin/EditAttendee";
+import EmailManager from "../layouts/admin/EmailManager";
+import AllFeedbacks from "../layouts/admin/AllFeedbacks";
+import EmailMailing from "../layouts/admin/EmailMailing";
+import EditSponsors from "../layouts/admin/EditSponsors";
+import Page404Dashboard from "../errors/Page404Dashboard";
+import ContactStatus from "../layouts/admin/ContactStatus";
+import SponsorStatus from "../layouts/admin/SponsorStatus";
+import ChangePassword from "../layouts/admin/ChangePassword";
+import AllAttendeeList from "../layouts/admin/AllAttendeeList";
+import SendSmsAttendee from "../layouts/admin/SendSmsAttendee";
+import SendMailAttendee from "../layouts/admin/SendMailAttendee";
 
 const routes = [
   { path: "/admin", exact: true, name: "Admin", component: Dashboard },

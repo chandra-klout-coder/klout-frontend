@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import swal from "sweetalert";
-
-import { Route, Redirect, useHistory } from "react-router-dom";
 import MasterLayout from "./layouts/admin/MasterLayout";
 import Page404Dashboard from "./errors/Page404Dashboard";
+import { Route, Redirect, useHistory } from "react-router-dom";
 
 function AdminPrivateRoute({ ...rest }) {
   const history = useHistory();
@@ -19,14 +18,10 @@ function AdminPrivateRoute({ ...rest }) {
         if (res.status === 200) {
           setAuthenticated(true);
         }
-
         setLoading(false);
       })
       .catch((error) => {
         if (error.response) {
-          // console.log("Response data:", error.response.data);
-          // console.log("Response status:", error.response.status);
-          // console.log("Response headers:", error.response.headers);
           if (error.response.status === 401) {
             console.error(
               "Unauthorized access. Redirect or handle accordingly."
@@ -65,15 +60,12 @@ function AdminPrivateRoute({ ...rest }) {
     },
     function (error) {
       if (error.response.status === 403) {
-        //Access Denied
         swal("Forbidden", error.response.data.message, "warning");
         history.push("/403");
       } else if (error.response.status === 404) {
-        //Page Not Found
         swal("Page Not Found", "Url/Page Not Found", "warning");
         history.push("/404");
       }
-
       return Promise.reject(error);
     }
   );

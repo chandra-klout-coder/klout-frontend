@@ -5,6 +5,7 @@ import { useHistory, Link } from "react-router-dom";
 import DefaultBanner from "../../assets/images/default-banner.jpg";
 import loadingGif from "../../assets/images/load.gif";
 
+
 function EditEvent(props) {
   const history = useHistory();
 
@@ -98,8 +99,8 @@ function EditEvent(props) {
       case "description":
         if (value === "") {
           fieldErrors[name] = "Description is required.";
-        } else if (value.length > 500) {
-          fieldErrors[name] = "Maximum 500 Characters Allowed.";
+        } else if (value.length > 3000) {
+          fieldErrors[name] = "Maximum 3000 Characters Allowed.";
         }
         break;
       case "event_venue_name":
@@ -485,7 +486,7 @@ function EditEvent(props) {
                     rows="6"
                   ></textarea>
                   <p style={{ fontSize: "12px", float: "right" }}>
-                    * Maximum 500 Characters Allowed.
+                    * Maximum 3000 Characters Allowed.
                   </p>
 
                   {errors.description && (

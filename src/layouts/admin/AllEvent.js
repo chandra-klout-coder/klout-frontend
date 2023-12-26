@@ -121,7 +121,7 @@ function AllEvent() {
     eventsList = paginatedData.map((item, index) => {
       return (
         <tr key={item.id}>
-          <td>{index+1}</td>
+          <td>{item.id}</td>
           <td>
             {item.image ? (
               <img
@@ -368,7 +368,7 @@ function AllEvent() {
               >
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>Event-ID</th>
                     <th>Event Image</th>
                     <th>Event Name</th>
                     <th>Event Details</th>

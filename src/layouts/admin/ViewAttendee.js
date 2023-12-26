@@ -18,6 +18,7 @@ function ViewAttendee() {
   const [user, setUser] = useState(null);
 
   const [eventId, setEventId] = useState(null);
+  
   // const [eventdate, setEventDate] = useState({});
 
   useEffect(() => {

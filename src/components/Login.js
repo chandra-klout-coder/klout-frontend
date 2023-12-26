@@ -146,7 +146,9 @@ function Login() {
             history.push("/admin/dashboard");
             
           } else if (res.data.status === 401) {
+
             swal("Warning", res.data.message, "warning");
+            
           } else {
             //  setErrors(error.response.data.errors);
           }

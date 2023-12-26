@@ -238,7 +238,7 @@ function Sidebar({ menuOpen, setMenuOpen, toggleMenu }) {
         </li> */}
 
         {/* <!-- Nav Item - Pages Collapse Menu --> */}
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <a
             className="nav-link collapsed"
             href="#"
@@ -280,7 +280,7 @@ function Sidebar({ menuOpen, setMenuOpen, toggleMenu }) {
               </Link>
             </div>
           </div>
-        </li>
+        </li> */}
 
         <li className="nav-item">
           <Link className="nav-link" to="/admin/all-reports">

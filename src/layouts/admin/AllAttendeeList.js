@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import * as XLSX from "xlsx";
 import Swal from "sweetalert2";
 import ReactPaginate from "react-paginate";
 
-import * as XLSX from "xlsx";
 
 function AllAttendeeList(props) {
+
   const [loading, setLoading] = useState(false);
   const [attendees, setAddendees] = useState([]);
   const [filteredAttendees, setFilteredAttendees] = useState([]);
@@ -66,6 +67,7 @@ function AllAttendeeList(props) {
     );
 
     setFilteredAttendees(searchFiltered);
+
   }, [firstNameFilter, emailIDFilter, eventFilter, search, attendees]); // phoneFilter
 
   const handlePageChange = (selectedPage) => {
@@ -139,6 +141,7 @@ function AllAttendeeList(props) {
   } else {
     AttendeeList = paginatedData.map((item) => {
       return (
+
         <tr key={item.id}>
           <td>{item.id}</td>
           <td>{capitalizeWord(item.title)}</td>
@@ -296,7 +299,7 @@ function AllAttendeeList(props) {
               <table className="table table-hover" width="100%" cellSpacing="0">
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>Attendee-ID</th>
                     <th>Event</th>
                     <th>First Name</th>
                     <th>Last Name</th>

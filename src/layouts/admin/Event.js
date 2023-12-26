@@ -81,8 +81,8 @@ function Event() {
       case "description":
         if (value === "") {
           fieldErrors[name] = "Description is required.";
-        } else if (value.length > 500) {
-          fieldErrors[name] = "Maximum 500 Characters Allowed.";
+        } else if (value.length > 3000) {
+          fieldErrors[name] = "Maximum 3000 Characters Allowed.";
         }
         break;
       case "event_venue_name":
@@ -200,8 +200,8 @@ function Event() {
       eventInput.description.length === 0
     ) {
       fieldErrors.description = "Description is required.";
-    } else if (eventInput.description.length > 500) {
-      fieldErrors.description = "Maximum 500 Characters Allowed.";
+    } else if (eventInput.description.length > 3000) {
+      fieldErrors.description = "Maximum 3000 Characters Allowed.";
     }
 
     if (!eventInput.image) {
@@ -474,7 +474,7 @@ function Event() {
                     rows="6"
                   ></textarea>
                   <p style={{ fontSize: "12px", float: "right" }}>
-                    * Maximum 500 Characters Allowed.
+                    * Maximum 3000 Characters Allowed.
                   </p>
 
                   {errors.description && (

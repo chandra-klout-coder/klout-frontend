@@ -88,12 +88,14 @@ function ViewEvent() {
                       style={{ borderRadius: "14px", objectFit: "cover" }}
                     />
                   ) : (
-                    <img
-                      src={DefaultBanner}
-                      width="884"
-                      alt="Image"
-                      style={{ borderRadius: "14px" }}
-                    />
+                    <>
+                      <img
+                        src={DefaultBanner}
+                        width="884"
+                        alt="Image"
+                        style={{ borderRadius: "14px" }}
+                      />
+                    </>
                   )}
 
                   {/* <div
@@ -127,13 +129,41 @@ function ViewEvent() {
                     }}
                   >
                     {event.qr_code ? (
-                      <img
-                        src={imageBaseUrl + event.qr_code}
-                        width="70%"
-                        alt="Image"
-                      />
+                      <>
+                        <img
+                          src={imageBaseUrl + event.qr_code}
+                          width="70%"
+                          alt="Image"
+                        />
+                        <a
+                          className="btn btn-sm btn-info shadow-sm"
+                          style={{
+                            borderColor: "#0dcaf0",
+                            color: "white",
+                            borderRadius: "12px",
+                          }}
+                          href={imageBaseUrl + event.qr_code}
+                          download
+                        >
+                          Click here to download QR Code
+                        </a>
+                      </>
                     ) : (
-                      <img src={QrCode} alt="banner" width="100%" />
+                      <>
+                        <img src={QrCode} alt="banner" width="100%" />
+                        <a
+                          className="btn btn-sm btn-info shadow-sm"
+                          style={{
+                            borderColor: "#0dcaf0",
+                            color: "white",
+                            borderRadius: "12px",
+                          }}
+                          href={QrCode}
+                          download
+                        >
+                          Click here to download Demo QR Code
+                        </a>
+                      </>
                     )}
                   </div>
 

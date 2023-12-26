@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
-import Swal from "sweetalert2";
-import ReactPaginate from "react-paginate";
+import * as XLSX from "xlsx";
 import swal from "sweetalert";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
+import ReactPaginate from "react-paginate";
 import loadingGif from "../../assets/images/load.gif";
 
-import * as XLSX from "xlsx";
-
 function AllAttendee(props) {
+
   const [loading, setLoading] = useState(false);
   const [attendees, setAddendees] = useState([]);
   const [filteredAttendees, setFilteredAttendees] = useState([]);
@@ -75,6 +75,7 @@ function AllAttendee(props) {
     );
 
     setFilteredAttendees(searchFiltered);
+
   }, [firstNameFilter, emailIDFilter, companyFilter, search, attendees]);
 
   const handlePageChange = (selectedPage) => {
@@ -108,6 +109,7 @@ function AllAttendee(props) {
     e.preventDefault();
 
     const button = e.target;
+
     button.disabled = true;
 
     setIsForwarding(true);
@@ -182,7 +184,7 @@ function AllAttendee(props) {
     AttendeeList = paginatedData.map((item, index) => {
       return (
         <tr key={item.id}>
-          <td>{index+1}</td>
+          <td>{item.id}</td>
           <td>{capitalizeWord(item.first_name)}</td>
           <td>{capitalizeWord(item.last_name)}</td>
           <td>{item.job_title}</td>
@@ -243,7 +245,7 @@ function AllAttendee(props) {
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">
-          All Attendees for Event - {event.title}
+          All Attendees for Event - {event.title} -  Total Attendee - { attendees.length }
         </h1>
 
         <div className="d-none d-sm-inline-block shadow-sm py-3 px-3">
@@ -411,7 +413,7 @@ function AllAttendee(props) {
               <table className="table table-hover" width="100%" cellSpacing="0">
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>Attendee-ID</th>
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th>Designation</th>

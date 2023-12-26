@@ -87,7 +87,7 @@ function AllFeedbacks(props) {
     FeedbackList = paginatedData.map((item, index) => {
       return (
         <tr key={item.id}>
-          <td>{index+1}</td>
+          <td>{item.id}</td>
           {/* <td>{capitalizeWord(item.eventId)}</td> */}
           <td>{capitalizeWord(item.eventTitle)}</td>
           <td>{capitalizeWord(item.first_name)}</td>
@@ -262,7 +262,7 @@ function AllFeedbacks(props) {
               <table className="table table-hover" width="100%" cellSpacing="0">
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>Feedback-ID</th>
                     <th>Event</th>
                     <th>First Name</th>
                     <th>Last Name</th>

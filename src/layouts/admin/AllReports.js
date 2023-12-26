@@ -256,7 +256,7 @@ function AllReports() {
               <table className="table table-hover" width="100%" cellSpacing="0">
                 <thead>
                   <tr>
-                    <th>ID</th>
+                    <th>Report-ID</th>
                     <th>Report Name</th>
                     <th>Created By </th>
                     <th>Created At</th>

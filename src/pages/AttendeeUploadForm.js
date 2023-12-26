@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import axios from 'axios';
+import React, { useState } from "react";
+import axios from "axios";
 
 const AttendeeUploadForm = () => {
   const [file, setFile] = useState(null);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleFileChange = (e) => {
     setFile(e.target.files[0]);
@@ -14,26 +14,25 @@ const AttendeeUploadForm = () => {
 
     if (file) {
       const formData = new FormData();
-      formData.append('file', file);
+      formData.append("file", file);
 
       try {
-        const response = await axios.post('/api/attendees/upload', formData, {
+        const response = await axios.post("/api/attendees/upload", formData, {
           headers: {
-            'Content-Type': 'multipart/form-data',
+            "Content-Type": "multipart/form-data",
           },
         });
-
-        console.log(response.data);
-        // Handle success response and duplicate attendee data as needed
-
-        setErrorMessage('');
+        setErrorMessage("");
         setFile(null);
-        
       } catch (error) {
-        if (error.response && error.response.data && error.response.data.error) {
+        if (
+          error.response &&
+          error.response.data &&
+          error.response.data.error
+        ) {
           setErrorMessage(error.response.data.error.file[0]);
         } else {
-          setErrorMessage('Failed to upload attendee list. Please try again.');
+          setErrorMessage("Failed to upload attendee list. Please try again.");
         }
       }
     }

@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-// import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
-
-import Logo from "./../assets/img/klout_original_logo.jpg";
-import MockUp from "./../assets/img/hand-mockup.png";
+import QrCode from "./../assets/img/qr.svg";
+import Logo from "./../assets/img/Klout-Club.svg";
+// import Logo from "./../assets/img/klout_original_logo.jpg";
 import Showcase from "./../assets/img/showcase.png";
+import MockUp from "./../assets/img/hand-mockup.png";
 import Showcase2 from "./../assets/img/showcase2.png";
 import Author1 from "./../assets/img/author/author1.jpg";
 import Author2 from "./../assets/img/author/author2.jpg";
-import QrCode from "./../assets/img/qr.svg";
 
 import { Link } from "react-router-dom";
 
@@ -242,7 +241,7 @@ const Home2 = () => {
             <div class="col-lg-2 col-md-3 col-6">
               <div class="logo">
                 <a href="#home">
-                  <img src={Logo} alt="logo" />
+                  <img src={Logo} alt="logo" style={{height: "28px"}} />
                 </a>
               </div>
             </div>
