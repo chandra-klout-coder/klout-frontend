@@ -20,8 +20,8 @@ import MasterLayout from "./layouts/admin/MasterLayout";
 import ForgotPassword from "./components/ForgotPassword";
 import TermsAndConditions from "./components/TermsAndConditions";
 
-// axios.defaults.baseURL = "http://ec2-43-205-139-120.ap-south-1.compute.amazonaws.com/";
-axios.defaults.baseURL = "http://localhost:8000/";
+axios.defaults.baseURL = "http://ec2-43-205-139-120.ap-south-1.compute.amazonaws.com";
+// axios.defaults.baseURL = "http://localhost:8000/";
 
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
@@ -50,7 +50,7 @@ function App() {
 
           <Route exact path="/unsubscribe" component={UnSubscribe} />
 
-          <Route  path="/403" component={Page403} />
+          <Route path="/403" component={Page403} />
 
           <Route path="/login">
             {localStorage.getItem("auth_token") !== null ? (
@@ -68,8 +68,8 @@ function App() {
             )}
           </Route>
 
-          <Route  path="/forgot-password" component={ForgotPassword} />
-          <Route  path="/reset-password" component={ResetPassword} />
+          <Route path="/forgot-password" component={ForgotPassword} />
+          <Route path="/reset-password" component={ResetPassword} />
 
           {/* <Route
             path="/admin"
@@ -79,7 +79,7 @@ function App() {
 
           <AdminPrivateRoute path="/admin" name="Admin" />
 
-          <Route  path="/404" component={Page404} />
+          <Route path="/404" component={Page404} />
 
           <Redirect to="/404" />
         </Switch>

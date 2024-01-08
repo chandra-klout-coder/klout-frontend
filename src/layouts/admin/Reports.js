@@ -331,6 +331,7 @@ function Reports() {
                         onChange={handleInput}
                         onBlur={handleBlur}
                         onFocus={handleInputFocus}
+                        style={{marginBottom:"0px"}}
                       />
 
                       {errors.report_name && (

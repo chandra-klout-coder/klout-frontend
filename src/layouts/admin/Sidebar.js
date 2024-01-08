@@ -13,7 +13,10 @@ import MasterLayout from "./MasterLayout";
 import Home from "../../components/Home";
 import AllEvent from "./AllEvent";
 import Swal from "sweetalert2";
-import Logo from "../../assets/img/klout_logo.png";
+
+// import Logo from "../../assets/img/klout_logo.png";
+import Logo from "./../../assets/img/Klout-Club.svg";
+
 import mobileLogo from "../../assets/img/klout_mobile_logo.jpg";
 
 function Sidebar({ menuOpen, setMenuOpen, toggleMenu }) {
@@ -94,6 +97,7 @@ function Sidebar({ menuOpen, setMenuOpen, toggleMenu }) {
                 }}
               />
             ) : ( */}
+
             <img
               className="sidebar-card-illustration mb-2"
               src={Logo}
