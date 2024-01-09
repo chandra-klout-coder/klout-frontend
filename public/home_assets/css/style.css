@@ -431,7 +431,7 @@ input::-webkit-input-placeholder {
 .feature-area {
 	z-index: 1;
 	position: relative;
-    background-image: url(../img/feature-bg.jpg);
+    /* background-image: url(../img/feature-bg.jpg); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;

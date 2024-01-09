@@ -1,14 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import QrCode from "./../assets/img/qr.svg";
 import Logo from "./../assets/img/Klout-Club.svg";
 // import Logo from "./../assets/img/klout_original_logo.jpg";
-import Showcase from "./../assets/img/showcase.png";
-import MockUp from "./../assets/img/hand-mockup.png";
-import Showcase2 from "./../assets/img/showcase2.png";
+import Showcase from "./../assets/img/ShowcaseOne.png";
+import MockUp from "./../assets/img/hand_mockup.png";
+import Showcase2 from "./../assets/img/ShowcaseTwo.png";
 import Author1 from "./../assets/img/author/author1.jpg";
 import Author2 from "./../assets/img/author/author2.jpg";
+
+import "./CardWithHover.css";
 
 import { Link } from "react-router-dom";
 
@@ -97,7 +99,7 @@ const Home2 = () => {
     const { name, value } = e.target;
     setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
     setFormData((prevValidFields) => ({ ...prevValidFields, [name]: value }));
-    e.target.classNameList.remove("is-invalid");
+    // e.target.classNameList.remove("is-invalid");
   };
 
   const handleNext = async (e) => {
@@ -238,6 +240,81 @@ const Home2 = () => {
     setIsVisible(!isVisible);
   };
 
+  const titles = [
+    "Find decision makers ",
+    "Connect to network easily",
+    "Get introduced to people in events",
+  ];
+  const [bannerTitleIndex, setBannerTitleIndex] = useState(0);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setBannerTitleIndex((prevIndex) => (prevIndex + 1) % titles.length);
+    }, 2000);
+
+    return () => clearTimeout(timeoutId);
+  }, [bannerTitleIndex, titles.length]);
+
+  const [isHoveredOne, setIsHoveredOne] = useState(false);
+
+  const handleHoverOne = () => {
+    setIsHoveredOne(true);
+  };
+
+  const handleMouseLeaveOne = () => {
+    setIsHoveredOne(false);
+  };
+
+  const [isHoveredTwo, setIsHoveredTwo] = useState(false);
+
+  const handleHoverTwo = () => {
+    setIsHoveredTwo(true);
+  };
+
+  const handleMouseLeaveTwo = () => {
+    setIsHoveredTwo(false);
+  };
+
+  const [isHoveredThree, setIsHoveredThree] = useState(false);
+
+  const handleHoverThree = () => {
+    setIsHoveredThree(true);
+  };
+
+  const handleMouseLeaveThree = () => {
+    setIsHoveredThree(false);
+  };
+
+  const [isHoveredFour, setIsHoveredFour] = useState(false);
+
+  const handleHoverFour = () => {
+    setIsHoveredFour(true);
+  };
+
+  const handleMouseLeaveFour = () => {
+    setIsHoveredFour(false);
+  };
+
+  const [isHoveredFive, setIsHoveredFive] = useState(false);
+
+  const handleHoverFive = () => {
+    setIsHoveredFive(true);
+  };
+
+  const handleMouseLeaveFive = () => {
+    setIsHoveredFive(false);
+  };
+
+  const [isHoveredSix, setIsHoveredSix] = useState(false);
+
+  const handleHoverSix = () => {
+    setIsHoveredSix(true);
+  };
+
+  const handleMouseLeaveSix = () => {
+    setIsHoveredSix(false);
+  };
+
   return (
     <div className="home_container">
       <header className="header sticky">
@@ -258,7 +335,7 @@ const Home2 = () => {
                     onClick={toggleVisibility}
                     aria-haspopup="true"
                     role="button"
-                    tabindex="0"
+                    tabIndex="0"
                     className="slicknav_btn slicknav_collapsed"
                     style={{ outline: "none" }}
                   >
@@ -282,7 +359,7 @@ const Home2 = () => {
                           className="nav-link active"
                           href="#home"
                           role="menuitem"
-                          tabindex="-1"
+                          tabIndex="-1"
                         >
                           Home
                         </a>
@@ -292,7 +369,7 @@ const Home2 = () => {
                           className="nav-link"
                           href="#feature"
                           role="menuitem"
-                          tabindex="-1"
+                          tabIndex="-1"
                         >
                           Feature
                         </a>
@@ -302,7 +379,7 @@ const Home2 = () => {
                           className="nav-link"
                           href="#download"
                           role="menuitem"
-                          tabindex="-1"
+                          tabIndex="-1"
                         >
                           Download
                         </a>
@@ -312,7 +389,7 @@ const Home2 = () => {
                           className="appao-btn"
                           to="/login"
                           role="menuitem"
-                          tabindex="-1"
+                          tabIndex="-1"
                         >
                           Login Now
                         </Link>
@@ -357,11 +434,13 @@ const Home2 = () => {
           <div className="row">
             <div className="col-lg-7">
               <div className="hero-area-content">
-                <h1>Explore new markets with the superpower of networking</h1>
+                <h1>{titles[bannerTitleIndex]}</h1>
                 <p>
-                  Get in touch with founders and C-levels, earn Social Capital
-                  points for helping each other and get support every step of
-                  the way from the people who've already walked your path.
+                  Connect with founders and C-level executives to accumulate
+                  Social Capital points <br />
+                  by mutually assisting one another, receiving support at every
+                  stage from those <br />
+                  who have traversed similar paths before you.
                 </p>
                 <a href="#" className="appao-btn">
                   Google Play
@@ -381,7 +460,7 @@ const Home2 = () => {
       </section>
 
       {/* <!-- About Klout --> */}
-      <section className="about-area ptb-90">
+      {/* <section className="about-area ptb-90">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -447,10 +526,11 @@ const Home2 = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <!-- Features --> */}
       <section className="feature-area ptb-90" id="feature">
+        ``
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -469,112 +549,151 @@ const Home2 = () => {
           <div className="row">
             <div className="col-md-12">
               <div className="row">
-                <div className="col-md-4 mt-2">
-                  <a href="">
-                    <div
-                      className="card"
-                      style={{
-                        borderRadius: "12px",
-                        backgroundColor: "rgb(198, 245, 255)",
-                      }}
-                    >
-                      <div className="card-body">
-                        <div
-                          className="card-img"
-                          style={{
-                            width: "60px",
-                            height: "60px",
-                            borderRadius: "50%",
-                            backgroundColor: "red",
-                          }}
-                        >
-                          <img src="" alt="" />
-                        </div>
-
-                        <h5
-                          className="card-title mb-1 flex"
-                          style={{ marginTop: "35%" }}
-                        >
-                          Get Recommended for New Customers
-                        </h5>
-                        <a href="#" className="card-link">
-                          <i className="fa fa-arrow-right"></i>
-                        </a>
+                <div className="col-md-4 mt-2 ">
+                  {/* <a href=""> */}
+                  <div
+                    className="card"
+                    style={{
+                      borderRadius: "12px",
+                      backgroundColor: "rgb(198, 245, 255)",
+                    }}
+                    onMouseEnter={handleHoverOne}
+                    onMouseLeave={handleMouseLeaveOne}
+                  >
+                    <div className="card-body">
+                      <div
+                        className="card-img"
+                        style={{
+                          width: "60px",
+                          height: "60px",
+                          borderRadius: "50%",
+                          backgroundColor: "rgb(7 92 170)",
+                        }}
+                      >
+                        <img src="" alt="" />
                       </div>
+
+                      <h5
+                        className="card-title mb-1 flex"
+                        style={{ marginTop: "5%" }}
+                      >
+                        Get New customer
+                      </h5>
+                      {/* {isHoveredOne && ( */}
+                      <p
+                        className={`paragraph ${
+                          isHoveredOne ? "visible" : "hide"
+                        }`}
+                      >
+                        Seamlessly integrate targeted strategies and insights,
+                        empowering your business to thrive in acquiring fresh,
+                        valuable clientele.
+                      </p>
+                      {/* )} */}
+                      {/* <a href="#" className="card-link">
+                          <i className="fa fa-arrow-right"></i>
+                        </a> */}
                     </div>
-                  </a>
+                  </div>
+                  {/* </a> */}
                 </div>
 
                 <div className="col-md-4 mt-2">
-                  <a href="">
-                    <div
-                      className="card"
-                      style={{
-                        borderRadius: "12px",
-                        backgroundColor: "rgb(255, 219, 245)",
-                      }}
-                    >
-                      <div className="card-body">
-                        <div
-                          className="card-img"
-                          style={{
-                            width: "60px",
-                            height: "60px",
-                            borderRadius: "50%",
-                            backgroundColor: "red",
-                          }}
-                        >
-                          <img src="" alt="" />
-                        </div>
-
-                        <h5
-                          className="card-title mb-1 flex"
-                          style={{ marginTop: "35%" }}
-                        >
-                          Get Recommended for New Customers
-                        </h5>
-                        <a href="#" className="card-link">
-                          <i className="fa fa-arrow-right"></i>
-                        </a>
+                  {/* <a href=""> */}
+                  <div
+                    className="card"
+                    style={{
+                      borderRadius: "12px",
+                      backgroundColor: "rgb(255, 219, 245)",
+                    }}
+                    onMouseEnter={handleHoverTwo}
+                    onMouseLeave={handleMouseLeaveTwo}
+                  >
+                    <div className="card-body">
+                      <div
+                        className="card-img"
+                        style={{
+                          width: "60px",
+                          height: "60px",
+                          borderRadius: "50%",
+                          backgroundColor: "white",
+                        }}
+                      >
+                        <img src="" alt="" />
                       </div>
+
+                      <h5
+                        className="card-title mb-1 flex"
+                        style={{ marginTop: "5%" }}
+                      >
+                        Connect with like minded people
+                      </h5>
+                      {/* {isHoveredTwo && ( */}
+                      <p
+                        className={`paragraph ${
+                          isHoveredTwo ? "visible" : "hide"
+                        }`}
+                      >
+                        Cultivate a community that fosters collaboration,
+                        knowledge exchange, and lasting relationships within
+                        your niche.
+                      </p>
+                      {/* )} */}
+                      {/* <a href="#" className="card-link">
+                          <i className="fa fa-arrow-right"></i>
+                        </a> */}
                     </div>
-                  </a>
+                  </div>
+                  {/* </a> */}
                 </div>
 
                 <div className="col-md-4 mt-2">
-                  <a href="">
-                    <div
-                      className="card"
-                      style={{
-                        borderRadius: "12px",
-                        backgroundColor: "rgb(240, 233, 222)",
-                      }}
-                    >
-                      <div className="card-body">
-                        <div
-                          className="card-img"
-                          style={{
-                            width: "60px",
-                            height: "60px",
-                            borderRadius: "50%",
-                            backgroundColor: "red",
-                          }}
-                        >
-                          <img src="" alt="" />
-                        </div>
-
-                        <h5
-                          className="card-title mb-1 flex"
-                          style={{ marginTop: "35%" }}
-                        >
-                          Get Recommended for New Customers
-                        </h5>
-                        <a href="#" className="card-link">
-                          <i className="fa fa-arrow-right"></i>
-                        </a>
+                  {/* <a href=""> */}
+                  <div
+                    className="card"
+                    style={{
+                      borderRadius: "12px",
+                      backgroundColor: "rgb(240, 233, 222)",
+                    }}
+                    onMouseEnter={handleHoverThree}
+                    onMouseLeave={handleMouseLeaveThree}
+                  >
+                    <div className="card-body">
+                      <div
+                        className="card-img"
+                        style={{
+                          width: "60px",
+                          height: "60px",
+                          borderRadius: "50%",
+                          backgroundColor: "#2f937b",
+                        }}
+                      >
+                        <img src="" alt="" />
                       </div>
+
+                      <h5
+                        className="card-title mb-1 flex"
+                        style={{ marginTop: "5%" }}
+                      >
+                        Find Professionals near you
+                      </h5>
+                      {/* {isHoveredThree && ( */}
+                      <p
+                        className={`paragraph ${
+                          isHoveredThree ? "visible" : "hide"
+                        }`}
+                      >
+                        Unlock valuable networking opportunities, fostering
+                        meaningful connections and collaborations right in your
+                        vicinity.
+                      </p>
+                      {/* // )} */}
+                      {/* <a href="#" className="card-link">
+                          <i className="fa fa-arrow-right"></i>
+                        </a> */}
                     </div>
-                  </a>
+                  </div>
+                  {/* </a> */}
                 </div>
               </div>
             </div>
@@ -584,78 +703,104 @@ const Home2 = () => {
             <div className="col-md-12">
               <div className="row">
                 <div className="col-md-4 mt-4">
-                  <a href="">
-                    <div
-                      className="card"
-                      style={{
-                        borderRadius: "12px",
-                        backgroundColor: "rgb(229, 232, 255)",
-                      }}
-                    >
-                      <div className="card-body">
-                        <div
-                          className="card-img"
-                          style={{
-                            width: "60px",
-                            height: "60px",
-                            borderRadius: "50%",
-                            backgroundColor: "red",
-                          }}
-                        >
-                          <img src="" alt="" />
-                        </div>
-
-                        <h5
-                          className="card-title mb-1 flex"
-                          style={{ marginTop: "35%" }}
-                        >
-                          Get Recommended for New Customers
-                        </h5>
-                        <a href="#" className="card-link">
-                          <i className="fa fa-arrow-right"></i>
-                        </a>
+                  {/* <a href="javascript:void()"> */}
+                  <div
+                    className="card"
+                    style={{
+                      borderRadius: "12px",
+                      backgroundColor: "rgb(229, 232, 255)",
+                    }}
+                    onMouseEnter={handleHoverFour}
+                    onMouseLeave={handleMouseLeaveFour}
+                  >
+                    <div className="card-body">
+                      <div
+                        className="card-img"
+                        style={{
+                          width: "60px",
+                          height: "60px",
+                          borderRadius: "50%",
+                          backgroundColor: "#ef9560",
+                        }}
+                      >
+                        <img src="" alt="" />
                       </div>
+
+                      <h5
+                        className="card-title mb-1 flex"
+                        style={{ marginTop: "5%" }}
+                      >
+                        Find a perfect co-founder
+                      </h5>
+                      {/* {isHoveredFour && ( */}
+                      <p
+                        className={`paragraph ${
+                          isHoveredFour ? "visible" : "hide"
+                        }`}
+                      >
+                        Elevate your entrepreneurial journey by building a
+                        synergistic partnership that propels your business to
+                        new heights.
+                      </p>
+                      {/* )} */}
+                      {/* <a href="#" className="card-link">
+                          <i className="fa fa-arrow-right"></i>
+                        </a> */}
                     </div>
-                  </a>
+                  </div>
+                  {/* </a> */}
                 </div>
 
                 <div className="col-md-4 mt-4">
-                  <a href="">
-                    <div
-                      className="card"
-                      style={{
-                        borderRadius: "12px",
-                        backgroundColor: "rgb(255, 235, 187)",
-                      }}
-                    >
-                      <div className="card-body">
-                        <div
-                          className="card-img"
-                          style={{
-                            width: "60px",
-                            height: "60px",
-                            borderRadius: "50%",
-                            backgroundColor: "red",
-                          }}
-                        >
-                          <img src="" alt="" />
-                        </div>
-
-                        <h5
-                          className="card-title mb-1 flex"
-                          style={{ marginTop: "35%" }}
-                        >
-                          Get Recommended for New Customers
-                        </h5>
-                        <a href="#" className="card-link">
-                          <i className="fa fa-arrow-right"></i>
-                        </a>
+                  {/* <a href=""> */}
+                  <div
+                    className="card"
+                    style={{
+                      borderRadius: "12px",
+                      backgroundColor: "rgb(255, 235, 187)",
+                    }}
+                    onMouseEnter={handleHoverFive}
+                    onMouseLeave={handleMouseLeaveFive}
+                  >
+                    <div className="card-body">
+                      <div
+                        className="card-img"
+                        style={{
+                          width: "60px",
+                          height: "60px",
+                          borderRadius: "50%",
+                          backgroundColor: "#2f937b",
+                        }}
+                      >
+                        <img src="" alt="" />
                       </div>
+
+                      <h5
+                        className="card-title mb-1 flex"
+                        style={{ marginTop: "5%" }}
+                      >
+                        Find the trusted mentor
+                      </h5>
+                      {isHoveredFive && (
+                        <p
+                          className={`paragraph ${
+                            isHoveredFive ? "visible" : "hide"
+                          }`}
+                        >
+                          Cultivate mentorship relationships that foster career
+                          development ensuring a path to success with trusted
+                          support.
+                        </p>
+                      )}
+                      {/* <a href="#" className="card-link">
+                          <i className="fa fa-arrow-right"></i>
+                        </a> */}
                     </div>
-                  </a>
+                  </div>
+                  {/* </a> */}
                 </div>
 
-                <div className="col-md-4 mt-4">
+                {/* <div className="col-md-4 mt-4">
                   <a href="">
                     <div
                       className="card"
@@ -663,6 +808,8 @@ const Home2 = () => {
                         borderRadius: "12px",
                         backgroundColor: "rgb(196, 255, 175)",
                       }}
+                      onMouseEnter={handleHoverSix}
+                      onMouseLeave={handleMouseLeaveSix}
                     >
                       <div className="card-body">
                         <div
@@ -683,18 +830,19 @@ const Home2 = () => {
                         >
                           Get Recommended for New Customers
                         </h5>
+                        {isHoveredSix && <p></p>}
                         <a href="#" className="card-link">
                           <i className="fa fa-arrow-right"></i>
                         </a>
                       </div>
                     </div>
                   </a>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>
 
-          <div className="row">
+          {/* <div className="row">
             <div className="col-md-12">
               <div className="row">
                 <div className="col-md-4 mt-4">
@@ -806,7 +954,7 @@ const Home2 = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
 
@@ -833,25 +981,28 @@ const Home2 = () => {
                   ></iframe>
                   <div>
                     <h2 className="mt-4 mb-4 text-center">Why Klout Club</h2>
-                    <p className="mb-3">
-                      Intch makes &nbsp;
+                    <p className="mb-1">
+                      The Klout Club app empowers users to cultivate a dynamic
+                      network by connecting with like-minded individuals,
+                      mentors, and potential co-founders.
+                    </p>
+                    <p className="mb-1">
+                      Its innovative features, such as &nbsp;
                       <span style={{ fontWeight: "700" }}>
-                        your network the #1 superpower
-                      </span>
-                      &nbsp; in growing your business. It’s not just accepting
-                      connection requests from strangers — it’s &nbsp;
+                        {" "}
+                        "Meet Professionals Near You"
+                      </span>{" "}
+                      &nbsp; and &nbsp;
                       <span style={{ fontWeight: "700" }}>
-                        building real connections
-                      </span>
-                      &nbsp; by helping verified members of the community in a
-                      &nbsp;
-                      <span style={{ fontWeight: "700" }}>
-                        simple and gamified
-                      </span>
-                      &nbsp; way.
+                        "Connect with Like - minded People"
+                      </span>{" "}
+                      &nbsp; facilitate seamless networking, helping users gain
+                      Social Capital points for mutual support and fostering
+                      collaborative relationships that contribute to their
+                      professional success.
                     </p>
 
-                    <ol style={{ paddingLeft: "14px" }}>
+                    {/* <ol style={{ paddingLeft: "14px" }}>
                       <li>
                         Say goodbye to cold outreach — just post your business
                         request on Intch and the app &nbsp;
@@ -877,7 +1028,7 @@ const Home2 = () => {
                         </span>
                         &nbsp;
                       </li>
-                    </ol>
+                    </ol> */}
                   </div>
                 </div>
               </div>
@@ -887,7 +1038,7 @@ const Home2 = () => {
       </section>
 
       {/* <!-- User Feedback --> */}
-      <section className="testimonial-area ptb-90">
+      {/* <section className="testimonial-area ptb-90">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -900,10 +1051,7 @@ const Home2 = () => {
                     <span></span>
                   </span>
                 </h2>
-                {/* <!-- <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-                    eiusmod tempor incididunt
-                  </p> --> */}
+              
               </div>
             </div>
           </div>
@@ -934,10 +1082,10 @@ const Home2 = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <!-- Video --> */}
-      <section className="video-area ptb-90">
+      {/* <section className="video-area ptb-90">
         <div className="container">
           <div className="row">
             <div className="col-lg-12">
@@ -953,7 +1101,7 @@ const Home2 = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <!-- Showcase --> */}
       <section className="showcase-area ptb-90">
@@ -980,14 +1128,16 @@ const Home2 = () => {
           <div className="row flexbox-center">
             <div className="col-lg-6">
               <div className="single-showcase-box">
-                <h4>Get relevant requests</h4>
+                <h4>Find professionals near you</h4>
                 <p>
-                  You specify your areas of expertise. Based on it Intch AI
-                  selects requests from over 100k users worldwide.
+                  With its proprietary map feature Klout Club App helps you to
+                  find professionals near you. So the next time you are at an
+                  airport or at a office park you can find professionals near
+                  you to network and connect with.
                 </p>
-                <a href="#" className="appao-btn appao-btn2">
+                {/* <a href="#" className="appao-btn appao-btn2">
                   Read More
-                </a>
+                </a> */}
               </div>
             </div>
             <div className="col-lg-6">
@@ -1005,11 +1155,14 @@ const Home2 = () => {
             </div>
             <div className="col-lg-6">
               <div className="single-showcase-box">
-                <h4>Help out yourself or introduce someone you know</h4>
-                <p>With Intch it’s faster and easier than writing an email.</p>
-                <a href="#" className="appao-btn appao-btn2">
+                <h4>Find industry wise professionals</h4>
+                <p>
+                  Use our advanced search feature to find professionals from
+                  your desired industries and companies.
+                </p>
+                {/* <a href="#" className="appao-btn appao-btn2">
                   Read More
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
@@ -1017,14 +1170,15 @@ const Home2 = () => {
           <div className="row flexbox-center">
             <div className="col-lg-6">
               <div className="single-showcase-box">
-                <h4>Earn Social Capital</h4>
+                <h4>Attend events as per your liking </h4>
                 <p>
-                  When you help others by making introductions or giving advice,
-                  you earn SC.
+                  From our list of events find the one you prefer to attend and
+                  ask for an invite. If you are near any event location, you can
+                  also walkin and scan the QR to attend the event.
                 </p>
-                <a href="#" className="appao-btn appao-btn2">
+                {/* <a href="#" className="appao-btn appao-btn2">
                   Read More
-                </a>
+                </a> */}
               </div>
             </div>
             <div className="col-lg-6">
@@ -1042,16 +1196,14 @@ const Home2 = () => {
             </div>
             <div className="col-lg-6">
               <div className="single-showcase-box">
-                <h4>
-                  Achieve your goals through the power of Business Community
-                </h4>
+                <h4>Network at business events</h4>
                 <p>
-                  Bigger Social Capital means more people will see your profile
-                  and requests.
+                  Klout Club app makes it easier for you to network at business
+                  conclaves and events.
                 </p>
-                <a href="#" className="appao-btn appao-btn2">
+                {/* <a href="#" className="appao-btn appao-btn2">
                   Read More
-                </a>
+                </a> */}
               </div>
             </div>
           </div>
@@ -1062,7 +1214,7 @@ const Home2 = () => {
       <section className="counter-area ptb-90">
         <div className="container">
           <div className="row">
-            <div className="col-md-3 col-sm-6">
+            <div className="col-md-6 col-sm-6">
               <div className="single-counter-box">
                 <i className="icofont icofont-heart-alt"></i>
                 <h1>
@@ -1071,7 +1223,7 @@ const Home2 = () => {
                 <p>Happy Clients</p>
               </div>
             </div>
-            <div className="col-md-3 col-sm-6">
+            <div className="col-md-6 col-sm-6">
               <div className="single-counter-box">
                 <i className="icofont icofont-protect"></i>
                 <h1>
@@ -1080,7 +1232,7 @@ const Home2 = () => {
                 <p>Completed Events</p>
               </div>
             </div>
-            <div className="col-md-3 col-sm-6">
+            {/* <div className="col-md-3 col-sm-6">
               <div className="single-counter-box">
                 <i className="icofont icofont-download-alt"></i>
                 <h1>
@@ -1088,8 +1240,8 @@ const Home2 = () => {
                 </h1>
                 <p>Apps Download</p>
               </div>
-            </div>
-            <div className="col-md-3 col-sm-6">
+            </div> */}
+            {/* <div className="col-md-3 col-sm-6">
               <div className="single-counter-box">
                 <i className="icofont icofont-trophy"></i>
                 <h1>
@@ -1097,7 +1249,7 @@ const Home2 = () => {
                 </h1>
                 <p>Our Awards</p>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>
@@ -1344,27 +1496,27 @@ const Home2 = () => {
               <div className="contact-address">
                 <h4>Address</h4>
                 <p>
-                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  10, Poorvi Marg, Dlf Phase 2, Gurgaon, Haryana (India) -
+                  122008
                 </p>
-                <ul>
+                <ul style={{ paddingLeft: "0" }}>
                   <li>
                     <div className="contact-address-icon">
                       <i className="icofont icofont-headphone-alt"></i>
                     </div>
                     <div className="contact-address-info">
                       <a
-                        href="tel:+8800000000"
+                        href="tel:+91-96433 14331"
                         style={{ textDecoration: "none" }}
                       >
-                        +8800000000
+                        +91-96433 14331
                       </a>
-                      <a
+                      {/* <a
                         href="tel:+8800000001"
                         style={{ textDecoration: "none" }}
                       >
                         +8800000001
-                      </a>
+                      </a> */}
                     </div>
                   </li>
                   <li>
@@ -1373,10 +1525,10 @@ const Home2 = () => {
                     </div>
                     <div className="contact-address-info">
                       <a
-                        href="mailto:support@klout.club"
+                        href="mailto:value@klout.club"
                         style={{ textDecoration: "none" }}
                       >
-                        support@klout.club
+                        value@klout.club
                       </a>
                     </div>
                   </li>
@@ -1432,46 +1584,70 @@ const Home2 = () => {
               <div className="copyright-area">
                 <ul>
                   <li>
-                    <a href="#" style={{ textDecoration: "none" }}>
+                    <a
+                      href="https://facebook.com/thekloutclub"
+                      style={{ textDecoration: "none" }}
+                      target="_blank"
+                    >
                       <i className="icofont icofont-social-facebook"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#" style={{ textDecoration: "none" }}>
+                    <a
+                      href="https://twitter.com/TheKloutClub"
+                      style={{ textDecoration: "none" }}
+                      target="_blank"
+                    >
                       <i className="icofont icofont-social-twitter"></i>
                     </a>
                   </li>
                   <li>
-                    <a href="#" style={{ textDecoration: "none" }}>
+                    <a
+                      href="https://www.linkedin.com/company/klout-club/"
+                      style={{ textDecoration: "none" }}
+                      target="_blank"
+                    >
                       <i className="icofont icofont-brand-linkedin"></i>
                     </a>
                   </li>
-                  <li>
+                  {/* <li>
                     <a href="#" style={{ textDecoration: "none" }}>
                       <i className="icofont icofont-social-pinterest"></i>
                     </a>
-                  </li>
-                  <li>
+                  </li> */}
+                  {/* <li>
                     <a href="#" style={{ textDecoration: "none" }}>
                       <i className="icofont icofont-social-google-plus"></i>
                     </a>
-                  </li>
+                  </li> */}
                 </ul>
                 <p>
-                  Copyright &copy; 2023-24 All rights reserved | The Klout Club
+                  Copyright &copy; 2024-25 All rights reserved | The Klout Club
                   is made with &nbsp;
                   <i className="fa fa-heart-o" aria-hidden="true"></i> by &nbsp;
-                  <a href="https://insightner.com/" target="_blank" style={{ textDecoration: "none" }}>
+                  <a
+                    href="https://insightner.com/"
+                    target="_blank"
+                    style={{ textDecoration: "none" }}
+                  >
                     Insightner
                   </a>
                 </p>
 
                 <p>
-                  <a href="/privacy-policy" target="_blank" style={{ textDecoration: "none" }}>
+                  <a
+                    href="/privacy-policy"
+                    target="_blank"
+                    style={{ textDecoration: "none" }}
+                  >
                     Privacy Policy
                   </a>
                   &nbsp; | &nbsp;
-                  <a href="/terms-and-condition" target="_blank" style={{ textDecoration: "none" }}>
+                  <a
+                    href="/terms-and-condition"
+                    target="_blank"
+                    style={{ textDecoration: "none" }}
+                  >
                     Terms and Conditions
                   </a>
                 </p>
