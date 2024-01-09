@@ -38,6 +38,8 @@ import ChangePassword from "../layouts/admin/ChangePassword";
 import AllAttendeeList from "../layouts/admin/AllAttendeeList";
 import SendSmsAttendee from "../layouts/admin/SendSmsAttendee";
 import SendMailAttendee from "../layouts/admin/SendMailAttendee";
+import PrivacyPolicy from "../components/PrivacyPolicy";
+import TermsAndConditions from "../components/TermsAndConditions";
 
 const routes = [
   { path: "/admin", exact: true, name: "Admin", component: Dashboard },
@@ -251,6 +253,24 @@ const routes = [
     exact: true,
     name: "ActivityLog",
     component: ActivityLog,
+  },
+  {
+    path: "/admin/blank",
+    exact: true,
+    name: "Blank",
+    component: Blank,
+  },
+  {
+    path: "/privacy-policy",
+    exact: true,
+    name: "PrivacyPolicy",
+    component: PrivacyPolicy,
+  },
+  {
+    path: "/terms-and-condition",
+    exact: true,
+    name: "TermsAndConditions",
+    component: TermsAndConditions,
   },
   {
     path: "/admin/blank",

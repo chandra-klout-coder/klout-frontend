@@ -20,7 +20,8 @@ import MasterLayout from "./layouts/admin/MasterLayout";
 import ForgotPassword from "./components/ForgotPassword";
 import TermsAndConditions from "./components/TermsAndConditions";
 
-axios.defaults.baseURL = "http://ec2-43-205-139-120.ap-south-1.compute.amazonaws.com";
+axios.defaults.baseURL =
+  "http://ec2-43-205-139-120.ap-south-1.compute.amazonaws.com";
 // axios.defaults.baseURL = "http://localhost:8000/";
 
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -44,9 +45,19 @@ function App() {
         <Switch>
           <Route exact path="/" component={LandingHome} />
 
-          <Route exact path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/privacy-policy">
+            <PrivacyPolicy />
+          </Route>
 
-          <Route exact path="/terms-and-condition" component={TermsAndConditions} />
+          <Route path="/terms-and-condition">
+            <TermsAndConditions />
+          </Route>
+
+          {/* <Route
+            exact
+            path="/terms-and-condition"
+            component={TermsAndConditions}
+          /> */}
 
           <Route exact path="/unsubscribe" component={UnSubscribe} />
 
@@ -59,7 +70,7 @@ function App() {
               <Login />
             )}
           </Route>
-          
+
           <Route path="/register">
             {localStorage.getItem("auth_token") !== null ? (
               <Redirect to="/admin/dashboard" />
