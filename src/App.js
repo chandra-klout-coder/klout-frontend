@@ -20,8 +20,8 @@ import MasterLayout from "./layouts/admin/MasterLayout";
 import ForgotPassword from "./components/ForgotPassword";
 import TermsAndConditions from "./components/TermsAndConditions";
 
-axios.defaults.baseURL =
-  "http://ec2-43-205-139-120.ap-south-1.compute.amazonaws.com";
+axios.defaults.baseURL ="https://api.klout.club/"
+  // "https://ec2-13-233-162-212.ap-south-1.compute.amazonaws.com";
 // axios.defaults.baseURL = "http://localhost:8000/";
 
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -41,27 +41,17 @@ axios.interceptors.request.use(function (config) {
 function App() {
   return (
     <div className="App">
-      <Router>
+      <Router basename="/">
         <Switch>
           <Route exact path="/" component={LandingHome} />
 
-          <Route path="/privacy-policy">
+          {/* <Route path="/privacy-policy">
             <PrivacyPolicy />
-          </Route>
+          </Route> */}
 
-          <Route path="/terms-and-condition">
+          {/* <Route path="/terms-and-condition">
             <TermsAndConditions />
-          </Route>
-
-          {/* <Route
-            exact
-            path="/terms-and-condition"
-            component={TermsAndConditions}
-          /> */}
-
-          <Route exact path="/unsubscribe" component={UnSubscribe} />
-
-          <Route path="/403" component={Page403} />
+          </Route> */}
 
           <Route path="/login">
             {localStorage.getItem("auth_token") !== null ? (
@@ -81,6 +71,10 @@ function App() {
 
           <Route path="/forgot-password" component={ForgotPassword} />
           <Route path="/reset-password" component={ResetPassword} />
+          <Route path="/privacy-policy" component={PrivacyPolicy} />
+          <Route path="/terms-and-condition" component={TermsAndConditions} />
+          <Route path="/unsubscribe" component={UnSubscribe} />
+          <Route path="/403" component={Page403} />
 
           {/* <Route
             path="/admin"

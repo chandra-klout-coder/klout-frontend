@@ -4,11 +4,13 @@ import swal from "sweetalert";
 import QrCode from "./../assets/img/qr.svg";
 import Logo from "./../assets/img/Klout-Club.svg";
 // import Logo from "./../assets/img/klout_original_logo.jpg";
-import Showcase from "./../assets/img/ShowcaseOne.png";
-import MockUp from "./../assets/img/hand_mockup.png";
-import Showcase2 from "./../assets/img/ShowcaseTwo.png";
 import Author1 from "./../assets/img/author/author1.jpg";
 import Author2 from "./../assets/img/author/author2.jpg";
+import MockUp from "./../assets/img/hand_mockup_new.png";
+import Showcase from "./../assets/img/Find_professionals_near_you.png";
+import ShowcaseFour from "./../assets/img/Network_at_business_events.png";
+import ShowcaseTwo from "./../assets/img/Find_industry_wise_professionals.png";
+import ShowcaseThree from "./../assets/img/Attend_events_as_per_your_liking.png";
 
 import "./CardWithHover.css";
 
@@ -245,6 +247,7 @@ const Home2 = () => {
     "Connect to network easily",
     "Get introduced to people in events",
   ];
+
   const [bannerTitleIndex, setBannerTitleIndex] = useState(0);
 
   useEffect(() => {
@@ -452,7 +455,7 @@ const Home2 = () => {
             </div>
             <div className="col-lg-5">
               <div className="hand-mockup text-lg-left text-center">
-                <img src={MockUp} alt="Hand Mockup" />
+                <img src={MockUp} alt="Hand Mockup" style={{ width: "86%" }} />
               </div>
             </div>
           </div>
@@ -573,12 +576,12 @@ const Home2 = () => {
                         <img src="" alt="" />
                       </div>
 
-                      <h5
+                      <h1
                         className="card-title mb-1 flex"
-                        style={{ marginTop: "5%" }}
+                        style={{ marginTop: "5%", fontSize: "1.5rem" }}
                       >
                         Get New customer
-                      </h5>
+                      </h1>
                       {/* {isHoveredOne && ( */}
                       <p
                         className={`paragraph ${
@@ -622,12 +625,12 @@ const Home2 = () => {
                         <img src="" alt="" />
                       </div>
 
-                      <h5
+                      <h1
                         className="card-title mb-1 flex"
-                        style={{ marginTop: "5%" }}
+                        style={{ marginTop: "5%", fontSize: "1.4rem" }}
                       >
                         Connect with like minded people
-                      </h5>
+                      </h1>
                       {/* {isHoveredTwo && ( */}
                       <p
                         className={`paragraph ${
@@ -671,12 +674,12 @@ const Home2 = () => {
                         <img src="" alt="" />
                       </div>
 
-                      <h5
+                      <h1
                         className="card-title mb-1 flex"
-                        style={{ marginTop: "5%" }}
+                        style={{ marginTop: "5%", fontSize: "1.5rem" }}
                       >
                         Find Professionals near you
-                      </h5>
+                      </h1>
                       {/* {isHoveredThree && ( */}
                       <p
                         className={`paragraph ${
@@ -726,12 +729,12 @@ const Home2 = () => {
                         <img src="" alt="" />
                       </div>
 
-                      <h5
+                      <h1
                         className="card-title mb-1 flex"
-                        style={{ marginTop: "5%" }}
+                        style={{ marginTop: "5%", fontSize: "1.5rem" }}
                       >
                         Find a perfect co-founder
-                      </h5>
+                      </h1>
                       {/* {isHoveredFour && ( */}
                       <p
                         className={`paragraph ${
@@ -775,12 +778,12 @@ const Home2 = () => {
                         <img src="" alt="" />
                       </div>
 
-                      <h5
+                      <h1
                         className="card-title mb-1 flex"
-                        style={{ marginTop: "5%" }}
+                        style={{ marginTop: "5%", fontSize: "1.5rem" }}
                       >
                         Find the trusted mentor
-                      </h5>
+                      </h1>
                       {isHoveredFive && (
                         <p
                           className={`paragraph ${
@@ -969,7 +972,7 @@ const Home2 = () => {
               <div>
                 <div className="">
                   <iframe
-                    src="https://www.youtube.com/embed/SMB6lWGGVwc"
+                    src="https://www.youtube.com/embed/sc-1TZA6m4o?si=abRC_RbUxjiijwyZ"
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     style={{
@@ -1150,7 +1153,7 @@ const Home2 = () => {
           <div className="row flexbox-center">
             <div className="col-lg-6">
               <div className="single-showcase-box">
-                <img src={Showcase2} alt="showcase" />
+                <img src={ShowcaseTwo} alt="showcase" />
               </div>
             </div>
             <div className="col-lg-6">
@@ -1183,7 +1186,7 @@ const Home2 = () => {
             </div>
             <div className="col-lg-6">
               <div className="single-showcase-box">
-                <img src={Showcase} alt="showcase" />
+                <img src={ShowcaseThree} alt="showcase" />
               </div>
             </div>
           </div>
@@ -1191,7 +1194,7 @@ const Home2 = () => {
           <div className="row flexbox-center">
             <div className="col-lg-6">
               <div className="single-showcase-box">
-                <img src={Showcase2} alt="showcase" />
+                <img src={ShowcaseFour} alt="showcase" />
               </div>
             </div>
             <div className="col-lg-6">
@@ -1635,17 +1638,12 @@ const Home2 = () => {
                 </p>
 
                 <p>
-                  <a
-                    href="/privacy-policy"
-                    target="_blank"
-                    style={{ textDecoration: "none" }}
-                  >
+                  <a href="/privacy-policy" style={{ textDecoration: "none" }}>
                     Privacy Policy
                   </a>
                   &nbsp; | &nbsp;
                   <a
                     href="/terms-and-condition"
-                    target="_blank"
                     style={{ textDecoration: "none" }}
                   >
                     Terms and Conditions

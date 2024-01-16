@@ -1,5 +1,6 @@
 import React from "react";
-import Logo from "./../assets/img/klout_original_logo.jpg";
+import Logo from "./../assets/img/Klout-Club.svg";
+
 import MockUp from "./../assets/img/hand-mockup.png";
 import Showcase from "./../assets/img/showcase.png";
 import Showcase2 from "./../assets/img/showcase2.png";
