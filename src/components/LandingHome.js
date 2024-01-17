@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
+import "./CardWithHover.css";
 import swal from "sweetalert";
 import QrCode from "./../assets/img/qr.svg";
 import Logo from "./../assets/img/Klout-Club.svg";
+import loadingGif from "../assets/images/load.gif";
 // import Logo from "./../assets/img/klout_original_logo.jpg";
 import Author1 from "./../assets/img/author/author1.jpg";
 import Author2 from "./../assets/img/author/author2.jpg";
@@ -11,12 +14,6 @@ import Showcase from "./../assets/img/Find_professionals_near_you.png";
 import ShowcaseFour from "./../assets/img/Network_at_business_events.png";
 import ShowcaseTwo from "./../assets/img/Find_industry_wise_professionals.png";
 import ShowcaseThree from "./../assets/img/Attend_events_as_per_your_liking.png";
-
-import "./CardWithHover.css";
-
-import { Link } from "react-router-dom";
-
-import loadingGif from "../assets/images/load.gif";
 
 const Home2 = () => {
   const [formData, setFormData] = useState({

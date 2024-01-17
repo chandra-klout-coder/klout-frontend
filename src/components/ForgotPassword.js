@@ -4,7 +4,6 @@ import axios from "axios";
 import swal from "sweetalert";
 
 import loadingGif from "../assets/images/load.gif";
-
 import backgroundImage from "../assets/images/1.jpg";
 
 function ForgotPassword() {
@@ -47,7 +46,6 @@ function ForgotPassword() {
       try {
         // Send a request to your Laravel API to initiate the password reset process
         const res = await axios.post("/api/forgot-password", { email });
-        // setSuccessMessage(response.data.message);
 
         if (res.data.status === 200) {
 

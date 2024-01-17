@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
+
 import axios from "axios";
 import swal from "sweetalert";
-import { useHistory, Link } from "react-router-dom";
 import loadingGif from "../assets/images/load.gif";
-
+import { useHistory, Link } from "react-router-dom";
 import backgroundImage from "../assets/images/1.jpg";
 
 const OtpVerification = ({
@@ -42,16 +42,14 @@ const OtpVerification = ({
     setFormData((prevData) => ({ ...prevData, [name]: value }));
   };
 
- 
   const handleKeyDown = (event) => {
-    if (event.key === 'Enter') {
-      event.preventDefault(); // Prevent default behavior (form submission)
+    if (event.key === "Enter") {
+      event.preventDefault();
     }
   };
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-
 
     const fieldErrors = {};
 

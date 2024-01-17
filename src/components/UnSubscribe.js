@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+
 import axios from "axios";
 import swal from "sweetalert";
-
 import loadingGif from "../assets/images/load.gif";
-
 import backgroundImage from "../assets/images/1.jpg";
 
 function UnSubscribe() {

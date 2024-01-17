@@ -1,25 +1,18 @@
-import Page404 from "../errors/Page404";
 import Faqs from "../layouts/admin/Faqs";
 import Blank from "../layouts/admin/Blank";
 import Event from "../layouts/admin/Event";
 import Reports from "../layouts/admin/Reports";
 import GetHelp from "../layouts/admin/GetHelp";
-import AddCity from "../layouts/admin/AddCity";
 import Profile from "../layouts/admin/Profile";
-import AddState from "../layouts/admin/AddState";
 import AllEvent from "../layouts/admin/AllEvent";
 import Settings from "../layouts/admin/Settings";
 import AddSkills from "../layouts/admin/AddSkills";
 import ViewEvent from "../layouts/admin/ViewEvent";
 import EditEvent from "../layouts/admin/EditEvent";
 import Dashboard from "../layouts/admin/Dashboard";
-import AddCountry from "../layouts/admin/AddCountry";
-import AddCompany from "../layouts/admin/AddCompany";
 import AllReports from "../layouts/admin/AllReports";
 import ViewSponsor from "../layouts/admin/ViewSponsor";
 import AddSponsors from "../layouts/admin/AddSponsors";
-import AddJobTitle from "../layouts/admin/AddJobTitle";
-import AddIndustry from "../layouts/admin/AddIndustry";
 import AddAttendee from "../layouts/admin/AddAttendee";
 import AllContacts from "../layouts/admin/AllContacts";
 import AllSponsors from "../layouts/admin/AllSponsors";
@@ -117,50 +110,12 @@ const routes = [
     name: "ViewAttendee",
     component: ViewAttendee,
   },
-  //Mapping Data
-  {
-    path: "/admin/add-country",
-    exact: true,
-    name: "AddCountry",
-    component: AddCountry,
-  },
-  {
-    path: "/admin/add-state",
-    exact: true,
-    name: "AddState",
-    component: AddState,
-  },
-  {
-    path: "/admin/add-city",
-    exact: true,
-    name: "AddCity",
-    component: AddCity,
-  },
   {
     path: "/admin/add-skills",
     exact: true,
     name: "AddSkills",
     component: AddSkills,
   },
-  {
-    path: "/admin/add-industry",
-    exact: true,
-    name: "AddIndustry",
-    component: AddIndustry,
-  },
-  {
-    path: "/admin/add-company",
-    exact: true,
-    name: "AddCompany",
-    component: AddCompany,
-  },
-  {
-    path: "/admin/add-job-title",
-    exact: true,
-    name: "AddJobTitle",
-    component: AddJobTitle,
-  },
-
   {
     path: "/admin/sponsors",
     exact: true,
@@ -279,11 +234,11 @@ const routes = [
     component: Blank,
   },
   {
-    path:"/admin/404",
-    exact:true,
-    name:"Page404",
-    component: Page404Dashboard
-  }
+    path: "/admin/404",
+    exact: true,
+    name: "Page404",
+    component: Page404Dashboard,
+  },
 ];
 
 export default routes;

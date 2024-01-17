@@ -6,9 +6,7 @@ import axios from "axios";
 import swal from "sweetalert";
 
 function Home() {
-  // localStorage.setItem("auth_token", res.data.access_token);
-  // localStorage.setItem("auth_name", "user");
-
+  
   const history = useHistory();
 
   const logoutSubmit = (e) => {

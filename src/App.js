@@ -21,7 +21,6 @@ import ForgotPassword from "./components/ForgotPassword";
 import TermsAndConditions from "./components/TermsAndConditions";
 
 axios.defaults.baseURL ="https://api.klout.club/"
-  // "https://ec2-13-233-162-212.ap-south-1.compute.amazonaws.com";
 // axios.defaults.baseURL = "http://localhost:8000/";
 
 axios.defaults.headers.post["Content-Type"] = "application/json";
@@ -44,14 +43,6 @@ function App() {
       <Router basename="/">
         <Switch>
           <Route exact path="/" component={LandingHome} />
-
-          {/* <Route path="/privacy-policy">
-            <PrivacyPolicy />
-          </Route> */}
-
-          {/* <Route path="/terms-and-condition">
-            <TermsAndConditions />
-          </Route> */}
 
           <Route path="/login">
             {localStorage.getItem("auth_token") !== null ? (

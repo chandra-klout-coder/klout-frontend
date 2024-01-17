@@ -4,16 +4,11 @@ import { Link, useHistory, useParams, useLocation } from "react-router-dom";
 import axios from "axios";
 import swal from "sweetalert";
 import Swal from "sweetalert2";
-
-import backgroundImage from "../assets/images/1.jpg";
-
 import loadingGif from "../assets/images/load.gif";
+import backgroundImage from "../assets/images/1.jpg";
 
 function ResetPassword() {
   const history = useHistory();
-
-  // const { email, token } = useParams();
-
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const email = queryParams.get("email");
@@ -119,7 +114,6 @@ function ResetPassword() {
         })
         .then((res) => {
           if (res.data.status === 200) {
-
             if (
               localStorage.getItem("auth_token") !== null &&
               localStorage.getItem("auth_name") !== null

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import axios from "axios";
 import Step1 from "./Step1";
 import swal from "sweetalert";
-
 import validator from "validator";
-import { Link } from "react-router-dom";
 import OtpVerification from "./OtpVerification";
 
 function Register() {
