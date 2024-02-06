@@ -191,6 +191,12 @@ function AddAttendee(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const button = e.target;
+
+    button.disabled = true;
+
+    setIsLoading(true);
+
     const fieldErrors = {};
 
     if (
@@ -309,8 +315,6 @@ function AddAttendee(props) {
     }
 
     if (Object.keys(fieldErrors).length === 0) {
-      setIsLoading(true);
-
       const formData = new FormData();
 
       formData.append("image", formInput.image);
@@ -368,15 +372,14 @@ function AddAttendee(props) {
 
             history.push(`/admin/all-attendee/${event_id}`);
           }
-        }).finally(() => {
+        })
+        .finally(() => {
           setIsLoading(false);
-          // button.disabled = false;
+          button.disabled = false;
         });
-        
     } else {
       setErrors(fieldErrors);
     }
-    setIsLoading(false);
   };
 
   // Upload Excel
@@ -837,7 +840,10 @@ function AddAttendee(props) {
 
                   {/* Job Title  */}
                   <div className="form-group row">
-                    <label forhtml="job_title" className="col-12 col-form-label">
+                    <label
+                      forhtml="job_title"
+                      className="col-12 col-form-label"
+                    >
                       Job Title
                     </label>
                     <div className="col-12 mb-3 mb-sm-0">
@@ -1149,7 +1155,7 @@ function AddAttendee(props) {
                           "Submit"
                         )}
                       </button>
-                        <hr />
+                      <hr />
                     </div>
                   </div>
                 </form>
@@ -1199,7 +1205,8 @@ function AddAttendee(props) {
                                 role="alert"
                               >
                                 {errorsExcel.message &&
-                                  errorsExcel.message !== undefined && showAlert && (
+                                  errorsExcel.message !== undefined &&
+                                  showAlert && (
                                     <>
                                       <span>{errorsExcel.message}</span>
                                       <br />

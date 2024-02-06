@@ -7,7 +7,6 @@ import loadingGif from "../../assets/images/load.gif";
 import Defaultuser from "../../assets/images/defaultuser.png";
 
 function EditAttendee(props) {
-
   const history = useHistory();
 
   const user_id = props.match.params.id;
@@ -187,6 +186,12 @@ function EditAttendee(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const button = e.target;
+
+    button.disabled = true;
+
+    setIsLoading(true);
+
     const fieldErrors = {};
 
     if (
@@ -309,7 +314,6 @@ function EditAttendee(props) {
     }
 
     if (Object.keys(fieldErrors).length === 0) {
-      setIsLoading(true);
 
       const formData = new FormData();
 
@@ -369,12 +373,14 @@ function EditAttendee(props) {
             swal("All fields are mandatory", "", "error");
             history.push(`/admin/all-attendee/${eventId}`);
           }
+        })
+        .finally(() => {
+          setIsLoading(false);
+          button.disabled = false;
         });
     } else {
       setErrors(fieldErrors);
     }
-
-    setIsLoading(false);
   };
 
   return (
@@ -485,7 +491,10 @@ function EditAttendee(props) {
 
                   {/* Event Venue  */}
                   <div className="form-group row">
-                    <label forhtml="email" className="col-12 col-lg-2 col-form-label">
+                    <label
+                      forhtml="email"
+                      className="col-12 col-lg-2 col-form-label"
+                    >
                       Email
                     </label>
                     <div className="col-12 col-lg-5 mb-3 mb-sm-0">
@@ -594,7 +603,10 @@ function EditAttendee(props) {
 
                   {/* File - Event Image  */}
                   <div className="form-group row">
-                    <label forhtml="file" className="col-12 col-lg-2 col-form-label">
+                    <label
+                      forhtml="file"
+                      className="col-12 col-lg-2 col-form-label"
+                    >
                       Profile Picture
                     </label>
                     <div className="col-12 col-lg-5">
@@ -663,7 +675,10 @@ function EditAttendee(props) {
 
                   {/* Job Title  */}
                   <div className="form-group row">
-                    <label forhtml="job_title" className="col-12 col-lg-2 col-form-label">
+                    <label
+                      forhtml="job_title"
+                      className="col-12 col-lg-2 col-form-label"
+                    >
                       Job Title
                     </label>
                     <div className="col-12 col-lg-5 mb-3 mb-sm-0">
@@ -734,7 +749,10 @@ function EditAttendee(props) {
 
                   {/* Industry */}
                   <div className="form-group row">
-                    <label forhtml="industry" className="col-12 col-lg-2 col-form-label">
+                    <label
+                      forhtml="industry"
+                      className="col-12 col-lg-2 col-form-label"
+                    >
                       Industry
                     </label>
                     <div className="col-12 col-lg-5 mb-3 mb-sm-0">
@@ -768,7 +786,10 @@ function EditAttendee(props) {
 
                   {/* Event Venue  */}
                   <div className="form-group row">
-                    <label forhtml="website" className="col-12 col-lg-2 col-form-label">
+                    <label
+                      forhtml="website"
+                      className="col-12 col-lg-2 col-form-label"
+                    >
                       Website
                     </label>
                     <div className="col-12 col-lg-5 mb-3 mb-sm-0">
@@ -923,7 +944,10 @@ function EditAttendee(props) {
                     </div>
                   </div>
                   <div className="form-group row">
-                    <label forhtml="status" className="col-12 col-lg-2 col-form-label">
+                    <label
+                      forhtml="status"
+                      className="col-12 col-lg-2 col-form-label"
+                    >
                       Attendee Status
                     </label>
                     <div className="col-12 col-lg-5 mb-3 mb-sm-0">

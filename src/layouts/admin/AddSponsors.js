@@ -26,7 +26,11 @@ function AddSponsors(props) {
   const [sponsorPackageData, setsponsorPackageData] = useState([]);
 
   const [companyInput, setCompanyInput] = useState(false);
+
   const [jobTitleInput, setJobTitleInput] = useState(false);
+
+  const [employeeSizeData, setEmployeeSizeData] = useState([]);
+  const [countries, setCountries] = useState([]);
 
   useEffect(() => {
     axios.get("/api/job-titles").then((res) => {
@@ -50,6 +54,18 @@ function AddSponsors(props) {
     axios.get("/api/sponsorships").then((res) => {
       if (res.data.status === 200) {
         setsponsorPackageData(res.data.data);
+      }
+    });
+
+    axios.get("/api/emloyeee-size").then((res) => {
+      if (res.data.status === 200) {
+        setEmployeeSizeData(res.data.data);
+      }
+    });
+
+    axios.get("/api/countries").then((res) => {
+      if (res.data.status === 200) {
+        setCountries(res.data.data);
       }
     });
   }, []);
@@ -164,10 +180,8 @@ function AddSponsors(props) {
         break;
 
       case "employee_size":
-        if (value !== "") {
-          if (value.length > 8) {
-            fieldErrors[name] = "At Most 8 Digits only";
-          }
+        if (value === "") {
+          fieldErrors[name] = "Employee-Size is required";
         }
         break;
 
@@ -262,6 +276,16 @@ function AddSponsors(props) {
     setFormInput((prevData) => ({ ...prevData, company: value }));
   };
 
+  const handleEmployeeSizeChange = (event) => {
+    const value = event.target.value;
+    setFormInput((prevData) => ({ ...prevData, employee_size: value }));
+  };
+
+  const handleCountryChange = (event) => {
+    const countryCode = event.target.value;
+    setFormInput((prevData) => ({ ...prevData, country: countryCode }));
+  };
+
   const handleJobTitleChange = (event) => {
     const value = event.target.value;
 
@@ -281,6 +305,12 @@ function AddSponsors(props) {
   //Sponsor Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const button = e.target;
+
+    button.disabled = true;
+
+    setIsLoading(true);
 
     const fieldErrors = {};
 
@@ -371,7 +401,6 @@ function AddSponsors(props) {
 
     // if (formInput.file) {
     //   const allowedFormats = ["application/pdf"]; // MIME type for PDF files
-
     //   if (!allowedFormats.includes(formInput.file.type)) {
     //     fieldErrors.file = "Invalid file format. Only Pdf format is allowed.";
     //   }
@@ -415,13 +444,15 @@ function AddSponsors(props) {
     //   fieldErrors.amount = "Amount is required.";
     // }
 
+    if (formInput.employee_size === "") {
+      fieldErrors.employee_size = "Employee-Size is required";
+    }
+
     if (formInput.status === "") {
       fieldErrors.status = "Status is required.";
     }
 
     if (Object.keys(fieldErrors).length === 0) {
-      setIsLoading(true);
-
       const formData = new FormData();
 
       formData.append("event_id", formInput.event_id);
@@ -492,11 +523,14 @@ function AddSponsors(props) {
 
             history.push(`/admin/all-events/${event_id}`);
           }
+        })
+        .finally(() => {
+          setIsLoading(false);
+          button.disabled = false;
         });
     } else {
       setErrors(fieldErrors);
     }
-    setIsLoading(false);
   };
 
   return (
@@ -747,7 +781,38 @@ function AddSponsors(props) {
                       <div className="col-4">
                         <label forhtml="employee_size">Employee Size</label>
 
-                        <input
+                        <select
+                          className={`form-control ${
+                            errors.employee_size ? "is-invalid" : ""
+                          }`}
+                          name="employee_size"
+                          value={formInput.employee_size}
+                          onChange={handleEmployeeSizeChange}
+                          onBlur={handleBlur}
+                          onFocus={handleInputFocus}
+                          style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
+                        >
+                          <option value="">Select Employee Size</option>
+
+                          {employeeSizeData.length > 0 &&
+                            employeeSizeData.map((item) => (
+                              <option key={item.id} value={item.id}>
+                                {item.size}
+                              </option>
+                            ))}
+                        </select>
+                        {errors.employee_size && (
+                          <div
+                            className="invalid-feedback"
+                            style={{
+                              textAlign: "left",
+                            }}
+                          >
+                            {errors.employee_size}
+                          </div>
+                        )}
+
+                        {/* <input
                           type="text"
                           className={`form-control ${
                             errors.employee_size ? "is-invalid" : ""
@@ -759,9 +824,9 @@ function AddSponsors(props) {
                           onChange={handleInput}
                           onBlur={handleBlur}
                           onFocus={handleInputFocus}
-                        />
+                        /> */}
 
-                        {errors.employee_size && (
+                        {/* {errors.employee_size && (
                           <div
                             className="invalid-feedback"
                             style={{
@@ -770,25 +835,33 @@ function AddSponsors(props) {
                           >
                             {errors.employee_size}
                           </div>
-                        )}
+                        )} */}
                       </div>
 
                       {/* Country */}
                       <div className="col-4">
                         <label forhtml="country">Country</label>
 
-                        <input
-                          type="text"
+                        <select
                           className={`form-control ${
                             errors.country ? "is-invalid" : ""
                           }`}
-                          placeholder="Country"
                           name="country"
                           value={formInput.country}
-                          onChange={handleInput}
+                          onChange={handleCountryChange}
                           onBlur={handleBlur}
                           onFocus={handleInputFocus}
-                        />
+                          style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
+                        >
+                          <option value="">Select country</option>
+
+                          {countries.length > 0 &&
+                            countries.map((item) => (
+                              <option key={item.id} value={item.id}>
+                                {item.name}
+                              </option>
+                            ))}
+                        </select>
 
                         {errors.country && (
                           <div
@@ -989,7 +1062,6 @@ function AddSponsors(props) {
                         </div>
                       )}
                     </div>
-
 
                     <div className="col-4">
                       <label forhtml="file">Profile Picture</label>

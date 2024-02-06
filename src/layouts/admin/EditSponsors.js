@@ -33,6 +33,9 @@ function EditSponsors(props) {
   const [companyInput, setCompanyInput] = useState(false);
   const [jobTitleInput, setJobTitleInput] = useState(false);
 
+  const [employeeSizeData, setEmployeeSizeData] = useState([]);
+  const [countries, setCountries] = useState([]);
+
   const [formInput, setFormInput] = useState({
     event_id: eventId,
     first_name: "",
@@ -84,9 +87,20 @@ function EditSponsors(props) {
       }
     });
 
+    axios.get("/api/emloyeee-size").then((res) => {
+      if (res.data.status === 200) {
+        setEmployeeSizeData(res.data.data);
+      }
+    });
+
+    axios.get("/api/countries").then((res) => {
+      if (res.data.status === 200) {
+        setCountries(res.data.data);
+      }
+    });
+
     axios.get(`/api/sponsors/${sponsor_id}`).then((res) => {
       if (res.data.status === 200) {
-
         setEventId(res.data.data.event_id);
 
         if (res.data.data.company === "439") {
@@ -105,7 +119,7 @@ function EditSponsors(props) {
 
         setFormInput((prevData) => ({
           ...prevData,
-    
+
           industry: res.data.data.industry_id,
           // sponsorship_package: res.data.data.sponsorship_package_id,
         }));
@@ -133,7 +147,7 @@ function EditSponsors(props) {
   const handleIndustryChange = (event) => {
     const value = event.target.value;
 
-    alert(value);
+    // alert(value);
     // if (value == 439) {
     //   setCompanyInput(true);
     // } else {
@@ -308,6 +322,15 @@ function EditSponsors(props) {
     }
   };
 
+  const handleEmployeeSizeChange = (event) => {
+    const value = event.target.value;
+    setFormInput((prevData) => ({ ...prevData, employee_size: value }));
+  };
+
+  const handleCountryChange = (event) => {
+    const countryCode = event.target.value;
+    setFormInput((prevData) => ({ ...prevData, country: countryCode }));
+  };
   // const handleFileChange = (e) => {
   //   const file = e.target.files[0];
   //   if (file) {
@@ -327,6 +350,12 @@ function EditSponsors(props) {
   //Sponsor Form Submission
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const button = e.target;
+
+    button.disabled = true;
+
+    setIsLoading(true);
 
     const fieldErrors = {};
 
@@ -474,8 +503,7 @@ function EditSponsors(props) {
     // }
 
     if (Object.keys(fieldErrors).length === 0) {
-      setIsLoading(true);
-
+    
       const formData = new FormData();
 
       formData.append("event_id", formInput.event_id);
@@ -544,11 +572,14 @@ function EditSponsors(props) {
 
             history.push(`/admin/sponsors`);
           }
+        })
+        .finally(() => {
+          setIsLoading(false);
+          button.disabled = false;
         });
     } else {
       setErrors(fieldErrors);
     }
-    setIsLoading(false);
   };
 
   return (
@@ -800,7 +831,38 @@ function EditSponsors(props) {
                       <div className="col-4">
                         <label forhtml="employee_size">Employee Size</label>
 
-                        <input
+                        <select
+                          className={`form-control ${
+                            errors.employee_size ? "is-invalid" : ""
+                          }`}
+                          name="employee_size"
+                          value={formInput.employee_size}
+                          onChange={handleEmployeeSizeChange}
+                          onBlur={handleBlur}
+                          onFocus={handleInputFocus}
+                          style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
+                        >
+                          <option value="">Select Employee Size</option>
+
+                          {employeeSizeData.length > 0 &&
+                            employeeSizeData.map((item) => (
+                              <option key={item.id} value={item.id}>
+                                {item.size}
+                              </option>
+                            ))}
+                        </select>
+                        {errors.employee_size && (
+                          <div
+                            className="invalid-feedback"
+                            style={{
+                              textAlign: "left",
+                            }}
+                          >
+                            {errors.employee_size}
+                          </div>
+                        )}
+
+                        {/* <input
                           type="text"
                           className={`form-control ${
                             errors.employee_size ? "is-invalid" : ""
@@ -812,9 +874,9 @@ function EditSponsors(props) {
                           onChange={handleInput}
                           onBlur={handleBlur}
                           onFocus={handleInputFocus}
-                        />
+                        /> */}
 
-                        {errors.employee_size && (
+                        {/* {errors.employee_size && (
                           <div
                             className="invalid-feedback"
                             style={{
@@ -823,25 +885,33 @@ function EditSponsors(props) {
                           >
                             {errors.employee_size}
                           </div>
-                        )}
+                        )} */}
                       </div>
 
                       {/* Country */}
                       <div className="col-4">
                         <label forhtml="country">Country</label>
 
-                        <input
-                          type="text"
+                        <select
                           className={`form-control ${
                             errors.country ? "is-invalid" : ""
                           }`}
-                          placeholder="Country"
                           name="country"
                           value={formInput.country}
-                          onChange={handleInput}
+                          onChange={handleCountryChange}
                           onBlur={handleBlur}
                           onFocus={handleInputFocus}
-                        />
+                          style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
+                        >
+                          <option value="">Select country</option>
+
+                          {countries.length > 0 &&
+                            countries.map((item) => (
+                              <option key={item.id} value={item.id}>
+                                {item.name}
+                              </option>
+                            ))}
+                        </select>
 
                         {errors.country && (
                           <div

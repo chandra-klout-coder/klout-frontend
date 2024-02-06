@@ -7,8 +7,6 @@ import Showcase from "./../assets/img/showcase.png";
 import MockUp from "./../assets/img/hand-mockup.png";
 import Showcase2 from "./../assets/img/showcase2.png";
 import Author1 from "./../assets/img/author/author1.jpg";
-import Author2 from "./../assets/img/author/author2.jpg";
-
 
 const TermsAndConditions = () => {
   return (
@@ -27,7 +25,6 @@ const TermsAndConditions = () => {
               <div class="responsive-menu"></div>
               <div class="mainmenu">
                 <ul id="primary-menu">
-                
                   <li>
                     <Link class="appao-btn" to="/">
                       Go to Home
@@ -89,7 +86,12 @@ const TermsAndConditions = () => {
                 <p>
                   These terms and conditions outline the rules and regulations
                   for the use of Klout Club's Website, located at
-                  http://klout-club.s3-website.ap-south-1.amazonaws.com/.
+                  <a
+                    href="https://www.termsandconditionsgenerator.com"
+                    target="_blank"
+                  >
+                    https://www.termsandconditionsgenerator.com{" "}
+                  </a>
                 </p>
 
                 <p>
@@ -159,7 +161,7 @@ const TermsAndConditions = () => {
                 <p>
                   This Agreement shall begin on the date hereof. Our Terms and
                   Conditions were created with the help of the{" "}
-                  <a href="https://www.termsandconditionsgenerator.com/">
+                  <a href="https://www.termsandconditionsgenerator.com">
                     Free Terms and Conditions Generator
                   </a>
                   .
@@ -475,7 +477,6 @@ const TermsAndConditions = () => {
                   </a>
                 </p>
 
-            
                 <p>
                   <a href="/privacy-policy" target="_blank">
                     Privacy Policy

@@ -5,7 +5,6 @@ import { useHistory, Link } from "react-router-dom";
 import DefaultBanner from "../../assets/images/default-banner.jpg";
 import loadingGif from "../../assets/images/load.gif";
 
-
 function EditEvent(props) {
   const history = useHistory();
 
@@ -15,6 +14,13 @@ function EditEvent(props) {
   const [isLoading, setIsLoading] = useState(false);
 
   const currentDate = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
+
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedCity, setSelectedCity] = useState("");
 
   //Dropdown for Time (Minute)- 00 to 60
   const minuteOptions = Array.from({ length: 61 }, (_, index) => {
@@ -65,14 +71,22 @@ function EditEvent(props) {
     axios.get(`/api/events/${event_id}`).then((res) => {
       if (res.data.status === 200) {
         setEventInput(res.data.data);
+
+        setSelectedCountry(res.data.data.country);
+
+        setSelectedState(res.data.data.state);
+
+        // fetchStates(res.data.data.state);
+
+        // setSelectedCity(res.data.data.city);
+
+        // fetchCities(res.data.data);
       } else if (res.data.status === 400) {
         swal("Error", res.data.message, "error");
         history.push("/admin/all-events");
       }
     });
   }, [history, props.match.params.id]);
-
-  
 
   const handleInput = (e) => {
     e.persist();
@@ -197,6 +211,12 @@ function EditEvent(props) {
   const updateSubmit = (e) => {
     e.preventDefault();
 
+    const button = e.target;
+
+    button.disabled = true;
+
+    setIsLoading(true);
+
     const event_id = props.match.params.id;
 
     const fieldErrors = {};
@@ -217,8 +237,8 @@ function EditEvent(props) {
       eventInput.description.length === 0
     ) {
       fieldErrors.description = "Description is required.";
-    } else if (eventInput.description.length > 500) {
-      fieldErrors.description = "Maximum 500 Characters Allowed.";
+    } else if (eventInput.description.length > 3000) {
+      fieldErrors.description = "Maximum 3000 Characters Allowed.";
     }
 
     if (eventInput.new_image !== "") {
@@ -317,7 +337,6 @@ function EditEvent(props) {
     }
 
     if (Object.keys(fieldErrors).length === 0) {
-      setIsLoading(true);
 
       let image = {};
 
@@ -383,12 +402,87 @@ function EditEvent(props) {
             swal("Error", res.data.message, "error");
             history.push("/admin/all-events");
           }
+        })
+        .finally(() => {
+          setIsLoading(false);
+          button.disabled = false;
         });
     } else {
       setErrors(fieldErrors);
     }
+  };
 
-    setIsLoading(false);
+  const fetchCountries = async () => {
+    axios.get("/api/countries").then((res) => {
+      if (res.data.status === 200) {
+        setCountries(res.data.data);
+      }
+    });
+  };
+
+  const fetchStates = async (countryCode) => {
+    if (countryCode) {
+      axios.get(`/api/getStatesByCountryId/${countryCode}`).then((res) => {
+        if (res.data.status === 200) {
+          setStates(res.data.data);
+        }
+      });
+    }
+  };
+
+  const fetchCities = async (stateCode) => {
+    if (stateCode) {
+      axios.get(`/api/getCitiesByStateId/${stateCode}`).then((res) => {
+        if (res.data.status === 200) {
+          setCities(res.data.data);
+        }
+      });
+    }
+  };
+
+  useEffect(() => {
+    fetchCountries();
+    fetchStates(selectedCountry);
+    fetchCities(selectedState);
+  }, [selectedCountry, selectedState]);
+
+  const handleCountryChange = (event) => {
+    const countryCode = event.target.value;
+    setSelectedCountry(countryCode);
+    fetchStates(countryCode);
+
+    setEventInput((prevData) => ({
+      ...prevData,
+      country: countryCode,
+      state: "",
+      city: "",
+    }));
+
+    setStates([]);
+
+    setCities([]);
+  };
+
+  const handleStateChange = (event) => {
+    const stateCode = event.target.value;
+
+    setSelectedState(stateCode);
+
+    setEventInput((prevState) => ({
+      ...prevState,
+      state: stateCode,
+      city: "",
+    }));
+
+    fetchCities(stateCode);
+
+    setCities([]);
+  };
+
+  const handleCityChange = (event) => {
+    const value = event.target.value;
+    setSelectedCity(value);
+    setEventInput((prevData) => ({ ...prevData, city: value }));
   };
 
   return (
@@ -433,7 +527,10 @@ function EditEvent(props) {
             >
               {/* Title */}
               <div className="form-group row">
-                <label forhtml="title" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forhtml="title"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event Title
                 </label>
                 <div className="col-10">
@@ -468,7 +565,10 @@ function EditEvent(props) {
 
               {/* Description  */}
               <div className="form-group row">
-                <label forhtml="description" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forhtml="description"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event Description
                 </label>
                 <div className="col-10">
@@ -504,7 +604,10 @@ function EditEvent(props) {
 
               {/* File - Event Image  */}
               <div className="form-group row">
-                <label forhtml="file" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forhtml="file"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Upload Event Image
                 </label>
                 <div className="col-10 col-lg-6">
@@ -533,7 +636,7 @@ function EditEvent(props) {
                   )}
                 </div>
 
-                <div className="col-10 col-lg-4">
+                <div className="col-10 col-lg-4 col-4">
                   <p style={{ fontSize: "12px" }}>
                     * Upload Event Banner in JPG and PNG Format Only.
                   </p>
@@ -570,7 +673,10 @@ function EditEvent(props) {
               {/* Event Venue  */}
 
               <div className="form-group row">
-                <label forhtml="venue" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forhtml="venue"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event Venue
                 </label>
 
@@ -629,44 +735,60 @@ function EditEvent(props) {
 
                   <div className="form-group row">
                     <div className="col-6 col-lg-3">
-                      <input
-                        type="text"
+                      <select
                         className={`form-control ${
-                          errors.city ? "is-invalid" : ""
+                          errors.country ? "is-invalid" : ""
                         }`}
-                        placeholder="City"
-                        name="city"
-                        value={eventInput.city}
-                        onChange={handleInput}
+                        name="country"
+                        value={eventInput.country}
+                        onChange={handleCountryChange}
                         onBlur={handleBlur}
                         onFocus={handleInputFocus}
-                      />
+                        style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
+                      >
+                        <option value="">Select country</option>
 
-                      {errors.city && (
+                        {countries.length > 0 &&
+                          countries.map((item) => (
+                            <option key={item.id} value={item.id}>
+                              {item.name}
+                            </option>
+                          ))}
+                      </select>
+
+                      {errors.country && (
                         <div
                           className="invalid-feedback"
                           style={{
                             textAlign: "left",
                           }}
                         >
-                          {errors.city}
+                          {errors.country}
                         </div>
                       )}
                     </div>
 
                     <div className="col-6 col-lg-3 mb-3">
-                      <input
-                        type="text"
+                      <select
                         className={`form-control ${
                           errors.state ? "is-invalid" : ""
                         }`}
-                        placeholder="State"
                         name="state"
                         value={eventInput.state}
-                        onChange={handleInput}
+                        onChange={handleStateChange}
                         onBlur={handleBlur}
                         onFocus={handleInputFocus}
-                      />
+                        style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
+                      >
+                        <option value="">Select State</option>
+
+                        {states.length > 0 &&
+                          states.map((item) => (
+                            <option key={item.id} value={item.id}>
+                              {item.name}
+                            </option>
+                          ))}
+                      </select>
 
                       {errors.state && (
                         <div
@@ -680,28 +802,36 @@ function EditEvent(props) {
                       )}
                     </div>
 
-                    <div className="col-6 col-lg-3">
-                      <input
-                        type="text"
+                    <div className="col-6 col-lg-3 mb-3">
+                      <select
                         className={`form-control ${
-                          errors.country ? "is-invalid" : ""
+                          errors.city ? "is-invalid" : ""
                         }`}
-                        placeholder="Country"
-                        name="country"
-                        value={eventInput.country}
-                        onChange={handleInput}
+                        name="city"
+                        value={eventInput.city}
+                        onChange={handleCityChange}
                         onBlur={handleBlur}
                         onFocus={handleInputFocus}
-                      />
+                        style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
+                      >
+                        <option value="">Select City</option>
 
-                      {errors.country && (
+                        {cities.length > 0 &&
+                          cities.map((item) => (
+                            <option key={item.id} value={item.id}>
+                              {item.name}
+                            </option>
+                          ))}
+                      </select>
+
+                      {errors.city && (
                         <div
                           className="invalid-feedback"
                           style={{
                             textAlign: "left",
                           }}
                         >
-                          {errors.country}
+                          {errors.city}
                         </div>
                       )}
                     </div>
@@ -738,7 +868,10 @@ function EditEvent(props) {
 
               {/* Event date */}
               <div className="form-group row">
-                <label forhtml="venue" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forhtml="venue"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event Start Date
                 </label>
 
@@ -772,7 +905,10 @@ function EditEvent(props) {
 
               {/* Event End date */}
               <div className="form-group row">
-                <label forhtml="venue" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forhtml="venue"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event End Date
                 </label>
 
@@ -806,7 +942,10 @@ function EditEvent(props) {
 
               {/* Event Start Time */}
               <div className="form-group row">
-                <label forhtml="venue" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forhtml="venue"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event Start Time
                 </label>
 
@@ -895,7 +1034,10 @@ function EditEvent(props) {
 
               {/* Event Start Time */}
               <div className="form-group row">
-                <label forhtml="venue" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forhtml="venue"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event End Time
                 </label>
 
@@ -982,14 +1124,17 @@ function EditEvent(props) {
 
               {/* Feedback */}
               <div className="form-group row">
-                <label forhtml="venue" className="col-12 col-lg-2 col-lg-2 col-form-label">
+                <label
+                  forhtml="venue"
+                  className="col-12 col-lg-2 col-lg-2 col-form-label"
+                >
                   Feedback
                 </label>
 
                 <div className="col-6 col-lg-2 mb-3 mb-sm-0">
                   <div className="form-group mx-3 d-inline-flex">
                     <div
-                      className="form-check form-check-inline d-flex align-items-center justify-content-center" 
+                      className="form-check form-check-inline d-flex align-items-center justify-content-center"
                       // style={{ padding: "10px" }}
                     >
                       <input
@@ -997,7 +1142,7 @@ function EditEvent(props) {
                         type="radio"
                         name="feedback"
                         value="1"
-                        checked={eventInput.feedback == "1" }
+                        checked={eventInput.feedback == "1"}
                         onChange={handleInput}
                       />
                       <label
@@ -1013,7 +1158,7 @@ function EditEvent(props) {
                         type="radio"
                         name="feedback"
                         value="0"
-                        checked={eventInput.feedback == "0" }
+                        checked={eventInput.feedback == "0"}
                         onChange={handleInput}
                       />
                       <label
@@ -1029,7 +1174,10 @@ function EditEvent(props) {
 
               {/* Status */}
               <div className="form-group row">
-                <label forhtml="venue" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forhtml="venue"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Status
                 </label>
 

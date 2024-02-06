@@ -14,6 +14,9 @@ import Home from "../../components/Home";
 import AllEvent from "./AllEvent";
 import Swal from "sweetalert2";
 
+import { useDispatch } from "react-redux";
+import { logoutSuccess } from "../../authActions";
+
 // import Logo from "../../assets/img/klout_logo.png";
 import Logo from "./../../assets/img/Klout-Club.svg";
 
@@ -21,6 +24,8 @@ import mobileLogo from "../../assets/img/klout_mobile_logo.jpg";
 
 function Sidebar({ menuOpen, setMenuOpen, toggleMenu }) {
   const history = useHistory();
+
+  const dispatch = useDispatch();
 
   //for mobile view
   const windowWidth = window.innerWidth;
@@ -43,8 +48,7 @@ function Sidebar({ menuOpen, setMenuOpen, toggleMenu }) {
       if (result.isConfirmed) {
         axios.post(`/api/logout`).then(function (res) {
           if (res.data.status === 200) {
-            localStorage.removeItem("auth_token");
-            localStorage.removeItem("auth_name");
+            dispatch(logoutSuccess());
 
             Swal.fire({
               icon: "success",
@@ -78,26 +82,8 @@ function Sidebar({ menuOpen, setMenuOpen, toggleMenu }) {
           to="/admin/dashboard"
           className="sidebar-brand d-flex align-items-center justify-content-center"
         >
-          <div className="sidebar-brand-icon rotate-n-15">
-            {/* <i className="fas fa-laugh-wink"></i> */}
-          </div>
+          <div className="sidebar-brand-icon rotate-n-15"></div>
           <div className="sidebar-brand-text mx-3">
-            {/* {
-            
-            isMobile ? (
-              <img
-                className="sidebar-card-illustration mb-2"
-                src={mobileLogo}
-                alt="Klout Club"
-                style={{
-                  height: "30px",
-                  width: "100%",
-                  background: "#efefef",
-                  marginTop: "1.5rem",
-                }}
-              />
-            ) : ( */}
-
             <img
               className="sidebar-card-illustration mb-2"
               src={Logo}
@@ -109,7 +95,6 @@ function Sidebar({ menuOpen, setMenuOpen, toggleMenu }) {
                 marginTop: "1.5rem",
               }}
             />
-            {/* )} */}
           </div>
         </Link>
 

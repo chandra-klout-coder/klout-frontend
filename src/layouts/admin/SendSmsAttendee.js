@@ -19,7 +19,7 @@ function SendSmsAttendee(props) {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-
+  
   const currentDate = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
 
   //Dropdown for Time (Minute)- 00 to 60
@@ -68,6 +68,7 @@ function SendSmsAttendee(props) {
 
   const [event, setEvent] = useState({});
   const [showAlert, setShowAlert] = useState(true);
+  
 
   const [showInput, setShowInput] = useState(true);
 
@@ -89,7 +90,6 @@ function SendSmsAttendee(props) {
   };
 
   useEffect(() => {
-
     setFormInput({ ...formInput, send_to: selectedRoles });
 
     axios.get(`/api/events/${eventId}`).then((res) => {
@@ -180,6 +180,12 @@ function SendSmsAttendee(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const button = e.target;
+
+    button.disabled = true;
+
+    setIsLoading(true);
+
     const fieldErrors = {};
 
     if (formInput.send_to.length === 0) {
@@ -236,8 +242,6 @@ function SendSmsAttendee(props) {
     }
 
     if (Object.keys(fieldErrors).length === 0) {
-      setIsLoading(true);
-
       const formData = new FormData();
 
       formData.append("event_id", formInput.event_id);
@@ -254,15 +258,11 @@ function SendSmsAttendee(props) {
       formData.append("no_of_times", formInput.no_of_times);
       formData.append("hour_interval", formInput.hour_interval);
 
-
-      console.log('sdfss',formInput);
-
       axios
         .post(`/api/notifications`, formData, {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then((res) => {
-
           if (res.data.status === 200) {
             swal("Success", res.data.message, "success");
 
@@ -278,12 +278,14 @@ function SendSmsAttendee(props) {
             swal("Error", res.data.message, "error");
             history.push("login");
           }
+        })
+        .finally(() => {
+          setIsLoading(false);
+          button.disabled = false;
         });
     } else {
       setErrors(fieldErrors);
     }
-
-    setIsLoading(false);
 
     // axios
     //   .post(`/api/events`, formData, {
@@ -384,7 +386,10 @@ function SendSmsAttendee(props) {
 
                 {/* Send Message To*/}
                 <div className="form-group row">
-                  <label forhtml="email" className="col-12 col-lg-3 col-form-label">
+                  <label
+                    forhtml="email"
+                    className="col-12 col-lg-3 col-form-label"
+                  >
                     Select Roles
                   </label>
 
@@ -426,7 +431,10 @@ function SendSmsAttendee(props) {
 
                 {/* Send Method */}
                 <div className="form-group row">
-                  <label forhtml="email" className="col-12 col-lg-3 col-form-label">
+                  <label
+                    forhtml="email"
+                    className="col-12 col-lg-3 col-form-label"
+                  >
                     Send
                   </label>
 
@@ -487,7 +495,10 @@ function SendSmsAttendee(props) {
                 {/* Subject */}
                 {showInput && (
                   <div className="form-group row">
-                    <label forhtml="email" className="col-12 col-lg-3 col-form-label">
+                    <label
+                      forhtml="email"
+                      className="col-12 col-lg-3 col-form-label"
+                    >
                       Subject
                     </label>
 
@@ -522,7 +533,10 @@ function SendSmsAttendee(props) {
 
                 {/* Event Venue  */}
                 <div className="form-group row">
-                  <label forhtml="email" className="col-12 col-lg-3 col-form-label">
+                  <label
+                    forhtml="email"
+                    className="col-12 col-lg-3 col-form-label"
+                  >
                     Message
                   </label>
                   <div className="col-9 mb-3 mb-sm-0">
@@ -561,13 +575,14 @@ function SendSmsAttendee(props) {
                   <h6 className="text-title">
                     {" "}
                     <b>Schedule Date & Time </b>
-
-
                   </h6>
                 </div>
 
                 <div className="form-group row">
-                  <label forhtml="venue" className="col-12 col-lg-4 col-form-label">
+                  <label
+                    forhtml="venue"
+                    className="col-12 col-lg-4 col-form-label"
+                  >
                     Start Date
                   </label>
 
@@ -630,7 +645,7 @@ function SendSmsAttendee(props) {
                   <div className="col-12 col-lg-5 mb-3 mb-sm-0 px-4">
                     <div className="form-group">
                       <div
-                        className="form-check form-check-inline mx-3" 
+                        className="form-check form-check-inline mx-3"
                         style={{ padding: "10px" }}
                       >
                         <input
@@ -790,7 +805,10 @@ function SendSmsAttendee(props) {
                 </div>
 
                 <div className="form-group row">
-                  <label forhtml="venue" className="col-12 col-lg-12 col-form-label mb-3">
+                  <label
+                    forhtml="venue"
+                    className="col-12 col-lg-12 col-form-label mb-3"
+                  >
                     The SMS should be sent
                   </label>
 
@@ -824,7 +842,10 @@ function SendSmsAttendee(props) {
                     </div>
                   </div>
 
-                  <label forhtml="venue" className="col-3 col-lg-3 col-form-label">
+                  <label
+                    forhtml="venue"
+                    className="col-3 col-lg-3 col-form-label"
+                  >
                     Time Every
                   </label>
 
@@ -859,7 +880,10 @@ function SendSmsAttendee(props) {
                     </div>
                   </div>
 
-                  <label forhtml="venue" className="col-3 col-lg-3 col-form-label">
+                  <label
+                    forhtml="venue"
+                    className="col-3 col-lg-3 col-form-label"
+                  >
                     Hours.
                   </label>
                 </div>
@@ -952,13 +976,15 @@ function SendSmsAttendee(props) {
 
                 <div
                   className="col-12 col-lg-6"
-                  style={{
-                    // padding: "10px",
-                  }}
+                  style={
+                    {
+                      // padding: "10px",
+                    }
+                  }
                 >
                   <div style={{ padding: "20px" }}>
                     {/* <p> */}
-                      <b>Event QR Code</b>
+                    <b>Event QR Code</b>
                     {/* </p> */}
 
                     <div

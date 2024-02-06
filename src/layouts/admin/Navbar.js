@@ -6,8 +6,15 @@ import Swal from "sweetalert2";
 import BaseComponent from "bootstrap/js/dist/base-component";
 import Defaultuser from "../../assets/images/defaultuser.png";
 
+import { useDispatch } from "react-redux";
+import { logoutSuccess } from "../../authActions";
+
+
 function Navbar({ menuOpen, setMenuOpen, toggleMenu }) {
+
   const history = useHistory();
+
+  const dispatch = useDispatch();
 
   const imageBaseUrl = process.env.REACT_APP_API_URL;
 
@@ -28,6 +35,7 @@ function Navbar({ menuOpen, setMenuOpen, toggleMenu }) {
   };
 
   const logoutSubmit = (e) => {
+
     e.preventDefault();
 
     Swal.fire({
@@ -41,16 +49,14 @@ function Navbar({ menuOpen, setMenuOpen, toggleMenu }) {
       cancelButtonText: "No",
       confirmButtonText: "Yes",
     }).then((result) => {
-      if (result.isConfirmed) {
-        axios.post(`/api/logout`).then(function (res) {
-          if (res.data.status === 200) {
-            if (localStorage.getItem("auth_token") !== null) {
-              localStorage.removeItem("auth_token");
-            }
 
-            if (localStorage.getItem("auth_name") !== null) {
-              localStorage.removeItem("auth_name");
-            }
+      if (result.isConfirmed) {
+
+        axios.post(`/api/logout`).then(function (res) {
+         
+          if (res.data.status === 200) {
+           
+            dispatch(logoutSuccess());
 
             Swal.fire({
               icon: "success",
@@ -64,6 +70,7 @@ function Navbar({ menuOpen, setMenuOpen, toggleMenu }) {
             setTimeout(() => {
               window.location.reload();
             }, 2000);
+
           }
         });
       }
@@ -175,6 +182,8 @@ function Navbar({ menuOpen, setMenuOpen, toggleMenu }) {
                   </span>
                 </div>
               </a>
+
+
               {/* <a className="dropdown-item d-flex align-items-center" href="#">
                 <div className="mr-3">
                   <div className="icon-circle bg-success">

@@ -56,6 +56,7 @@ function SendMailAttendee() {
   };
 
   //   const history = useHistory();
+  const [isLoading, setIsLoading] = useState(false);
 
   const [errors, setErrors] = useState({});
   const [success, setSuccess] = useState("");
@@ -92,6 +93,12 @@ function SendMailAttendee() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const button = e.target;
+
+    button.disabled = true;
+
+    setIsLoading(true);
 
     const formData = new FormData();
 
@@ -150,6 +157,10 @@ function SendMailAttendee() {
           swal("All fields are mandatory", "", "error");
           //   history.push("/admin/all-events");
         }
+      })
+      .finally(() => {
+        setIsLoading(false);
+        button.disabled = false;
       });
   };
 
@@ -180,7 +191,10 @@ function SendMailAttendee() {
 
                 {/* Send Message To*/}
                 <div className="form-group row">
-                  <label forHtml="email" className="col-12 col-lg-4 col-form-label">
+                  <label
+                    forHtml="email"
+                    className="col-12 col-lg-4 col-form-label"
+                  >
                     Send Message To
                   </label>
 
@@ -261,7 +275,10 @@ function SendMailAttendee() {
 
                 {/* Send  */}
                 <div className="form-group row">
-                  <label forHtml="email" className="col-12 col-lg-4 col-form-label">
+                  <label
+                    forHtml="email"
+                    className="col-12 col-lg-4 col-form-label"
+                  >
                     Send
                   </label>
 
@@ -317,8 +334,8 @@ function SendMailAttendee() {
                   </div>
                 </div>
 
-               {/* Event date */}
-               <div className="form-group row">
+                {/* Event date */}
+                <div className="form-group row">
                   <h6 className="col-12">Schedule</h6>
                 </div>
                 <div className="form-group row">

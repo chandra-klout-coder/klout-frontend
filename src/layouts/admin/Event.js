@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import swal from "sweetalert";
 import { useHistory, Link } from "react-router-dom";
@@ -47,10 +47,12 @@ function Event() {
     end_time_type: "pm",
     event_venue_name: "",
     event_venue_address_1: "",
-    city: "",
-    state: "",
+
     country: "",
+    state: "",
+    city: "",
     pincode: "",
+
     image: null,
     feedback: "1",
     status: "1",
@@ -152,7 +154,7 @@ function Event() {
       default:
         break;
     }
-  
+
     setErrors((prevErrors) => ({
       ...prevErrors,
       ...fieldErrors,
@@ -181,6 +183,12 @@ function Event() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const button = e.target;
+
+    button.disabled = true;
+
+    setIsLoading(true);
 
     const fieldErrors = {};
 
@@ -300,8 +308,6 @@ function Event() {
     }
 
     if (Object.keys(fieldErrors).length === 0) {
-      setIsLoading(true);
-
       const formData = new FormData();
 
       formData.append("image", eventInput.image);
@@ -370,11 +376,81 @@ function Event() {
           } else if (res.data.status === 400) {
             swal("All fields are mandatory", res.data.message, "error");
           }
+        })
+        .finally(() => {
+          setIsLoading(false);
+          button.disabled = false;
         });
     } else {
       setErrors(fieldErrors);
     }
-    setIsLoading(false);
+  };
+
+  const [countries, setCountries] = useState([]);
+  const [states, setStates] = useState([]);
+  const [cities, setCities] = useState([]);
+  const [selectedCountry, setSelectedCountry] = useState("");
+  const [selectedState, setSelectedState] = useState("");
+
+  useEffect(() => {
+    fetchCountries();
+  }, []);
+
+  const fetchCountries = async () => {
+    axios.get("/api/countries").then((res) => {
+      if (res.data.status === 200) {
+        setCountries(res.data.data);
+      }
+    });
+  };
+
+  const fetchStates = async (countryCode) => {
+    axios.get(`/api/getStatesByCountryId/${countryCode}`).then((res) => {
+      if (res.data.status === 200) {
+        setStates(res.data.data);
+      }
+    });
+  };
+
+  const fetchCities = async (stateCode) => {
+    axios.get(`/api/getCitiesByStateId/${stateCode}`).then((res) => {
+      if (res.data.status === 200) {
+        setCities(res.data.data);
+      }
+    });
+  };
+
+  const handleCountryChange = (event) => {
+    const countryCode = event.target.value;
+    setSelectedCountry(countryCode);
+    fetchStates(countryCode);
+
+    setEventInput((prevData) => ({
+      ...prevData,
+      country: countryCode,
+      state: "",
+      city: "",
+    }));
+    setStates([]);
+    setCities([]);
+  };
+
+  const handleStateChange = (event) => {
+    const stateCode = event.target.value;
+    setSelectedState(stateCode);
+    setEventInput((prevState) => ({
+      ...prevState,
+      state: stateCode,
+      city: "",
+    }));
+    fetchCities(stateCode);
+
+    setCities([]);
+  };
+
+  const handleCityChange = (event) => {
+    const value = event.target.value;
+    setEventInput((prevData) => ({ ...prevData, city: value }));
   };
 
   return (
@@ -390,7 +466,7 @@ function Event() {
         >
           <div className="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 className="h3 mb-0 text-gray-800"> Add Event </h1>
-           
+
             <Link
               to={`/admin/all-events`}
               className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
@@ -409,10 +485,12 @@ function Event() {
 
       <div className="row p-3">
         {/* <div className="col-md-12"> */}
-        <div className="card shadow mb-4">
+
+        <div className="card shadow mb-4" style={{ padding: "0" }}>
           <div className="card-header py-3">
             <h6 className="m-0 font-weight-bold text-primary">Add Event</h6>
           </div>
+
           <div className="card-body">
             <form
               className="user mt-5"
@@ -420,10 +498,15 @@ function Event() {
               encType="multipart/form-data"
             >
               {/* Title */}
+
               <div className="form-group row">
-                <label forHtml="title" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forHtml="title"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event Title
                 </label>
+
                 <div className="col-10">
                   <input
                     type="text"
@@ -437,6 +520,7 @@ function Event() {
                     onBlur={handleBlur}
                     onFocus={handleInputFocus}
                   />
+
                   <p style={{ fontSize: "12px", float: "right" }}>
                     * Maximum 100 Characters Allowed.
                   </p>
@@ -456,7 +540,10 @@ function Event() {
 
               {/* Description  */}
               <div className="form-group row">
-                <label forHtml="description" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forHtml="description"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event Description
                 </label>
                 <div className="col-10">
@@ -492,10 +579,14 @@ function Event() {
 
               {/* File - Event Image  */}
               <div className="form-group row">
-                <label forHtml="file" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forHtml="file"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Upload Event Image
                 </label>
-                <div className="col-10">
+
+                <div className="col-10 col-lg-6">
                   <input
                     type="file"
                     className={`form-control ${
@@ -537,7 +628,10 @@ function Event() {
               {/* Event Venue  */}
 
               <div className="form-group row">
-                <label forHtml="venue" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forHtml="venue"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event Venue
                 </label>
 
@@ -595,45 +689,61 @@ function Event() {
                   </div>
 
                   <div className="form-group row">
-                    <div className="col-6 col-lg-3 mb-3">
-                      <input
-                        type="text"
+                    <div className="col-6 col-lg-3">
+                      <select
                         className={`form-control ${
-                          errors.city ? "is-invalid" : ""
+                          errors.country ? "is-invalid" : ""
                         }`}
-                        placeholder="City"
-                        name="city"
-                        value={eventInput.city}
-                        onChange={handleInput}
+                        name="country"
+                        value={eventInput.country}
+                        onChange={handleCountryChange}
                         onBlur={handleBlur}
                         onFocus={handleInputFocus}
-                      />
+                        style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
+                      >
+                        <option value="">Select country</option>
 
-                      {errors.city && (
+                        {countries.length > 0 &&
+                          countries.map((item) => (
+                            <option key={item.id} value={item.id}>
+                              {item.name}
+                            </option>
+                          ))}
+                      </select>
+
+                      {errors.country && (
                         <div
                           className="invalid-feedback"
                           style={{
                             textAlign: "left",
                           }}
                         >
-                          {errors.city}
+                          {errors.country}
                         </div>
                       )}
                     </div>
 
                     <div className="col-6 col-lg-3 mb-3">
-                      <input
-                        type="text"
+                      <select
                         className={`form-control ${
                           errors.state ? "is-invalid" : ""
                         }`}
-                        placeholder="State"
                         name="state"
                         value={eventInput.state}
-                        onChange={handleInput}
+                        onChange={handleStateChange}
                         onBlur={handleBlur}
                         onFocus={handleInputFocus}
-                      />
+                        style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
+                      >
+                        <option value="">Select State</option>
+
+                        {states.length > 0 &&
+                          states.map((item) => (
+                            <option key={item.id} value={item.id}>
+                              {item.name}
+                            </option>
+                          ))}
+                      </select>
 
                       {errors.state && (
                         <div
@@ -647,28 +757,36 @@ function Event() {
                       )}
                     </div>
 
-                    <div className="col-6 col-lg-3">
-                      <input
-                        type="text"
+                    <div className="col-6 col-lg-3 mb-3">
+                      <select
                         className={`form-control ${
-                          errors.country ? "is-invalid" : ""
+                          errors.city ? "is-invalid" : ""
                         }`}
-                        placeholder="Country"
-                        name="country"
-                        value={eventInput.country}
-                        onChange={handleInput}
+                        name="city"
+                        value={eventInput.city}
+                        onChange={handleCityChange}
                         onBlur={handleBlur}
                         onFocus={handleInputFocus}
-                      />
+                        style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
+                      >
+                        <option value="">Select City</option>
 
-                      {errors.country && (
+                        {cities.length > 0 &&
+                          cities.map((item) => (
+                            <option key={item.id} value={item.id}>
+                              {item.name}
+                            </option>
+                          ))}
+                      </select>
+
+                      {errors.city && (
                         <div
                           className="invalid-feedback"
                           style={{
                             textAlign: "left",
                           }}
                         >
-                          {errors.country}
+                          {errors.city}
                         </div>
                       )}
                     </div>
@@ -705,7 +823,10 @@ function Event() {
 
               {/* Event Start date */}
               <div className="form-group row">
-                <label forHtml="venue" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forHtml="venue"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event Start Date
                 </label>
 
@@ -739,7 +860,10 @@ function Event() {
 
               {/* Event End date */}
               <div className="form-group row">
-                <label forHtml="venue" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forHtml="venue"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event End Date
                 </label>
 
@@ -773,7 +897,10 @@ function Event() {
 
               {/* Event Start Time */}
               <div className="form-group row">
-                <label forHtml="venue" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forHtml="venue"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event Start Time
                 </label>
 
@@ -856,7 +983,10 @@ function Event() {
 
               {/* Event Start Time */}
               <div className="form-group row">
-                <label forHtml="venue" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forHtml="venue"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Event End Time
                 </label>
 
@@ -937,7 +1067,10 @@ function Event() {
 
               {/* Feedback */}
               <div className="form-group row">
-                <label forHtml="venue" className="col-12 col-lg-2 col-form-label">
+                <label
+                  forHtml="venue"
+                  className="col-12 col-lg-2 col-form-label"
+                >
                   Feedback Required ?
                 </label>
 

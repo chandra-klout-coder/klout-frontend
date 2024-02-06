@@ -6,8 +6,13 @@ import swal from "sweetalert";
 import loadingGif from "../assets/images/load.gif";
 import backgroundImage from "../assets/images/1.jpg";
 
+import { useDispatch } from "react-redux";
+import { logoutSuccess } from "../authActions";
+
 function ForgotPassword() {
   const history = useHistory();
+
+  const dispatch = useDispatch();
 
   const [email, setEmail] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -44,22 +49,18 @@ function ForgotPassword() {
 
     if (email !== "") {
       try {
-        // Send a request to your Laravel API to initiate the password reset process
         const res = await axios.post("/api/forgot-password", { email });
 
-        if (res.data.status === 200) {
-
+        if (res.data.status === "200") {
           setEmailError("");
           setErrorMessage("");
           setEmail("");
 
-          localStorage.removeItem("auth_token");
-          localStorage.removeItem("auth_name");
+          dispatch(logoutSuccess());
 
           swal("Success", res.data.message, "success");
 
           history.push("/login");
-
         } else if (res.data.status === 422) {
           setEmailError(res.data.message);
         } else if (res.data.status === 400) {
@@ -112,16 +113,6 @@ function ForgotPassword() {
                         </p>
                       </div>
                       <form className="user" onSubmit={handleResetPassword}>
-                        {/*                       
-                        {successMessage && (
-                          <p className="success-message">{successMessage}</p>
-                        )}
-                       */}
-                        {/* 
-                        {errorMessage && (
-                          <p className="error-message">{errorMessage}</p>
-                        )} */}
-
                         <div className="form-group">
                           <input
                             type="email"

@@ -14,7 +14,7 @@ function ViewEvent() {
   const imageBaseUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
-    axios.get(`/api/events/${id}`).then((res) => {
+    axios.get(`/api/display/${id}`).then((res) => {
       if (res.data.status === 200) {
         // console.log(res.data.data);
         setEvent(res.data.data);

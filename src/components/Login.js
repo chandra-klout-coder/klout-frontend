@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
 import "./Login.css";
@@ -6,9 +6,31 @@ import axios from "axios";
 import swal from "sweetalert";
 import loadingGif from "../assets/images/load.gif";
 import backgroundImage from "../assets/images/2.jpg";
+import { useDispatch } from 'react-redux';
+import { loginSuccess } from "../authActions";
 
 function Login() {
+ 
   const history = useHistory();
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    
+    console.log('Before removal:', localStorage.getItem('auth_token'));
+    console.log('Before removal:', localStorage.getItem('auth_name'));
+
+    // Remove auth_token and auth_name from localStorage
+    localStorage.removeItem('auth_token');
+    localStorage.removeItem('auth_name');
+
+    console.log('After removal:', localStorage.getItem('auth_token'));
+    console.log('After removal:', localStorage.getItem('auth_name'));
+
+
+    // Redirect to the login page
+    history.push("/login");
+  }, [history]);
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -99,8 +121,11 @@ function Login() {
         .then((res) => {
           console.log("data", res);
           if (res.data.status === 200) {
-            localStorage.setItem("auth_token", res.data.access_token);
-            localStorage.setItem("auth_name", "user");
+
+            dispatch(loginSuccess(res.data.access_token));
+
+            // localStorage.setItem("auth_token", res.data.access_token);
+            // localStorage.setItem("auth_name", "user");
 
             setErrors({});
 
@@ -110,6 +135,7 @@ function Login() {
             swal("Success", res.data.message, "success");
 
             history.push("/admin/dashboard");
+            
           } else if (res.data.status === 401) {
             swal("Warning", res.data.message, "warning");
           } else {

@@ -8,7 +8,6 @@ import Logo from "./../assets/img/Klout-Club.svg";
 import loadingGif from "../assets/images/load.gif";
 // import Logo from "./../assets/img/klout_original_logo.jpg";
 import Author1 from "./../assets/img/author/author1.jpg";
-import Author2 from "./../assets/img/author/author2.jpg";
 import MockUp from "./../assets/img/hand_mockup_new.png";
 import Showcase from "./../assets/img/Find_professionals_near_you.png";
 import ShowcaseFour from "./../assets/img/Network_at_business_events.png";

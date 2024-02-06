@@ -117,16 +117,12 @@ const Step1 = ({
       case "company":
         if (value === "") {
           fieldErrors[name] = "Company Name is required.";
-        } else if (value.length > 50) {
-          fieldErrors[name] = "Maximum 50 Characters Allowed.";
         }
         break;
 
       case "designation":
         if (value === "") {
           fieldErrors[name] = "Designation is required.";
-        } else if (value.length > 50) {
-          fieldErrors[name] = "Maximum 50 Characters Allowed.";
         }
         break;
 
@@ -326,199 +322,25 @@ const Step1 = ({
                       Welcome! Sign up here
                     </h1>
                   </div>
-                  <form className="user" onSubmit={handleNext}>
-                    <div className="form-group row">
-                      <div className="col-sm-6 mb-3 mb-sm-0">
-                        <input
-                          type="text"
-                          className={`form-control form-control-user ${
-                            errors.first_name ? "is-invalid" : ""
-                          }`}
-                          placeholder="First Name"
-                          name="first_name"
-                          value={formData.first_name}
-                          onChange={handleInput}
-                          onBlur={handleBlur}
-                          onFocus={handleInputFocus}
-                        />
 
-                        {errors.first_name && (
-                          <div
-                            className="invalid-feedback"
-                            style={{
-                              textAlign: "left",
-                              padding: " 0px 1.2rem",
-                            }}
-                          >
-                            {errors.first_name}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="col-sm-6">
-                        <input
-                          type="text"
-                          className={`form-control form-control-user ${
-                            errors.last_name ? "is-invalid" : ""
-                          }`}
-                          placeholder="Last Name"
-                          name="last_name"
-                          value={formData.last_name}
-                          onChange={handleInput}
-                          onBlur={handleBlur}
-                          onFocus={handleInputFocus}
-                        />
-                        {errors.last_name && (
-                          <div
-                            className="invalid-feedback"
-                            style={{
-                              textAlign: "left",
-                              padding: " 0px 1.2rem",
-                            }}
-                          >
-                            {errors.last_name}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        className={`form-control form-control-user ${
-                          errors.mobile_number ? "is-invalid" : ""
-                        }`}
-                        placeholder="Mobile Number"
-                        name="mobile_number"
-                        maxLength={10}
-                        value={formData.mobile_number}
-                        onChange={handleInput}
-                        onBlur={handleBlur}
-                        onFocus={handleInputFocus}
-                      />
-                      {errors.mobile_number && (
-                        <div
-                          className="invalid-feedback"
-                          style={{ textAlign: "left", padding: " 0px 1.2rem" }}
-                        >
-                          {capitalizeFirstLetter(errors.mobile_number)}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="form-group">
-                      <input
-                        type="email"
-                        className={`form-control form-control-user ${
-                          errors.email ? "is-invalid" : ""
-                        }`}
-                        placeholder="Email Address"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleInput}
-                        onBlur={handleBlur}
-                        onFocus={handleInputFocus}
-                      />
-                      {errors.email && (
-                        <div
-                          className="invalid-feedback"
-                          style={{ textAlign: "left", padding: " 0px 1.2rem" }}
-                        >
-                          {capitalizeFirstLetter(errors.email)}
-                        </div>
-                      )}
-                    </div>
-
-                    <div className="form-group row">
-                      <div className="col-sm-12 mb-sm-0 input-group">
-                        <input
-                          className={`form-control form-control-user ${
-                            errors.password ? "is-invalid" : ""
-                          }`}
-                          placeholder="Password"
-                          name="password"
-                          type={showPassword ? "text" : "password"}
-                          value={formData.password}
-                          onChange={handleInput}
-                          onBlur={handleBlur}
-                          onFocus={handleInputFocus}
-                        />
-
-                        <div className="input-group-append">
-                          <span
-                            className="input-group-text"
-                            onClick={handleTogglePassword}
-                          >
-                            <i
-                              className={
-                                showPassword ? "fas fa-eye-slash" : "fas fa-eye"
-                              }
-                            ></i>
-                          </span>
-                        </div>
-
-                        {errors.password && (
-                          <div
-                            className="invalid-feedback"
-                            style={{
-                              textAlign: "left",
-                              padding: " 0px 1.2rem",
-                            }}
-                          >
-                            {errors.password}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="form-group">
-                      <select
-                        className={`form-control form-control-user ${
-                          errors.company ? "is-invalid" : ""
-                        }`}
-                        name="company"
-                        value={formData.company}
-                        onChange={handleCompanyChange}
-                        onBlur={handleBlur}
-                        onFocus={handleInputFocus}
-                        style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
-                      >
-                        <option value="">Select Company</option>
-
-                        {companyData.length > 0 &&
-                          companyData.map((item) => (
-                            <option key={item.id} value={item.id}>
-                              {item.name}
-                            </option>
-                          ))}
-                      </select>
-
-                      {errors.company && (
-                        <div
-                          className="invalid-feedback"
-                          style={{ textAlign: "left", padding: " 0px 1.2rem" }}
-                        >
-                          {errors.company}
-                        </div>
-                      )}
-                    </div>
-                    {/* company Name */}
-                    {companyInput && (
+                  <div className="row">
+                    <form className="user" onSubmit={handleNext}>
                       <div className="form-group row">
-                        <div className="col-sm-12">
+                        <div className="col-sm-6 mb-3 mb-sm-0">
                           <input
                             type="text"
-                            className={`form-control form-control-user mb-3 ${
-                              errors.company_name ? "is-invalid" : ""
+                            className={`form-control form-control-user ${
+                              errors.first_name ? "is-invalid" : ""
                             }`}
-                            placeholder="Company Name"
-                            name="company_name"
-                            value={formData.company_name}
+                            placeholder="First Name"
+                            name="first_name"
+                            value={formData.first_name}
                             onChange={handleInput}
                             onBlur={handleBlur}
                             onFocus={handleInputFocus}
                           />
-                          {errors.company_name && (
+
+                          {errors.first_name && (
                             <div
                               className="invalid-feedback"
                               style={{
@@ -526,62 +348,25 @@ const Step1 = ({
                                 padding: " 0px 1.2rem",
                               }}
                             >
-                              {errors.company_name}
+                              {errors.first_name}
                             </div>
                           )}
                         </div>
-                      </div>
-                    )}
 
-                    <div className="form-group">
-                      <select
-                        className={`form-control form-control-user ${
-                          errors.company ? "is-invalid" : ""
-                        }`}
-                        name="designation"
-                        value={formData.designation}
-                        onChange={handleDesignationChange}
-                        onBlur={handleBlur}
-                        onFocus={handleInputFocus}
-                        style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
-                      >
-                        <option value="">Select Designation</option>
-
-                        {designationData.length > 0 &&
-                          designationData.map((item) => (
-                            <option key={item.id} value={item.id}>
-                              {item.name}
-                            </option>
-                          ))}
-                      </select>
-
-                      {errors.designation && (
-                        <div
-                          className="invalid-feedback"
-                          style={{ textAlign: "left", padding: " 0px 1.2rem" }}
-                        >
-                          {errors.designation}
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Designation Name */}
-                    {designationInput && (
-                      <div className="form-group row">
-                        <div className="col-sm-12">
+                        <div className="col-sm-6">
                           <input
                             type="text"
-                            className={`form-control form-control-user mb-3 ${
-                              errors.designation_name ? "is-invalid" : ""
+                            className={`form-control form-control-user ${
+                              errors.last_name ? "is-invalid" : ""
                             }`}
-                            placeholder="Designation Name"
-                            name="designation_name"
-                            value={formData.designation_name}
+                            placeholder="Last Name"
+                            name="last_name"
+                            value={formData.last_name}
                             onChange={handleInput}
                             onBlur={handleBlur}
                             onFocus={handleInputFocus}
                           />
-                          {errors.designation_name && (
+                          {errors.last_name && (
                             <div
                               className="invalid-feedback"
                               style={{
@@ -589,55 +374,27 @@ const Step1 = ({
                                 padding: " 0px 1.2rem",
                               }}
                             >
-                              {errors.designation_name}
+                              {errors.last_name}
                             </div>
                           )}
                         </div>
                       </div>
-                    )}
 
-                    <div className="form-group row">
-                      <div className="col-sm-8">
-                        <input
-                          type="text"
-                          className={`form-control form-control-user mb-3 ${
-                            errors.address ? "is-invalid" : ""
-                          }`}
-                          placeholder="Address"
-                          name="address"
-                          value={formData.address}
-                          onChange={handleInput}
-                          onBlur={handleBlur}
-                          onFocus={handleInputFocus}
-                        />
-                        {errors.address && (
-                          <div
-                            className="invalid-feedback"
-                            style={{
-                              textAlign: "left",
-                              padding: " 0px 1.2rem",
-                            }}
-                          >
-                            {errors.address}
-                          </div>
-                        )}
-                      </div>
-
-                      <div className="col-sm-4">
+                      <div className="form-group">
                         <input
                           type="text"
                           className={`form-control form-control-user ${
-                            errors.pincode ? "is-invalid" : ""
+                            errors.mobile_number ? "is-invalid" : ""
                           }`}
-                          placeholder="Pincode"
-                          name="pincode"
-                          value={formData.pincode}
+                          placeholder="Mobile Number"
+                          name="mobile_number"
+                          maxLength={10}
+                          value={formData.mobile_number}
                           onChange={handleInput}
                           onBlur={handleBlur}
                           onFocus={handleInputFocus}
-                          maxLength={6}
                         />
-                        {errors.pincode && (
+                        {errors.mobile_number && (
                           <div
                             className="invalid-feedback"
                             style={{
@@ -645,31 +402,25 @@ const Step1 = ({
                               padding: " 0px 1.2rem",
                             }}
                           >
-                            {errors.pincode}
+                            {capitalizeFirstLetter(errors.mobile_number)}
                           </div>
                         )}
                       </div>
-                    </div>
 
-                    {/* <!-- Checkboxes --> */}
-                    <div className="form-group">
-                      <div
-                        className="form-check form-check-inline mb-4"
-                        style={{ float: "left", paddingLeft: "0em" }}
-                      >
+                      <div className="form-group">
                         <input
-                          className={`${errors.tnc ? "is-invalid" : ""}`}
-                          type="checkbox"
-                          name="tnc"
-                          checked={isTncChecked}
+                          type="email"
+                          className={`form-control form-control-user ${
+                            errors.email ? "is-invalid" : ""
+                          }`}
+                          placeholder="Email Address"
+                          name="email"
+                          value={formData.email}
                           onChange={handleInput}
                           onBlur={handleBlur}
                           onFocus={handleInputFocus}
                         />
-                        <label className="form-check-label d-inline">
-                          &nbsp; I agree to company T&C and Privacy Policy.
-                        </label>
-                        {errors.tnc && (
+                        {errors.email && (
                           <div
                             className="invalid-feedback"
                             style={{
@@ -677,80 +428,348 @@ const Step1 = ({
                               padding: " 0px 1.2rem",
                             }}
                           >
-                            {errors.tnc}
+                            {capitalizeFirstLetter(errors.email)}
                           </div>
                         )}
                       </div>
-                    </div>
 
-                    {/* <!-- Checkboxes --> */}
-                    <div className="form-group">
-                      <div
-                        className="form-check-inline mb-4"
-                        style={{ float: "left" }}
-                      >
-                        <input
-                          className=""
-                          type="checkbox"
-                          name="notifications"
-                          checked={isNotificationsChecked}
-                          onChange={handleInput}
+                      <div className="form-group row">
+                        <div className="col-sm-12 mb-sm-0 input-group">
+                          <input
+                            className={`form-control form-control-user ${
+                              errors.password ? "is-invalid" : ""
+                            }`}
+                            placeholder="Password"
+                            name="password"
+                            type={showPassword ? "text" : "password"}
+                            value={formData.password}
+                            onChange={handleInput}
+                            onBlur={handleBlur}
+                            onFocus={handleInputFocus}
+                          />
+
+                          <div className="input-group-append">
+                            <span
+                              className="input-group-text"
+                              onClick={handleTogglePassword}
+                            >
+                              <i
+                                className={
+                                  showPassword
+                                    ? "fas fa-eye-slash"
+                                    : "fas fa-eye"
+                                }
+                              ></i>
+                            </span>
+                          </div>
+
+                          {errors.password && (
+                            <div
+                              className="invalid-feedback"
+                              style={{
+                                textAlign: "left",
+                                padding: " 0px 1.2rem",
+                              }}
+                            >
+                              {errors.password}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="form-group">
+                        <select
+                          className={`form-control form-control-user ${
+                            errors.company ? "is-invalid" : ""
+                          }`}
+                          name="company"
+                          value={formData.company}
+                          onChange={handleCompanyChange}
                           onBlur={handleBlur}
                           onFocus={handleInputFocus}
-                        />
-                        <label className="form-check-label d-inline">
-                          &nbsp; I agree to receive Important updates on SMS,
-                          Email & Whatsapp.
-                        </label>
-                      </div>
-                    </div>
+                          style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
+                        >
+                          <option value="">Select Company</option>
 
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-user btn-block"
-                      style={{
-                        backgroundColor: "#F5007E",
-                        borderColor: "#F5007E",
-                      }}
-                      disabled={isLoading}
-                    >
-                      {isLoading ? (
-                        <img
-                          src={loadingGif}
-                          alt="Loading..."
-                          style={{ width: "20px", height: "20px" }}
-                        />
-                      ) : (
-                        <>
-                          Proceed to Next Step{" "}
-                          <i className="fa fa-arrow-right"></i>
-                        </>
+                          {companyData.length > 0 &&
+                            companyData.map((item) => (
+                              <option key={item.id} value={item.id}>
+                                {item.name}
+                              </option>
+                            ))}
+                        </select>
+
+                        {errors.company && (
+                          <div
+                            className="invalid-feedback"
+                            style={{
+                              textAlign: "left",
+                              padding: " 0px 1.2rem",
+                            }}
+                          >
+                            {errors.company}
+                          </div>
+                        )}
+                      </div>
+                      {/* company Name */}
+                      {companyInput && (
+                        <div className="form-group row">
+                          <div className="col-sm-12">
+                            <input
+                              type="text"
+                              className={`form-control form-control-user mb-3 ${
+                                errors.company_name ? "is-invalid" : ""
+                              }`}
+                              placeholder="Company Name"
+                              name="company_name"
+                              value={formData.company_name}
+                              onChange={handleInput}
+                              onBlur={handleBlur}
+                              onFocus={handleInputFocus}
+                            />
+                            {errors.company_name && (
+                              <div
+                                className="invalid-feedback"
+                                style={{
+                                  textAlign: "left",
+                                  padding: " 0px 1.2rem",
+                                }}
+                              >
+                                {errors.company_name}
+                              </div>
+                            )}
+                          </div>
+                        </div>
                       )}
-                    </button>
-                  </form>
 
+                      <div className="form-group">
+                        <select
+                          className={`form-control form-control-user ${
+                            errors.company ? "is-invalid" : ""
+                          }`}
+                          name="designation"
+                          value={formData.designation}
+                          onChange={handleDesignationChange}
+                          onBlur={handleBlur}
+                          onFocus={handleInputFocus}
+                          style={{ padding: "0.3rem 1rem", fontSize: "1rem" }}
+                        >
+                          <option value="">Select Designation</option>
+
+                          {designationData.length > 0 &&
+                            designationData.map((item) => (
+                              <option key={item.id} value={item.id}>
+                                {item.name}
+                              </option>
+                            ))}
+                        </select>
+
+                        {errors.designation && (
+                          <div
+                            className="invalid-feedback"
+                            style={{
+                              textAlign: "left",
+                              padding: " 0px 1.2rem",
+                            }}
+                          >
+                            {errors.designation}
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Designation Name */}
+                      {designationInput && (
+                        <div className="form-group row">
+                          <div className="col-sm-12">
+                            <input
+                              type="text"
+                              className={`form-control form-control-user mb-3 ${
+                                errors.designation_name ? "is-invalid" : ""
+                              }`}
+                              placeholder="Designation Name"
+                              name="designation_name"
+                              value={formData.designation_name}
+                              onChange={handleInput}
+                              onBlur={handleBlur}
+                              onFocus={handleInputFocus}
+                            />
+                            {errors.designation_name && (
+                              <div
+                                className="invalid-feedback"
+                                style={{
+                                  textAlign: "left",
+                                  padding: " 0px 1.2rem",
+                                }}
+                              >
+                                {errors.designation_name}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+                      )}
+
+                      <div className="form-group row">
+                        <div className="col-8">
+                          <input
+                            type="text"
+                            className={`form-control form-control-user  ${
+                              errors.address ? "is-invalid" : ""
+                            }`}
+                            placeholder="Address"
+                            name="address"
+                            value={formData.address}
+                            onChange={handleInput}
+                            onBlur={handleBlur}
+                            onFocus={handleInputFocus}
+                          />
+                          {errors.address && (
+                            <div
+                              className="invalid-feedback"
+                              style={{
+                                textAlign: "left",
+                                padding: " 0px 1.2rem",
+                              }}
+                            >
+                              {errors.address}
+                            </div>
+                          )}
+                        </div>
+
+                        <div className="col-4">
+                          <input
+                            type="text"
+                            className={`form-control form-control-user ${
+                              errors.pincode ? "is-invalid" : ""
+                            }`}
+                            placeholder="Pincode"
+                            name="pincode"
+                            value={formData.pincode}
+                            onChange={handleInput}
+                            onBlur={handleBlur}
+                            onFocus={handleInputFocus}
+                            maxLength={6}
+                          />
+                          {errors.pincode && (
+                            <div
+                              className="invalid-feedback"
+                              style={{
+                                textAlign: "left",
+                                padding: " 0px 1.2rem",
+                              }}
+                            >
+                              {errors.pincode}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
+                      {/* <!-- Checkboxes --> */}
+                      <div className="form-group row">
+                        <div className="col-12">
+                          <div
+                            className="form-check form-check-inline mb-4"
+                            style={{ float: "left", paddingLeft: "0em" }}
+                          >
+                            <input
+                              className={`${errors.tnc ? "is-invalid" : ""}`}
+                              type="checkbox"
+                              name="tnc"
+                              checked={isTncChecked}
+                              onChange={handleInput}
+                              onBlur={handleBlur}
+                              onFocus={handleInputFocus}
+                            />
+                            <label className="form-check-label d-inline">
+                              &nbsp; I agree to company T&C and Privacy Policy.
+                            </label>
+                            {errors.tnc && (
+                              <div
+                                className="invalid-feedback"
+                                style={{
+                                  textAlign: "left",
+                                  padding: " 0px 1.2rem",
+                                }}
+                              >
+                                {errors.tnc}
+                              </div>
+                            )}
+                          </div>
+                        </div>
+
+                        {/* <!-- Checkboxes --> */}
+                        <div className="col-12">
+                          <div
+                            className="form-check-inline mb-4"
+                            style={{ float: "left" }}
+                          >
+                            <input
+                              className=""
+                              type="checkbox"
+                              name="notifications"
+                              checked={isNotificationsChecked}
+                              onChange={handleInput}
+                              onBlur={handleBlur}
+                              onFocus={handleInputFocus}
+                            />
+                            <label className="form-check-label d-inline">
+                              &nbsp; I agree to receive Important updates on
+                              SMS, Email & Whatsapp.
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="form-group row">
+                        <button
+                          type="submit"
+                          className="btn btn-primary btn-user btn-block"
+                          style={{
+                            backgroundColor: "#F5007E",
+                            borderColor: "#F5007E",
+                            color: "#fff",
+                          }}
+                          disabled={isLoading}
+                        >
+                          {isLoading ? (
+                            <img
+                              src={loadingGif}
+                              alt="Loading..."
+                              style={{ width: "20px", height: "20px" }}
+                            />
+                          ) : (
+                            <>
+                              Proceed to Next Step{" "}
+                              <i className="fa fa-arrow-right"></i>
+                            </>
+                          )}
+                        </button>
+                      </div>
+                    </form>
+                  </div>
                   <hr />
 
-                  <div className="text-center">
-                    <Link
-                      to="/forgot-password"
-                      className="small"
-                      href="forgot-password.html"
-                    >
-                      Forgot Password?
-                    </Link>
-                  </div>
-
-                  <div className="text-center">
-                    <Link to="/login" className="small" href="register.html">
-                      Already have an account?{" "}
-                      <span
-                        style={{ color: "rgb(245, 0, 126)" }}
-                        className="fw-bold"
+                  <div className="row">
+                    <div className="text-center">
+                      <Link
+                        to="/forgot-password"
+                        className="small"
+                        href="forgot-password.html"
                       >
-                        Login!
-                      </span>
-                    </Link>
+                        Forgot Password?
+                      </Link>
+                    </div>
+
+                    <div className="text-center">
+                      <Link to="/login" className="small">
+                        Already have an account?{" "}
+                        <span
+                          style={{ color: "rgb(245, 0, 126)" }}
+                          className="fw-bold"
+                        >
+                          Login!
+                        </span>
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>

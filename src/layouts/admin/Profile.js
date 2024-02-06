@@ -184,6 +184,12 @@ function EditAttendee(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const button = e.target;
+
+    button.disabled = true;
+
+    setIsLoading(true);
+
     const user_id = props.match.params.id;
 
     const fieldErrors = {};
@@ -295,8 +301,6 @@ function EditAttendee(props) {
     if (Object.keys(fieldErrors).length === 0) {
       const formData = new FormData();
 
-      setIsLoading(true);
-
       formData.append("image", image);
       formData.append("first_name", formInput.first_name);
       formData.append("last_name", formInput.last_name);
@@ -342,12 +346,14 @@ function EditAttendee(props) {
             // swal("All fields are mandatory", "", "error");
             // history.push(`/admin/all-attendee/${event_id}`);
           }
+        })
+        .finally(() => {
+          setIsLoading(false);
+          button.disabled = false;
         });
     } else {
       setErrors(fieldErrors);
     }
-
-    setIsLoading(false);
   };
 
   const handleCompanyChange = (event) => {

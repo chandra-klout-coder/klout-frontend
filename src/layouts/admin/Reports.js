@@ -185,6 +185,12 @@ function Reports() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const button = e.target;
+
+    button.disabled = true;
+
+    setIsLoading(true);
+
     const fieldErrors = {};
 
     if (
@@ -215,7 +221,6 @@ function Reports() {
     }
 
     if (Object.keys(fieldErrors).length === 0) {
-      setIsLoading(true);
 
       const formData = new FormData();
 
@@ -243,12 +248,14 @@ function Reports() {
 
             setErrors({ event_date: res.data.message });
           }
+        })
+        .finally(() => {
+          setIsLoading(false);
+          button.disabled = false;
         });
     } else {
       setErrors(fieldErrors);
     }
-
-    setIsLoading(false);
   };
 
   return (
@@ -331,7 +338,7 @@ function Reports() {
                         onChange={handleInput}
                         onBlur={handleBlur}
                         onFocus={handleInputFocus}
-                        style={{marginBottom:"0px"}}
+                        style={{ marginBottom: "0px" }}
                       />
 
                       {errors.report_name && (

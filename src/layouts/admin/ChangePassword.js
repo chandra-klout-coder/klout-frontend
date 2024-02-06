@@ -5,8 +5,12 @@ import { useHistory, Link } from "react-router-dom";
 
 import loadingGif from "../../assets/images/load.gif";
 
+import { useDispatch } from "react-redux";
+import { logoutSuccess } from "../../authActions";
+
 function ChangePassword(props) {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -100,7 +104,14 @@ function ChangePassword(props) {
   };
 
   const handleSubmit = (e) => {
+    
     e.preventDefault();
+
+    const button = e.target;
+
+    button.disabled = true;
+
+    setIsLoading(true);
 
     const fieldErrors = {};
 
@@ -116,25 +127,20 @@ function ChangePassword(props) {
       /^\s*$/.test(formInput.confirm_password)
     ) {
       fieldErrors.confirm_password = "Confirm Password is required.";
-    }  else if (formInput.password !== formInput.confirm_password) {
+    } else if (formInput.password !== formInput.confirm_password) {
       fieldErrors.confirm_password = "Password mismatch with New password.";
     }
 
     if (Object.keys(fieldErrors).length === 0) {
-      setIsLoading(true);
-
       axios
         .post(`/api/changepassword`, formInput, {
           headers: { "Content-Type": "multipart/form-data" },
         })
         .then((res) => {
-
-          console.log('data', res);
           if (res.data.status === 200) {
-            localStorage.removeItem("auth_token");
-            localStorage.removeItem("auth_name");
-
             swal("Success", res.data.message, "success");
+
+            dispatch(logoutSuccess());
 
             setFormInput({
               ...formInput,
@@ -163,8 +169,8 @@ function ChangePassword(props) {
     } else {
       setErrors(fieldErrors);
     }
-
     setIsLoading(false);
+
   };
 
   return (
@@ -190,7 +196,8 @@ function ChangePassword(props) {
                 borderRadius: "12px",
               }}
             >
-              <i className="fa fa-solid fa-arrow-left"></i> &nbsp; Go To Dashboard
+              <i className="fa fa-solid fa-arrow-left"></i> &nbsp; Go To
+              Dashboard
             </Link>
           </div>
         </div>
@@ -220,7 +227,10 @@ function ChangePassword(props) {
                     >
                       Old Password
                     </label>
-                    <div className="col-5 col-lg-5 input-group" style={{ width: "100%" }}>
+                    <div
+                      className="col-5 col-lg-5 input-group"
+                      style={{ width: "100%" }}
+                    >
                       <input
                         type={showPassword ? "text" : "password"}
                         className={`form-control ${
@@ -262,10 +272,16 @@ function ChangePassword(props) {
 
                   {/* New Password */}
                   <div className="form-group row">
-                    <label forhtml="password" className="col-12 col-lg-3 col-form-label">
+                    <label
+                      forhtml="password"
+                      className="col-12 col-lg-3 col-form-label"
+                    >
                       New Password
                     </label>
-                    <div className="col-5 input-group" style={{ width: "100%" }}>
+                    <div
+                      className="col-5 input-group"
+                      style={{ width: "100%" }}
+                    >
                       <input
                         type={showNewPassword ? "text" : "password"}
                         className={`form-control ${
@@ -315,7 +331,10 @@ function ChangePassword(props) {
                     >
                       Confirm Password
                     </label>
-                    <div className="col-5 input-group" style={{ width: "100%" }}>
+                    <div
+                      className="col-5 input-group"
+                      style={{ width: "100%" }}
+                    >
                       <input
                         type={showConfirmPassword ? "text" : "password"}
                         className={`form-control ${
