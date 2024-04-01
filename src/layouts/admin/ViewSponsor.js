@@ -18,7 +18,7 @@ function ViewSponsor() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
-    axios.get(`/api/sponsors/${id}`).then((res) => {
+    axios.get(`/api/display-sponsors/${id}`).then((res) => {
       if (res.data.status === 200) {
         setUser(res.data.data);
       } else if (res.data.status === 400) {

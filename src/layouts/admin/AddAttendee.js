@@ -380,6 +380,7 @@ function AddAttendee(props) {
     } else {
       setErrors(fieldErrors);
     }
+    setIsLoading(false);
   };
 
   // Upload Excel
@@ -630,13 +631,10 @@ function AddAttendee(props) {
                 >
                   {/* Name */}
                   <div className="form-group row">
-                    <label
-                      forhtml="first_name"
-                      className="col-12 col-form-label"
-                    >
-                      Name
-                    </label>
                     <div className="col-6">
+                      <label forhtml="first_name" className="col-form-label">
+                        First Name *
+                      </label>
                       <input
                         type="text"
                         className={`form-control ${
@@ -663,6 +661,9 @@ function AddAttendee(props) {
                     </div>
 
                     <div className="col-6">
+                      <label forhtml="last_name" className="col-form-label">
+                        Last Name *
+                      </label>
                       <input
                         type="text"
                         className={`form-control ${
@@ -689,10 +690,10 @@ function AddAttendee(props) {
                     </div>
                   </div>
 
-                  {/* Last Name  */}
+                  {/* Email  */}
                   <div className="form-group row">
                     <label forhtml="email" className="col-12 col-form-label">
-                      Email
+                      Email *
                     </label>
                     <div className="col-12 mb-3 mb-sm-0">
                       <div className="form-group">
@@ -728,7 +729,7 @@ function AddAttendee(props) {
                       forhtml="phone_number"
                       className="col-12 col-form-label"
                     >
-                      Phone Number
+                      Phone Number 
                     </label>
                     <div className="col-12 mb-3 mb-sm-0">
                       <div className="form-group">
@@ -818,7 +819,7 @@ function AddAttendee(props) {
                     </div>
                     <div className="col-12">
                       <p style={{ fontSize: "12px", float: "right" }}>
-                        * Upload Profile Jpg / Png Only.
+                      * Upload Image in JPG and PNG Format Only.
                       </p>
                       {formInput.image ? (
                         <img
@@ -844,7 +845,7 @@ function AddAttendee(props) {
                       forhtml="job_title"
                       className="col-12 col-form-label"
                     >
-                      Job Title
+                      Job Title *
                     </label>
                     <div className="col-12 mb-3 mb-sm-0">
                       <div className="form-group">
@@ -881,7 +882,7 @@ function AddAttendee(props) {
                       forhtml="company_name"
                       className="col-12 col-form-label"
                     >
-                      Company Name
+                      Company Name *
                     </label>
                     <div className="col-12 mb-3 mb-sm-0">
                       <div className="form-group">
@@ -915,7 +916,7 @@ function AddAttendee(props) {
                   {/* Event Venue  */}
                   <div className="form-group row">
                     <label forhtml="industry" className="col-12 col-form-label">
-                      Industry
+                      Industry *
                     </label>
                     <div className="col-12 mb-3 mb-sm-0">
                       <div className="form-group">
@@ -1090,7 +1091,7 @@ function AddAttendee(props) {
                   </div>
                   <div className="form-group row">
                     <label forhtml="status" className="col-12 col-form-label">
-                      Attendee Status
+                      Attendee Status *
                     </label>
                     <div className="col-12 mb-3 mb-sm-0">
                       <div className="form-group">

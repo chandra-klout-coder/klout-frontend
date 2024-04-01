@@ -5,7 +5,9 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+
 import axios from "axios";
+
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Page404 from "./errors/Page404";
@@ -19,6 +21,7 @@ import ResetPassword from "./components/ResetPassword";
 import MasterLayout from "./layouts/admin/MasterLayout";
 import ForgotPassword from "./components/ForgotPassword";
 import TermsAndConditions from "./components/TermsAndConditions";
+
 import { useSelector } from "react-redux";
 import Dashboard from "./layouts/admin/Dashboard";
 
@@ -26,7 +29,8 @@ import { Provider } from "react-redux";
 import store from "./store";
 
 axios.defaults.baseURL = "https://api.klout.club/";
-// axios.defaults.baseURL = "http://localhost:8000/";
+
+//axios.defaults.baseURL = "http://localhost:8000/";
 
 axios.defaults.headers.post["Content-Type"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
@@ -43,6 +47,7 @@ axios.interceptors.request.use(function (config) {
 });
 
 function App() {
+
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
   return (
@@ -63,9 +68,9 @@ function App() {
           <Route path="/unsubscribe" component={UnSubscribe} />
           <Route path="/403" component={Page403} />
 
-          <Route path="/404" component={Page404} />
+          {/* <Route path="/404" component={Page404} />
 
-          <Redirect to="/404" />
+          <Redirect to="/404" /> */}
         </Switch>
       </Router>
     </div>

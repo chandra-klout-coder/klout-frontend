@@ -8,6 +8,7 @@ import Defaultuser from "../../assets/images/defaultuser.png";
 
 function AddSponsors(props) {
   const history = useHistory();
+  
   const event_id = props.match.params.id ?? "0";
 
   const fileInputRef = useRef(null);
@@ -480,7 +481,7 @@ function AddSponsors(props) {
 
       formData.append("status", formInput.status);
 
-      // console.log("form---data", formInput);
+      console.log("form---data", formInput);
 
       axios
         .post(`/api/sponsors`, formData, {
@@ -531,6 +532,8 @@ function AddSponsors(props) {
     } else {
       setErrors(fieldErrors);
     }
+    setIsLoading(false);
+
   };
 
   return (
@@ -585,7 +588,7 @@ function AddSponsors(props) {
                     <div className="form-group row">
                       {/* Company*/}
                       <div className="col-4">
-                        <label forhtml="company">Company</label>
+                        <label forhtml="company">Company *</label>
 
                         <select
                           className={`form-control ${
@@ -649,7 +652,7 @@ function AddSponsors(props) {
 
                       {/*  Industry */}
                       <div className="col-4">
-                        <label forhtml="industry">Industry</label>
+                        <label forhtml="industry">Industry *</label>
 
                         <select
                           className={`form-control ${
@@ -779,7 +782,7 @@ function AddSponsors(props) {
                     <div className="form-group row">
                       {/* Employee Size */}
                       <div className="col-4">
-                        <label forhtml="employee_size">Employee Size</label>
+                        <label forhtml="employee_size">Employee Size *</label>
 
                         <select
                           className={`form-control ${
@@ -840,7 +843,7 @@ function AddSponsors(props) {
 
                       {/* Country */}
                       <div className="col-4">
-                        <label forhtml="country">Country</label>
+                        <label forhtml="country">Country *</label>
 
                         <select
                           className={`form-control ${
@@ -882,7 +885,7 @@ function AddSponsors(props) {
                     <legend>Personal Details:</legend>
                     <div className="form-group row">
                       <div className="col-6">
-                        <label forhtml="first_name">First Name</label>
+                        <label forhtml="first_name">First Name *</label>
                         <input
                           type="text"
                           className={`form-control ${
@@ -909,7 +912,7 @@ function AddSponsors(props) {
                       </div>
 
                       <div className="col-6">
-                        <label forhtml="last_name">Last Name</label>
+                        <label forhtml="last_name">Last Name *</label>
                         <input
                           type="text"
                           className={`form-control ${
@@ -941,7 +944,7 @@ function AddSponsors(props) {
 
                   <div className="form-group row">
                     <div className="col-6">
-                      <label forhtml="email">Official Email</label>
+                      <label forhtml="email">Official Email *</label>
 
                       <input
                         type="email"
@@ -969,7 +972,7 @@ function AddSponsors(props) {
                     </div>
 
                     <div className="col-6">
-                      <label forhtml="phone_number">Phone Number</label>
+                      <label forhtml="phone_number">Phone Number *</label>
 
                       <input
                         type="text"
@@ -1001,7 +1004,7 @@ function AddSponsors(props) {
                   {/* Profile Image  */}
                   <div className="form-group row">
                     <div className="col-4">
-                      <label forhtml="job_title">Job Title</label>
+                      <label forhtml="job_title">Job Title *</label>
 
                       <select
                         className={`form-control ${
@@ -1064,7 +1067,7 @@ function AddSponsors(props) {
                     </div>
 
                     <div className="col-4">
-                      <label forhtml="file">Profile Picture</label>
+                      <label forhtml="file">Profile Picture *</label>
                       <input
                         type="file"
                         className={`form-control ${
@@ -1226,7 +1229,7 @@ function AddSponsors(props) {
 
                   <div className="form-group row">
                     <div className="col-4">
-                      <label forhtml="status">Status</label>
+                      <label forhtml="status">Status *</label>
                       <div className="form-group">
                         <select
                           className={`form-control ${

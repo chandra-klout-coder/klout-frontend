@@ -314,7 +314,6 @@ function EditAttendee(props) {
     }
 
     if (Object.keys(fieldErrors).length === 0) {
-
       const formData = new FormData();
 
       formData.append("image", image);
@@ -381,6 +380,7 @@ function EditAttendee(props) {
     } else {
       setErrors(fieldErrors);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -434,7 +434,7 @@ function EditAttendee(props) {
                       forhtml="first_name"
                       className="col-12 col-lg-2 col-form-label"
                     >
-                      Name
+                      Name *
                     </label>
                     <div className="col-12 col-lg-5 mb-2">
                       <input
@@ -495,7 +495,7 @@ function EditAttendee(props) {
                       forhtml="email"
                       className="col-12 col-lg-2 col-form-label"
                     >
-                      Email
+                      Email *
                     </label>
                     <div className="col-12 col-lg-5 mb-3 mb-sm-0">
                       <div className="form-group">
@@ -607,7 +607,7 @@ function EditAttendee(props) {
                       forhtml="file"
                       className="col-12 col-lg-2 col-form-label"
                     >
-                      Profile Picture
+                      Profile Picture *
                     </label>
                     <div className="col-12 col-lg-5">
                       <input
@@ -679,7 +679,7 @@ function EditAttendee(props) {
                       forhtml="job_title"
                       className="col-12 col-lg-2 col-form-label"
                     >
-                      Job Title
+                      Job Title *
                     </label>
                     <div className="col-12 col-lg-5 mb-3 mb-sm-0">
                       <div className="form-group">
@@ -716,7 +716,7 @@ function EditAttendee(props) {
                       forhtml="company_name"
                       className="col-12 col-lg-2 col-form-label"
                     >
-                      Company Name
+                      Company Name *
                     </label>
                     <div className="col-12 col-lg-5 mb-3 mb-sm-0">
                       <div className="form-group">
@@ -753,7 +753,7 @@ function EditAttendee(props) {
                       forhtml="industry"
                       className="col-12 col-lg-2 col-form-label"
                     >
-                      Industry
+                      Industry *
                     </label>
                     <div className="col-12 col-lg-5 mb-3 mb-sm-0">
                       <div className="form-group">
@@ -948,7 +948,7 @@ function EditAttendee(props) {
                       forhtml="status"
                       className="col-12 col-lg-2 col-form-label"
                     >
-                      Attendee Status
+                      Attendee Status *
                     </label>
                     <div className="col-12 col-lg-5 mb-3 mb-sm-0">
                       <div className="form-group">

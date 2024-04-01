@@ -19,7 +19,7 @@ function SendSmsAttendee(props) {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const currentDate = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
 
   //Dropdown for Time (Minute)- 00 to 60
@@ -68,7 +68,6 @@ function SendSmsAttendee(props) {
 
   const [event, setEvent] = useState({});
   const [showAlert, setShowAlert] = useState(true);
-  
 
   const [showInput, setShowInput] = useState(true);
 
@@ -92,7 +91,7 @@ function SendSmsAttendee(props) {
   useEffect(() => {
     setFormInput({ ...formInput, send_to: selectedRoles });
 
-    axios.get(`/api/events/${eventId}`).then((res) => {
+    axios.get(`/api/display/${eventId}`).then((res) => {
       if (res.data.status === 200) {
         setEvent(res.data.data);
       } else if (res.data.status === 400) {
@@ -286,43 +285,7 @@ function SendSmsAttendee(props) {
     } else {
       setErrors(fieldErrors);
     }
-
-    // axios
-    //   .post(`/api/events`, formData, {
-    //     headers: { "Content-Type": "multipart/form-data" },
-    //   })
-    //   .then((res) => {
-    //     if (res.data.status === 200) {
-    //       swal("Success", res.data.message, "success");
-
-    //       setEventInput({
-    //         ...formInput,
-    //         title: "",
-    //         description: "",
-    //         start_time: "1",
-    //         start_minute_time: "30",
-    //         start_time_type: "am",
-    //         end_time: "1",
-    //         end_minute_time: "30",
-    //         end_time_type: "pm",
-    //         event_date: "",
-    //         event_venue_name: "",
-    //         event_venue_address_1: "",
-    //         city: "",
-    //         state: "",
-    //         country: "",
-    //         pincode: "",
-    //       });
-    //       setErrors({});
-
-    //       //   history.push("/admin/all-events");
-    //     } else if (res.data.status === 422) {
-    //       setErrors(res.data.errors);
-    //     } else if (res.data.status === 400) {
-    //       swal("All fields are mandatory", "", "error");
-    //       //   history.push("/admin/all-events");
-    //     }
-    //   });
+    setIsLoading(false);
   };
 
   return (
@@ -337,7 +300,9 @@ function SendSmsAttendee(props) {
           }}
         >
           <div className="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 className="h3 mb-0 text-gray-800">Send SMS to Attendee </h1>
+            <h1 className="h3 mb-0 text-gray-800">
+              Send Email / SMS to Attendee{" "}
+            </h1>
             <Link
               to={`/admin/all-attendee/${eventId}`}
               className="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
@@ -359,11 +324,11 @@ function SendSmsAttendee(props) {
           <div className="card shadow mb-4">
             <div className="card-header py-3">
               <h6 className="m-0 font-weight-bold text-primary">
-                Send SMS to Attendee for {event.title}
+                Send Email / SMS to Attendee for {event.title}
               </h6>
             </div>
             <div className="card-body">
-              <h5 className="text-center">Send SMS to Attendee</h5>
+              <h5 className="text-center">Send Email / SMS to Attendee</h5>
               <hr />
               <form
                 className="user mt-5"
@@ -499,7 +464,7 @@ function SendSmsAttendee(props) {
                       forhtml="email"
                       className="col-12 col-lg-3 col-form-label"
                     >
-                      Subject
+                      Subject *
                     </label>
 
                     <div className="col-9 mb-2 mb-sm-0">
@@ -537,7 +502,7 @@ function SendSmsAttendee(props) {
                     forhtml="email"
                     className="col-12 col-lg-3 col-form-label"
                   >
-                    Message
+                    Message *
                   </label>
                   <div className="col-9 mb-3 mb-sm-0">
                     <div className="form-group">
@@ -579,14 +544,11 @@ function SendSmsAttendee(props) {
                 </div>
 
                 <div className="form-group row">
-                  <label
-                    forhtml="venue"
-                    className="col-12 col-lg-4 col-form-label"
-                  >
-                    Start Date
+                  <label forhtml="venue" className="col-form-label">
+                    Start Date *
                   </label>
 
-                  <div className="col-5 col-lg-5 mb-3 mb-sm-0">
+                  <div className="col-4 col-lg-4 mb-3 mb-sm-0">
                     <div className="form-group">
                       <input
                         type="date"
@@ -614,7 +576,7 @@ function SendSmsAttendee(props) {
                     </div>
                   </div>
 
-                  <div className="col-3 col-lg-3 mb-3 mb-sm-0">
+                  <div className="col-4 col-lg-4 mb-3 mb-sm-0">
                     <div className="form-group">
                       <select
                         className={`form-control ${
@@ -642,7 +604,7 @@ function SendSmsAttendee(props) {
                     </div>
                   </div>
 
-                  <div className="col-12 col-lg-5 mb-3 mb-sm-0 px-4">
+                  <div className="col-4 col-lg-4 mb-3 mb-sm-0 px-4">
                     <div className="form-group">
                       <div
                         className="form-check form-check-inline mx-3"
@@ -693,11 +655,11 @@ function SendSmsAttendee(props) {
                 </div>
 
                 <div className="form-group row">
-                  <label forhtml="" className="col-12 col-lg-4 col-form-label">
-                    End Date
+                  <label forhtml="" className="col-form-label">
+                    End Date *
                   </label>
 
-                  <div className="col-5 col-lg-5 mb-3 mb-sm-0">
+                  <div className="col-4 col-lg-4 mb-3 mb-sm-0">
                     <div className="form-group">
                       <input
                         type="date"
@@ -725,7 +687,7 @@ function SendSmsAttendee(props) {
                     </div>
                   </div>
 
-                  <div className="col-3 col-lg-3 mb-3 mb-sm-0">
+                  <div className="col-4 col-lg-4 mb-3 mb-sm-0">
                     <div className="form-group">
                       <select
                         className={`form-control ${
@@ -754,7 +716,7 @@ function SendSmsAttendee(props) {
                     </div>
                   </div>
 
-                  <div className="col-12 col-lg-5 mb-3 mb-sm-0 px-4">
+                  <div className="col-4 col-lg-4 mb-3 mb-sm-0 px-4">
                     <div className="form-group">
                       <div
                         className="form-check form-check-inline mx-3"

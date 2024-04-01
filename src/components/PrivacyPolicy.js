@@ -11,756 +11,680 @@ import Author1 from "./../assets/img/author/author1.jpg";
 
 const PrivacyPolicy = () => {
   return (
-    <div className="home_container">
-      <header class="header sticky">
-        <div class="container">
-          <div class="row flexbox-center">
-            <div class="col-lg-2 col-md-3 col-6">
-              <div class="logo">
-                <a href="#home">
-                  <img src={Logo} alt="logo" />
-                </a>
+    <>
+      <div className="home_container">
+        <header class="header sticky">
+          <div class="container">
+            <div class="row flexbox-center">
+              <div class="col-lg-2 col-md-3 col-6">
+                <div class="logo">
+                  <a href="#home">
+                    <img src="./assets/img/Klout-Club.svg" alt="logo" />
+                  </a>
+                </div>
               </div>
-            </div>
-            <div class="col-lg-10 col-md-9 col-6">
-              <div class="responsive-menu"></div>
-              <div class="mainmenu">
-                <ul id="primary-menu">
-                  <li>
-                    <Link class="appao-btn" to="/">
-                      Go to Home
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-
-      {/* <!-- Hero Area --> */}
-      <section class="hero-area" id="home">
-        <div class="container">
-          {/* <div class="row">
-            <div class="col-lg-7">
-              <div class="hero-area-content">
-                <h1>Explore new markets with the superpower of networking</h1>
-                <p>
-                  Get in touch with founders and C-levels, earn Social Capital
-                  points for helping each other and get support every step of
-                  the way from the people who've already walked your path.
-                </p>
-                <a href="#" class="appao-btn">
-                  Google Play
-                </a>
-                <a href="#" class="appao-btn">
-                  App Store
-                </a>
-              </div>
-            </div>
-            <div class="col-lg-5">
-              <div class="hand-mockup text-lg-left text-center">
-                <img src={MockUp} alt="Hand Mockup" />
-              </div>
-            </div>
-          </div> */}
-        </div>
-      </section>
-
-      {/* <!-- About Klout --> */}
-      <section class="about-area ptb-90">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div
-                class="sec-title"
-                style={{ maxWidth: "100%", textAlign: "left" }}
-              >
-                <h1>Privacy Policy</h1>
-                <hr />
-                <br />
-                <h2>
-                  {" "}
-                  <strong>01. INTRODUCTION </strong>
-                </h2>
-                ​
-                <p>
-                  Welcome to <strong>Klout Club</strong>.{" "}
-                  <strong>Klout Club</strong>. (“us”, “we”, or “our”) operates{" "}
-                  <a href="https://www.klout.club">https://www.klout.club</a> {" "}
-                  and Klout Club application (hereinafter referred to as{" "}
-                  <strong>“Service” </strong>). Our Privacy Policy governs your
-                  visit to https://www.klout.club and Klout Club mobile
-                  application, and explains how we collect, safeguard and
-                  disclose information that results from your use of our
-                  Service. We use your data to provide and improve Service. By
-                  using Service, you agree to the collection and use of
-                  information in accordance with this policy. Unless otherwise
-                  defined in this Privacy Policy, the terms used in this Privacy
-                  Policy have the same meanings as in our Terms and Conditions.
-                  Our Terms and Conditions (<strong>“Terms”</strong>) govern all
-                  use of our Service and together with the Privacy Policy
-                  constitutes your agreement with us (
-                  <strong>“agreement”</strong>).
-                </p>
-                <br />
-                <h3>
-                  <strong>02. Definitions</strong>
-                </h3>
-                <p>
-                   <strong>SERVICE</strong> means the 
-                   {" "}
-                  <a href="https://www.klout.club">https://www.klout.club</a> and
-                  Klout Club application operated by Klout Club
-                </p>
-                <p>
-                  <strong>PERSONAL DATA</strong> means data about a living
-                  individual who can be identified from those data (or from
-                  those and other information either in our possession or likely
-                  to come into our possession).
-                </p>
-                <p>
-                  <strong>USAGE DATA</strong> is data collected automatically
-                  either generated by the use of Service or from Service
-                  infrastructure itself (for example, the duration of a page
-                  visit).
-                </p>
-                <p>
-                  <strong>COOKIES</strong> are small files stored on your device
-                  (computer or mobile device).
-                </p>
-                <p>
-                  {" "}
-                  <strong>DATA CONTROLLER</strong> means a natural or legal
-                  person who (either alone or jointly or in common with other
-                  persons) determines the purposes for which and the manner in
-                  which any personal data are, or are to be, processed. For the
-                  purpose of this Privacy Policy, we are a Data Controller of
-                  your data.{" "}
-                </p>
-                <p>
-                  <strong> DATA PROCESSORS (OR SERVICE PROVIDERS)</strong> means
-                  any natural or legal person who processes the data on behalf
-                  of the Data Controller. We may use the services of various
-                  Service Providers in order to process your data more
-                  effectively.
-                </p>
-                <p>
-                  <strong>DATA SUBJECT</strong> is any living individual who is
-                  the subject of Personal Data.
-                </p>
-                <p>
-                  <strong> THE USER</strong> is the individual using our
-                  Service. The User corresponds to the Data Subject, who is the
-                  subject of Personal Data.
-                </p>
-                <br />
-                <h3>
-                  <strong>03. Information Collection and Use </strong>
-                </h3>
-                <br />
-                <p>
-                  We collect several different types of information for various
-                  purposes to provide and improve our Service to you.
-                </p>
-                <br />
-                <h3>
-                  <strong>04. Types of Data Collected </strong>
-                </h3>
-                <p>
-                  <strong> Personal Data </strong>
-                  <br />
-                  While using our Service, we may ask you to provide us with
-                  certain personally identifiable information that can be used
-                  to contact or identify you (<strong>“Personal Data”</strong>).
-                  Personally identifiable information may include, but is not
-                  limited to:
-                </p>{" "}
-                <ul>
-                  <li> • Email address </li>
-                  <li> • First name and last name </li>
-                  <li> • Phone number</li>
-                  <li> • Address, State, Province, ZIP/Postal code, City </li>
-                  <li> • Cookies and Usage Data</li>
-                </ul>
-                <p>
-                  We may use your Personal Data to contact you with newsletters,
-                  marketing or promotional materials and other information that
-                  may be of interest to you. You may opt out of receiving any,
-                  or all, of these communications from us by following the
-                  unsubscribe link.
-                </p>
-                ​
-                <h3>
-                  <strong>Usage Data</strong>
-                </h3>
-                <p>
-                  We may also collect information that your browser sends
-                  whenever you visit our Service or when you access Service by
-                  or through a mobile device (<strong>“Usage Data” </strong>).
-                  This Usage Data may include information such as your
-                  computer's Internet Protocol address (e.g. IP address),
-                  browser type, browser version, the pages of our Service that
-                  you visit, the time and date of your visit, the time spent on
-                  those pages, unique device identifiers and other diagnostic
-                  data.
-                </p>
-                <p>
-                  When you access Service with a mobile device, this Usage Data
-                  may include information such as the type of mobile device you
-                  use, your mobile device unique ID, the IP address of your
-                  mobile device, your mobile operating system, the type of
-                  mobile Internet browser you use, unique device identifiers and
-                  other diagnostic data.
-                </p>
-                <br />
-                <h3>
-                  <strong>Location Data</strong>
-                </h3>
-                <p>
-                  We may use and store information about your location if you
-                  give us permission to do so (<strong>“Location Data”</strong>
-                  ). We use this data to provide features of our Service, to
-                  improve and customize our Service. You can enable or disable
-                  location services when you use our Service at any time by way
-                  of your device settings.
-                </p>
-                <h3>
-                  <strong>Tracking Cookies Data </strong>
-                </h3>
-                <p>
-                  We use cookies and similar tracking technologies to track the
-                  activity on our Service and we hold certain information.
-                  Cookies are files with a small amount of data which may
-                  include an anonymous unique identifier. Cookies are sent to
-                  your browser from a website and stored on your device. Other
-                  tracking technologies are also used such as beacons, tags and
-                  scripts to collect and track information and to improve and
-                  analyze our Service. You can instruct your browser to refuse
-                  all cookies or to indicate when a cookie is being sent.
-                  However, if you do not accept cookies, you may not be able to
-                  use some portions of our Service.
-                </p>
-                <p>
-                  <strong>Examples of Cookies we use: </strong>
-                </p>
-                <p>
-                  <strong>• Session Cookies:</strong> We use Session Cookies to
-                  operate our Service.
-                  <br />
-                  <strong>• Preference Cookies:</strong> We use Preference
-                  Cookies to remember your preferences and various settings.
-                  <br />
-                  <strong>• Security Cookies: </strong> We use Security Cookies
-                  for security purposes.
-                  <br />
-                  <strong>• Advertising Cookies:</strong> Advertising Cookies
-                  are used to serve you with advertisements that may be relevant
-                  to you and your interests.
-                  <br />
-                </p>
-                <br />
-                <h3>
-                  <strong>Other Data</strong>
-                </h3>
-                <p>
-                  While using our Service, we may also collect the following
-                  information: sex, age, date of birth, place of birth, passport
-                  details, citizenship, registration at place of residence and
-                  actual address, telephone number (work, mobile), details of
-                  documents on education, qualification, professional training,
-                  employment agreements, non-disclosure agreements, information
-                  on bonuses and compensation, information on marital status,
-                  family members, social security (or other taxpayer
-                  identification) number, office location and other data.
-                </p>
-                <h3>
-                  <strong> 05. Use of Data </strong>
-                </h3>
-                <p>
-                  Klout processes the User’s personal data for the purpose of
-                  performance of the contract between the Klout club and the
-                  User for the Klout-branded apps and Klout-related sites. Klout
-                  Club. uses the collected data for various purposes:
-                </p>
-                <p>• to provide and maintain our Service;</p>
-                <p>• to notify you about changes to our Service;</p>
-                <p>
-                  • to allow you to participate in interactive features of our
-                  Service when you choose to do so;
-                </p>
-                <p>• to provide customer support;</p>
-                <p>
-                  • to gather analysis or valuable information so that we can
-                  improve our Service;
-                </p>
-                <p>• to monitor the usage of our Service;</p>
-                <p>• to detect, prevent and address technical issues;</p>
-                <p>• to fulfill any other purpose for which you provide it; </p>
-                <p>
-                  • to carry out our obligations and enforce our rights arising
-                  from any contracts entered into between you and us, including
-                  for billing and collection;
-                </p>
-                <p>
-                  • to provide you with notices about your account and/or
-                  subscription, including expiration and renewal notices,
-                  email-instructions, etc.;{" "}
-                </p>
-                <p>
-                  • to provide you with news, special offers and general
-                  information about other goods, services and events which we
-                  offer that are similar to those that you have already
-                  purchased or enquired about unless you have opted not to
-                  receive such information;{" "}
-                </p>
-                <p>
-                  • in any other way we may describe when you provide the
-                  information;
-                </p>
-                <p>• for any other purpose with your consent.</p>
-                <h3>
-                  <strong>06. Retention of Data</strong>
-                </h3>
-                <p>
-                  We will retain your Personal Data only for as long as is
-                  necessary for the purposes set out in this Privacy Policy. We
-                  will retain and use your Personal Data to the extent necessary
-                  to comply with our legal obligations (for example, if we are
-                  required to retain your data to comply with applicable laws),
-                  resolve disputes, and enforce our legal agreements and
-                  policies. We will also retain Usage Data for internal analysis
-                  purposes. Usage Data is generally retained for a shorter
-                  period, except when this data is used to strengthen the
-                  security or to improve the functionality of our Service, or we
-                  are legally obligated to retain this data for longer time
-                  periods.
-                </p>
-                <h3>
-                  <strong>07. Transfer of Data</strong>
-                </h3>
-                <p>
-                  Your information, including Personal Data, may be transferred
-                  to – and maintained on – computers located outside of your
-                  state, province, country or other governmental jurisdiction
-                  where the data protection laws may differ from those of your
-                  jurisdiction.
-                  <br />
-                  If you are located outside India and choose to provide
-                  information to us, please note that we transfer the data,
-                  including Personal Data, to India and process it there. Your
-                  consent to this Privacy Policy followed by your submission of
-                  such information represents your agreement to that transfer.
-                  <br />
-                  Klout Club will take all the steps reasonably necessary to
-                  ensure that your data is treated securely and in accordance
-                  with this Privacy Policy and no transfer of your Personal Data
-                  will take place to an organisation or a country unless there
-                  are adequate controls in place including the security of your
-                  data and other personal information.
-                  <br />
-                </p>
-                <h3>
-                  <strong>08. Disclosure of Data</strong>
-                </h3>
-                <p>
-                  We may disclose personal information that we collect, or you
-                  provide:
-                </p>
-                <p>
-                  • Disclosure for Law Enforcement. Under certain circumstances,
-                  we may be required to disclose your Personal Data if required
-                  to do so by law or in response to valid requests by public
-                  authorities.
-                </p>
-                <p>
-                  • Business Transaction. If we or our subsidiaries are involved
-                  in a merger, acquisition or asset sale, your Personal Data may
-                  be transferred.
-                </p>
-                <p>• Other cases. We may disclose your information also:</p>
-                <p>• to our subsidiaries and affiliates;</p>
-                <p>
-                  • to contractors, service providers, and other third parties
-                  we use to support our business;
-                </p>
-                <p>• to fulfill the purpose for which you provide it;</p>
-                <p>
-                  • for any other purpose disclosed by us when you provide the
-                  information;
-                </p>
-                <p>• with your consent in any other cases;</p>
-                <p>
-                  • if we believe disclosure is necessary or appropriate to
-                  protect the rights, property, or safety of the Company, our
-                  customers, or others.
-                </p>
-                <h3>
-                  <strong>09. Security of Data​</strong>
-                </h3>
-                <p>
-                  The security of your data is important to us but remember that
-                  no method of transmission over the Internet or method of
-                  electronic storage is 100% secure. While we strive to use
-                  commercially acceptable means to protect your Personal Data,
-                  we cannot guarantee its absolute security.
-                </p>
-                <h3>
-                  <strong>
-                    10. Your Data Protection Rights Under General Data
-                    Protection Regulation (GDPR){" "}
-                  </strong>
-                </h3>
-                <p>
-                  If you are a resident of the European Union (EU) and European
-                  Economic Area (EEA), you have certain data protection rights,
-                  covered by GDPR. – See more at
-                  <a
-                    href="https://eur-lex.europa.eu/eli/reg/2016/679/oj"
-                    target="_blank"
-                  >
-                    https://eur-lex.europa.eu/eli/reg/2016/679/oj
-                  </a>
-                  We aim to take reasonable steps to allow you to correct,
-                  amend, delete, or limit the use of your Personal Data.
-                </p>
-                <p>
-                  If you wish to be informed what Personal Data we hold about
-                  you and if you want it to be removed from our systems, please
-                  email us at support@klouty.club In certain circumstances, you
-                  have the following data protection rights:
-                </p>
-                <p>
-                  • the right to access, update or to delete the information we
-                  have on you;
-                </p>
-                <p>
-                  • the right of rectification. You have the right to have your
-                  information rectified if that information is inaccurate or
-                  incomplete;
-                </p>
-                <p>
-                  • the right to object. You have the right to object to our
-                  processing of your Personal Data;
-                </p>
-                <p>
-                  • the right of restriction. You have the right to request that
-                  we restrict the processing of your personal information;
-                </p>
-                <p>
-                  • the right to data portability. You have the right to be
-                  provided with a copy of your Personal Data in a structured,
-                  machine-readable and commonly used format;
-                </p>
-                <p>
-                  • the right to withdraw consent. You also have the right to
-                  withdraw your consent at any time where we rely on your
-                  consent to process your personal information;
-                </p>
-                <p>
-                  Please note that we may ask you to verify your identity before
-                  responding to such requests. Please note, we may not able to
-                  provide Service without some necessary data.
-                </p>
-                <p>
-                  You have the right to complain to a Data Protection Authority
-                  about our collection and use of your Personal Data. For more
-                  information, please contact your local data protection
-                  authority in the European Economic Area (EEA).
-                </p>
-                <h3>
-                  <strong> 11. Service Providers ​</strong>
-                </h3>
-                <p>
-                  We may employ third party companies and individuals to
-                  facilitate our Service ( <strong>“Service Providers” </strong>
-                  ), provide Service on our behalf, perform Service-related
-                  services or assist us in analysing how our Service is used.
-                  <br />
-                  These third parties have access to your Personal Data only to
-                  perform these tasks on our behalf and are obligated not to
-                  disclose or use it for any other purpose.
-                </p>
-                <h3>
-                  <strong> 12. Analytics and Storage ​</strong>
-                </h3>
-                <p>
-                  We may use third-party Service Providers to monitor and
-                  analyze the use of our Service.
-                  <br />
-                  <strong> Google Analytics </strong>
-                  Google Analytics is a web analytics service offered by Google
-                  that tracks and reports website traffic. Google uses the data
-                  collected to track and monitor the use of our Service. This
-                  data is shared with other Google services. Google may use the
-                  collected data to contextualise and personalise the ads of its
-                  own advertising network.
-                  <br />
-                  For more information on the privacy practices of Google,
-                  please visit the Google Privacy Terms web page:
-                  <br />
-                  <a
-                    href=" https://policies.google.com/privacy?hl=en"
-                    target="_blank"
-                  >
-                    https://policies.google.com/privacy?hl=en
-                  </a>
-                  <br />
-                  We also encourage you to review the Google's policy for
-                  safeguarding your data:
-                  <a
-                    href="https://support.google.com/analytics/answer/6004245"
-                    target="_blank"
-                  >
-                    https://support.google.com/analytics/answer/6004245.
-                  </a>
-                </p>
-                <p>
-                  <strong> AWS (Amazon Web Services, Inc.) </strong>Amazon Web
-                  Services, Inc. is a subsidiary of Amazon that provides
-                  on-demand cloud computing platforms and APIs to individuals,
-                  companies, and governments, on a metered, pay-as-you-go basis.
-                  AWS handles your Personal Data in accordance with our
-                  instructions and storages all Personal Data when you use the
-                  App. For more information on the privacy practices of AWS,
-                  please visit the AWS Privacy Policy web page:
-                  <a href="https://aws.amazon.com/privacy/" target="_blank">
-                    https://aws.amazon.com/privacy/
-                  </a>
-                </p>
-                <br />
-                <p>
-                  <strong> Firebase </strong>
-                  Firebase is analytics service provided by Google Inc. You may
-                  opt-out of certain Firebase features through your mobile
-                  device settings, such as your device advertising settings or
-                  by following the instructions provided by Google in their
-                  Privacy Policy:
-                  <a
-                    href="https://policies.google.com/privacy?hl=en"
-                    target="_blank"
-                  >
-                    https://policies.google.com/privacy?hl=en
-                  </a>
-                  For more information on what type of information Firebase
-                  collects, please visit the Google Privacy Terms web page:
-                  <a
-                    href="https://policies.google.com/privacy?hl=en"
-                    target="_blank"
-                  >
-                    https://policies.google.com/privacy?hl=en
-                  </a>
-                </p>
-                <h3>
-                  <strong>13. CI/CD tools</strong>
-                </h3>
-                <p>
-                  We may use third-party Service Providers to automate the
-                  development process of our Service. GitHub GitHub is provided
-                  by GitHub, Inc. GitHub is a development platform to host and
-                  review code, manage projects, and build software. For more
-                  information on what data GitHub collects for what purpose and
-                  how the protection of the data is ensured, please visit GitHub
-                  Privacy Policy page:
-                  <a
-                    href="https://docs.github.com/en/site-policy/privacy-policies"
-                    target="_blank"
-                  >
-                    https://docs.github.com/en/site-policy/privacy-policies
-                  </a>
-                </p>
-                <br />
-                <h3>
-                  <strong>
-                    14. SMS Authentication and Communication Tools
-                  </strong>
-                </h3>
-                <p>
-                  Twilio Twilio is a company that provides programmable
-                  communication tools for making and receiving phone calls,
-                  sending and receiving text messages, and performing other
-                  communication functions using its web service APIs.
-                  <br />
-                  We use Twilio to process users’ communications-related data
-                  such as phone numbers, email addresses, usernames. We also use
-                  it to process the content of communications sent by users via
-                  text messages.
-                  <br />
-                  For more information on the privacy practices of Twilio,
-                  please visit the Twilio Privacy Notice web page:
-                  <a
-                    href="https://www.twilio.com/legal/privacy"
-                    target="_blank"
-                  >
-                    https://www.twilio.com/legal/privacy
-                  </a>
-                </p>
-                <br />
-                <h3>
-                  <strong>15. Behavioral Remarketing </strong>
-                </h3>
-                <p>
-                  Klout Club in future may use remarketing services to advertise
-                  on third party websites to you after you visited our Service.
-                </p>
-                <br />
-                <h3>
-                  <strong>16. Children's Privacy </strong>
-                </h3>
-                <p>
-                  Our Services are not intended for use by people under the age
-                  of 18 (<strong>“Children”</strong>). We do not knowingly
-                  collect personally identifiable information from Children
-                  under 13. If you become aware that a Child has provided us
-                  with Personal Data, please contact us. If we become aware that
-                  we have collected Personal Data from Children without
-                  verification of parental consent, we take steps to remove that
-                  information from our servers.
-                </p>
-                <br />
-                <h3>
-                  <strong>
-                    17. SMS/MMS Mobile Messaging Marketing Program
-                  </strong>
-                </h3>
-                <p>
-                  We respect your privacy. We will only use information you
-                  provide through the Program to transmit your mobile messages
-                  and respond to you, if necessary. This includes, but is not
-                  limited to, sharing information with platform providers, phone
-                  companies, and other vendors who assist us in the delivery of
-                  mobile messages.
-                  <br />
-                  WE DO NOT SELL, RENT, LOAN, TRADE, LEASE, OR OTHERWISE
-                  TRANSFER FOR PROFIT ANY PHONE NUMBERS OR CUSTOMER INFORMATION
-                  COLLECTED THROUGH THE PROGRAM TO ANY THIRD PARTY.
-                  <br />
-                  Nonetheless, We reserve the right at all times to disclose any
-                  information as necessary to satisfy any law, regulation or
-                  governmental request, to avoid liability, or to protect Our
-                  rights or property. When you complete forms online or
-                  otherwise provide Us information in connection with the
-                  Program, you agree to provide accurate, complete, and true
-                  information. You agree not to use a false or misleading name
-                  or a name that you are not authorized to use. If, in Our sole
-                  discretion, We believe that any such information is untrue,
-                  inaccurate, or incomplete, or you have opted into the Program
-                  for an ulterior purpose, We may refuse you access to the
-                  Program and pursue any appropriate legal remedies.
-                </p>
-                <br />
-                <h3>
-                  <strong>18. Changes to This Privacy Policy </strong>
-                </h3>
-                <p>
-                  We may update our Privacy Policy from time to time. We will
-                  notify you of any changes by posting the new Privacy Policy on
-                  this page.
-                  <br />
-                  We will let you know via email and/or a prominent notice on
-                  our Service, prior to the change becoming effective and update
-                  “effective date” at the top of this Privacy Policy.
-                  <br />
-                  You are advised to review this Privacy Policy periodically for
-                  any changes. Changes to this Privacy Policy are effective when
-                  they are posted on this page.
-                </p>
-                <br />
-                <h3>
-                  <strong>19. Contact Us</strong>
-                </h3>
-                <p>
-                  If you have any questions about this Privacy Policy, please
-                  contact us: By email:
-                  <br />
-                  please contact us as below:
-                  <br />
-                  Klout Club
-                  <br />
-                  Email - value@klout.club
-                  <br />
-                  By Phone Number - +919643314331
-                  <br />
-                  By Mail -
-                  <br />
-                  #10, Poorvi Marg,
-                  <br />
-                  DLF Phase 2, Gurgaon
-                  <br /> Haryana
-                  <br />( India )- 122008
-                </p>
+              <div class="col-lg-10 col-md-9 col-6">
+                <div class="responsive-menu"></div>
+                <div class="mainmenu">
+                  <ul id="primary-menu">
+                    <li>
+                      <a class="appao-btn" href="/">
+                        Go to Home
+                      </a>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </header>
 
-      <footer class="footer" id="contact">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="subscribe-form">
-                <form action="#">
-                  <input type="text" placeholder="Your email address here" />
-                  <button type="submit">Subcribe</button>
-                </form>
+        <section class="hero-area" id="home">
+          <div class="container"></div>
+        </section>
+
+        <section
+          class=" ptb-90"
+          style={{ maxWidth: "100%", textAlign: "left" }}
+        >
+          <div class="container">
+            <div class="row">
+              <div class="col-12">
+                <div>
+                  <h1>Privacy Policy</h1>
+                  <hr />
+                  <br />
+                  <h2>
+                    <strong>01. INTRODUCTION </strong>
+                  </h2>
+                  <br />
+                  <p>
+                    <strong>Last updated: March 13, 2024</strong>
+                  </p>
+                  <br />
+                  <p>
+                    This Privacy Policy describes Our policies and procedures on
+                    the collection, use and disclosure of Your information when
+                    You use the Service and tells You about Your privacy rights
+                    and how the law protects You.
+                  </p>
+                  <br />
+                  <p>
+                    We use Your Personal data to provide and improve the
+                    Service. By using the Service, You agree to the collection
+                    and use of information in accordance with this Privacy
+                    Policy. This Privacy Policy has been created with the help
+                    of the <a href="https://www.termsfeed.com/privacy-policy-generator/" target="_blank">Privacy Policy Generator</a>.
+                  </p>
+                  <br />
+                  <h3>Interpretation and Definitions</h3>
+                  <br />
+                  <p>
+                    <strong>Interpretation</strong>
+                  </p>
+                  <br />
+                  <p>
+                    The words of which the initial letter is capitalized have
+                    meanings defined under the following conditions. The
+                    following definitions shall have the same meaning regardless
+                    of whether they appear in singular or in plural.
+                  </p>
+                  <br />
+                  <h3>Definitions</h3>
+                  <br />
+                  For the purposes of this Privacy Policy:
+                  <br />
+                  <br />
+                  <ul>
+                    <li>
+                      • Account means a unique account created for You to access
+                      our Service or parts of our Service.
+                    </li>
+                    <br />
+                    <li>
+                      • Affiliate means an entity that controls, is controlled
+                      by or is under common control with a party, where
+                      "control" means ownership of 50% or more of the shares,
+                      equity interest or other securities entitled to vote for
+                      election of directors or other managing authority.
+                    </li>
+                    <br />
+                    <li>
+                      • Application refers to Klout Club, the software program
+                      provided by the Company.
+                    </li>
+                    <br />
+                    <li>
+                      • Company (referred to as either "the Company", "We", "Us"
+                      or "Our" in this Agreement) refers to Klout Club.
+                    </li>
+                    <br />
+                    <li>• Country refers to: Delhi, India</li>
+                    <br />
+                    <li>
+                      • Device means any device that can access the Service such
+                      as a computer, a cellphone or a digital tablet.
+                    </li>
+                    <br />
+                    <li>
+                      • Personal Data is any information that relates to an
+                      identified or identifiable individual.
+                    </li>
+                    <br />
+                    <li>• Service refers to the Application.</li>
+                    <br />
+                    <li>
+                      • Service Provider means any natural or legal person who
+                      processes the data on behalf of the Company. It refers to
+                      third-party companies or individuals employed by the
+                      Company to facilitate the Service, to provide the Service
+                      on behalf of the Company, to perform services related to
+                      the Service or to assist the Company in analyzing how the
+                      Service is used.
+                    </li>
+                    <br />
+                    <li>
+                      • Third-party Social Media Service refers to any website
+                      or any social network website through which a User can log
+                      in or create an account to use the Service.
+                    </li>
+                    <br />
+                    <li>
+                      • Usage Data refers to data collected automatically,
+                      either generated by the use of the Service or from the
+                      Service infrastructure itself (for example, the duration
+                      of a page visit).
+                    </li>
+                    <br />
+                    <li>
+                      • You means the individual accessing or using the Service,
+                      or the company, or other legal entity on behalf of which
+                      such individual is accessing or using the Service, as
+                      applicable.
+                    </li>
+                    <br />
+                  </ul>
+                  <br />
+                  <h3>Collecting and Using Your Personal Data</h3>
+                  <br />
+                  <p>
+                    <strong>Types of Data Collected</strong>
+                  </p>
+                  <p>
+                    <strong>Personal Data</strong>
+                  </p>
+                  <p>
+                    While using Our Service, We may ask You to provide Us with
+                    certain personally identifiable information that can be used
+                    to contact or identify You. Personally identifiable
+                    information may include, but is not limited to:
+                  </p>
+                  <br />
+                  <ul>
+                    <li>• Email address</li>
+                    <br />
+                    <li>• First name and last name</li>
+                    <br />
+                    <li>• Phone number</li>
+                    <br />
+                    {/* <li>• Address, State, Province, ZIP/Postal code, City</li> */}
+                    <br />
+                    <li>• Usage Data</li>
+                    <br />
+                  </ul>
+                  <p>
+                    {" "}
+                    <strong>Usage Data </strong>
+                  </p>
+                  <br />
+                  <p>
+                    Usage Data is collected automatically when using the
+                    Service.
+                  </p>
+                  <br />
+                  <p>
+                    Usage Data may include information such as Your Device's
+                    Internet Protocol address (e.g. IP address), browser type,
+                    browser version, the pages of our Service that You visit,
+                    the time and date of Your visit, the time spent on those
+                    pages, unique device identifiers and other diagnostic data.
+                  </p>
+                  <br />
+                  <p>
+                    When You access the Service by or through a mobile device,
+                    We may collect certain information automatically, including,
+                    but not limited to, the type of mobile device You use, Your
+                    mobile device unique ID, the IP address of Your mobile
+                    device, Your mobile operating system, the type of mobile
+                    Internet browser You use, unique device identifiers and
+                    other diagnostic data.
+                  </p>
+                  <br />
+                  <p>
+                    We may also collect information that Your browser sends
+                    whenever You visit our Service or when You access the
+                    Service by or through a mobile device.
+                  </p>
+                  <br />
+                  <h3>Information from Third-Party Social Media Services</h3>
+                  <br />
+                  <p>
+                    The Company allows You to create an account and log in to
+                    use the Service through the following Third-party Social
+                    Media Services:
+                  </p>
+                  <ul>
+                    <li>• Google</li>
+                    <br />
+                    <li>• Facebook</li>
+                    <br />
+                    <li>• Instagram</li>
+                    <br />
+                    <li>• Twitter</li>
+                    <br />
+                    <li>• LinkedIn</li>
+                  </ul>
+                  <br />
+                  <p>
+                    If You decide to register through or otherwise grant us
+                    access to a Third-Party Social Media Service, We may collect
+                    Personal data that is already associated with Your
+                    Third-Party Social Media Service's account, such as Your
+                    name, Your email address, Your activities or Your contact
+                    list associated with that account.
+                  </p>
+                  <br />
+                  <p>
+                    You may also have the option of sharing additional
+                    information with the Company through Your Third-Party Social
+                    Media Service's account. If You choose to provide such
+                    information and Personal Data, during registration or
+                    otherwise, You are giving the Company permission to use,
+                    share, and store it in a manner consistent with this Privacy
+                    Policy.
+                  </p>
+                  <h3>Information Collected while Using the Application </h3>
+                  <br />
+                  <p>
+                    While using Our Application, in order to provide features of
+                    Our Application, We may collect, with Your prior permission:
+                  </p>
+                  <br />
+                  <ul>
+                    <li>• Information regarding your location</li>
+                    <br />
+                    <li>
+                      • Information from your Device's phone book (contacts
+                      list)
+                    </li>
+                    <br />
+                    <li>
+                      • Pictures and other information from your Device's camera and photo library
+                    </li>
+                  </ul>
+                  <br />
+                  <p>
+                    We use this information to provide features of Our Service,
+                    to improve and customize Our Service. The information may be
+                    uploaded to the Company's servers and/or a Service
+                    Provider's server or it may be simply stored on Your device.
+                  </p>
+                  <br />
+                  <p>
+                    {" "}
+                    You can enable or disable access to this information at any
+                    time, through Your Device settings.
+                  </p>
+                  <br />
+                  <h3>Use of Your Personal Data</h3>
+                  <br />
+                  <p>
+                    The Company may use Personal Data for the following
+                    purposes:
+                  </p>
+                  <br />
+                  <ul>
+                    <li>
+                      {" "}
+                      • To provide and maintain our Service, including to
+                      monitor the usage of our Service.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • To manage Your Account: to manage Your registration as a
+                      user of the Service. The Personal Data You provide can
+                      give You access to different functionalities of the
+                      Service that are available to You as a registered user.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • For the performance of a contract: the development,
+                      compliance and undertaking of the purchase contract for
+                      the products, items or services You have purchased or of
+                      any other contract with Us through the Service.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • To contact You: To contact You by email, telephone
+                      calls, SMS, or other equivalent forms of electronic
+                      communication, such as a mobile application's push
+                      notifications regarding updates or informative
+                      communications related to the functionalities, products or
+                      contracted services, including the security updates, when
+                      necessary or reasonable for their implementation.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • To provide You with news, special offers and general
+                      information about other goods, services and events which
+                      we offer that are similar to those that you have already
+                      purchased or enquired about unless You have opted not to
+                      receive such information.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • To manage Your requests: To attend and manage Your
+                      requests to Us.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • For business transfers: We may use Your information to
+                      evaluate or conduct a merger, divestiture, restructuring,
+                      reorganization, dissolution, or other sale or transfer of
+                      some or all of Our assets, whether as a going concern or
+                      as part of bankruptcy, liquidation, or similar proceeding,
+                      in which Personal Data held by Us about our Service users
+                      is among the assets transferred.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • For other purposes: We may use Your information for
+                      other purposes, such as data analysis, identifying usage
+                      trends, determining the effectiveness of our promotional
+                      campaigns and to evaluate and improve our Service,
+                      products, services, marketing and your experience.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • We may share Your personal information in the following
+                      situations:
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • With Service Providers: We may share Your personal
+                      information with Service Providers to monitor and analyze
+                      the use of our Service, to contact You.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • For business transfers: We may share or transfer Your
+                      personal information in connection with, or during
+                      negotiations of, any merger, sale of Company assets,
+                      financing, or acquisition of all or a portion of Our
+                      business to another company.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • With Affiliates: We may share Your information with Our
+                      affiliates, in which case we will require those affiliates
+                      to honor this Privacy Policy. Affiliates include Our
+                      parent company and any other subsidiaries, joint venture
+                      partners or other companies that We control or that are
+                      under common control with Us.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • With business partners: We may share Your information
+                      with Our business partners to offer You certain products,
+                      services or promotions.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • With other users: when You share personal information or
+                      otherwise interact in the public areas with other users,
+                      such information may be viewed by all users and may be
+                      publicly distributed outside. If You interact with other
+                      users or register through a Third-Party Social Media
+                      Service, Your contacts on the Third-Party Social Media
+                      Service may see Your name, profile, pictures and
+                      description of Your activity. Similarly, other users will
+                      be able to view descriptions of Your activity, communicate
+                      with You and view Your profile.
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • With Your consent: We may disclose Your personal
+                      information for any other purpose with Your consent.
+                    </li>
+                    <br />
+                  </ul>
+                  <br />
+                  <h3>Retention of Your Personal Data</h3>
+                  <br />
+                  <p>
+                    The Company will retain Your Personal Data only for as long
+                    as is necessary for the purposes set out in this Privacy
+                    Policy. We will retain and use Your Personal Data to the
+                    extent necessary to comply with our legal obligations (for
+                    example, if we are required to retain your data to comply
+                    with applicable laws), resolve disputes, and enforce our
+                    legal agreements and policies.
+                  </p>
+                  <br />
+                  <p>
+                    The Company will also retain Usage Data for internal
+                    analysis purposes. Usage Data is generally retained for a
+                    shorter period of time, except when this data is used to
+                    strengthen the security or to improve the functionality of
+                    Our Service, or We are legally obligated to retain this data
+                    for longer time periods.
+                  </p>
+                  <br />
+                  <h3>Transfer of Your Personal Data</h3>
+                  <br />
+                  <p>
+                    Your information, including Personal Data, is processed at
+                    the Company's operating offices and in any other places
+                    where the parties involved in the processing are located. It
+                    means that this information may be transferred to — and
+                    maintained on — computers located outside of Your state,
+                    province, country or other governmental jurisdiction where
+                    the data protection laws may differ than those from Your
+                    jurisdiction.
+                  </p>
+                  <br />
+                  <p>
+                    Your consent to this Privacy Policy followed by Your
+                    submission of such information represents Your agreement to
+                    that transfer.
+                  </p>
+                  <br />
+                  <p>
+                    The Company will take all steps reasonably necessary to
+                    ensure that Your data is treated securely and in accordance
+                    with this Privacy Policy and no transfer of Your Personal
+                    Data will take place to an organization or a country unless
+                    there are adequate controls in place including the security
+                    of Your data and other personal information.
+                  </p>
+                  <br />
+                  <h3>Delete Your Personal Data</h3>
+                  <br />
+                  <p>
+                    You have the right to delete or request that We assist in
+                    deleting the Personal Data that We have collected about You.
+                  </p>{" "}
+                  <br />
+                  <p>
+                    Our Service may give You the ability to delete certain
+                    information about You from within the Service.
+                  </p>
+                  <br />
+                  <p>
+                    You may update, amend, or delete Your information at any
+                    time by signing in to Your Account, if you have one, and
+                    visiting the account settings section that allows you to
+                    manage Your personal information. You may also contact Us to
+                    request access to, correct, or delete any personal
+                    information that You have provided to Us.
+                  </p>{" "}
+                  <br />
+                  <p>
+                    Please note, however, that We may need to retain certain
+                    information when we have a legal obligation or lawful basis
+                    to do so.
+                  </p>
+                  <br />
+                  <h3>Disclosure of Your Personal Data </h3>
+                  <br />
+                  <p>
+                    {" "}
+                    <strong>Business Transactions </strong>
+                  </p>
+                  <br />
+                  <p>
+                    If the Company is involved in a merger, acquisition or asset
+                    sale, Your Personal Data may be transferred. We will provide
+                    notice before Your Personal Data is transferred and becomes
+                    subject to a different Privacy Policy.
+                  </p>
+                  <br />
+                  <p>
+                    {" "}
+                    <strong> Law enforcement</strong>{" "}
+                  </p>
+                  <br />
+                  <p>
+                    {" "}
+                    Under certain circumstances, the Company may be required to
+                    disclose Your Personal Data if required to do so by law or
+                    in response to valid requests by public authorities (e.g. a
+                    court or a government agency).
+                  </p>
+                  <br />
+                  <p>
+                    <strong>Other legal requirements</strong>
+                  </p>
+                  <br />
+                  <p>
+                    The Company may disclose Your Personal Data in the good
+                    faith belief that such action is necessary to:
+                  </p>
+                  <br />
+                  <ul>
+                    <li> • Comply with a legal obligation</li>
+                    <br />
+                    <li>
+                      • Protect and defend the rights or property of the Company
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • Prevent or investigate possible wrongdoing in connection
+                      with the Service
+                    </li>
+                    <br />
+                    <li>
+                      {" "}
+                      • Protect the personal safety of Users of the Service or
+                      the public
+                    </li>
+                    <br />
+
+                    <li> • Protect against legal liability</li>
+                  </ul>
+                  <br />
+                  <h3>Security of Your Personal Data</h3>
+                  <br />
+                  <p>
+                    The security of Your Personal Data is important to Us, but
+                    remember that no method of transmission over the Internet,
+                    or method of electronic storage is 100% secure. While We
+                    strive to use commercially acceptable means to protect Your
+                    Personal Data, We cannot guarantee its absolute security.
+                  </p>
+                  <br />
+                  <h3>Children's Privacy</h3>
+                  <br />
+                  <p>
+                    {" "}
+                    Our Service does not address anyone under the age of 13. We
+                    do not knowingly collect personally identifiable information
+                    from anyone under the age of 13. If You are a parent or
+                    guardian and You are aware that Your child has provided Us
+                    with Personal Data, please contact Us. If We become aware
+                    that We have collected Personal Data from anyone under the
+                    age of 13 without verification of parental consent, We take
+                    steps to remove that information from Our servers.
+                  </p>
+                  <br />
+                  <p>
+                    {" "}
+                    If We need to rely on consent as a legal basis for
+                    processing Your information and Your country requires
+                    consent from a parent, We may require Your parent's consent
+                    before We collect and use that information.
+                  </p>
+                  <br />
+                  <h3> Links to Other Websites</h3>
+                  <br />
+                  <p>
+                    Our Service may contain links to other websites that are not
+                    operated by Us. If You click on a third party link, You will
+                    be directed to that third party's site. We strongly advise
+                    You to review the Privacy Policy of every site You visit.
+                  </p>
+                  <br />
+                  <p>
+                    We have no control over and assume no responsibility for the
+                    content, privacy policies or practices of any third party
+                    sites or services.
+                  </p>
+                  <br />
+                  <h3>Changes to this Privacy Policy</h3>
+                  <br />
+                  <p>
+                    We may update Our Privacy Policy from time to time. We will
+                    notify You of any changes by posting the new Privacy Policy
+                    on this page.
+                  </p>
+                  <br />
+                  <p>
+                    We will let You know via email and/or a prominent notice on
+                    Our Service, prior to the change becoming effective and
+                    update the "Last updated" date at the top of this Privacy
+                    Policy.
+                  </p>
+                  <br />
+                  <p>
+                    You are advised to review this Privacy Policy periodically
+                    for any changes. Changes to this Privacy Policy are
+                    effective when they are posted on this page.
+                  </p>
+                  <br />
+                  <br />
+                  <h3>Contact Us</h3>
+                  <br />
+                  <p>
+                    If you have any questions about this Privacy Policy, You can
+                    contact us:
+                  </p>
+                  <br />
+                  <p>By email: value@klout.club</p>
+                  <p>By phone number: +919643314331</p>
+                  {/* <p>
+                    By mail: 10, Poorvi Marg, DLF Phase 2, Gurgaon Haryana (
+                    India )- 122008
+                  </p> */}
+                </div>
               </div>
             </div>
           </div>
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="copyright-area">
-                <ul>
-                  <li>
-                    <a href="#">
-                      <i class="icofont icofont-social-facebook"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="icofont icofont-social-twitter"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="icofont icofont-brand-linkedin"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="icofont icofont-social-pinterest"></i>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#">
-                      <i class="icofont icofont-social-google-plus"></i>
-                    </a>
-                  </li>
-                </ul>
-                <p>
-                  Copyright &copy; 2023-24 All rights reserved | The Klout Club
-                  is made with &nbsp;
-                  <i class="fa fa-heart-o" aria-hidden="true"></i> by &nbsp;
-                  <a href="https://insightner.com/" target="_blank">
-                    Insightner
-                  </a>
-                </p>
+        </section>
 
-                <p>
-                  <a href="/privacy-policy" target="_blank">
-                    Privacy Policy
-                  </a>
-                  &nbsp; | &nbsp;
-                  <a href="/terms-and-condition" target="_blank">
-                    Terms and Conditions
-                  </a>
-                </p>
+        <footer class="footer" id="contact">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-12 mt-5">
+                <div class="copyright-area">
+                  <p>
+                    Copyright &copy; 2023-24 All rights reserved | The Klout
+                    Club is made with &nbsp;
+                    <i class="fa fa-heart-o" aria-hidden="true"></i> by &nbsp;
+                    <a href="https://insightner.com/" target="_blank">
+                      Insightner
+                    </a>
+                  </p>
+                  <p>
+                    <a href="/privacy-policy" target="_blank">
+                      Privacy Policy
+                    </a>
+                    &nbsp; | &nbsp;
+                    <a href="/terms-and-condition" target="_blank">
+                      Terms and Conditions
+                    </a>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
+    </>
   );
 };
 

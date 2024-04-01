@@ -100,7 +100,9 @@ function EditSponsors(props) {
     });
 
     axios.get(`/api/sponsors/${sponsor_id}`).then((res) => {
+
       if (res.data.status === 200) {
+
         setEventId(res.data.data.event_id);
 
         if (res.data.data.company === "439") {
@@ -120,7 +122,7 @@ function EditSponsors(props) {
         setFormInput((prevData) => ({
           ...prevData,
 
-          industry: res.data.data.industry_id,
+          industry: res.data.data.industry,
           // sponsorship_package: res.data.data.sponsorship_package_id,
         }));
 
@@ -131,6 +133,8 @@ function EditSponsors(props) {
       }
     });
   }, []);
+
+  console.log('dgffh',formInput);
 
   const handleCompanyChange = (event) => {
     const value = event.target.value;
@@ -503,7 +507,7 @@ function EditSponsors(props) {
     // }
 
     if (Object.keys(fieldErrors).length === 0) {
-    
+
       const formData = new FormData();
 
       formData.append("event_id", formInput.event_id);
@@ -530,7 +534,7 @@ function EditSponsors(props) {
       formData.append("status", formInput.status);
       formData.append("_method", "PUT");
 
-      // console.log("form---data", formInput);
+      console.log("form---data", formInput);
 
       axios
         .post(`/api/sponsors/${sponsor_id}`, formData, {
@@ -580,6 +584,7 @@ function EditSponsors(props) {
     } else {
       setErrors(fieldErrors);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -634,7 +639,7 @@ function EditSponsors(props) {
                     <div className="form-group row">
                       {/* Company*/}
                       <div className="col-4">
-                        <label forhtml="company">Company</label>
+                        <label forhtml="company">Company *</label>
 
                         <select
                           className={`form-control ${
@@ -698,7 +703,7 @@ function EditSponsors(props) {
 
                       {/*  Industry */}
                       <div className="col-4">
-                        <label forhtml="industry">Industry</label>
+                        <label forhtml="industry">Industry *</label>
 
                         <select
                           className={`form-control ${
@@ -829,7 +834,7 @@ function EditSponsors(props) {
                     <div className="form-group row">
                       {/* Employee Size */}
                       <div className="col-4">
-                        <label forhtml="employee_size">Employee Size</label>
+                        <label forhtml="employee_size">Employee Size *</label>
 
                         <select
                           className={`form-control ${
@@ -890,7 +895,7 @@ function EditSponsors(props) {
 
                       {/* Country */}
                       <div className="col-4">
-                        <label forhtml="country">Country</label>
+                        <label forhtml="country">Country *</label>
 
                         <select
                           className={`form-control ${
@@ -932,7 +937,7 @@ function EditSponsors(props) {
                     <legend>Personal Details:</legend>
                     <div className="form-group row">
                       <div className="col-6">
-                        <label forhtml="first_name">First Name</label>
+                        <label forhtml="first_name">First Name *</label>
                         <input
                           type="text"
                           className={`form-control ${
@@ -959,7 +964,7 @@ function EditSponsors(props) {
                       </div>
 
                       <div className="col-6">
-                        <label forhtml="last_name">Last Name</label>
+                        <label forhtml="last_name">Last Name *</label>
                         <input
                           type="text"
                           className={`form-control ${
@@ -991,7 +996,7 @@ function EditSponsors(props) {
 
                   <div className="form-group row">
                     <div className="col-6">
-                      <label forhtml="email">Official Email</label>
+                      <label forhtml="email">Official Email *</label>
 
                       <input
                         type="email"
@@ -1019,7 +1024,7 @@ function EditSponsors(props) {
                     </div>
 
                     <div className="col-6">
-                      <label forhtml="phone_number">Phone Number</label>
+                      <label forhtml="phone_number">Phone Number *</label>
 
                       <input
                         type="text"
@@ -1051,7 +1056,7 @@ function EditSponsors(props) {
                   {/* Profile Image  */}
                   <div className="form-group row">
                     <div className="col-4">
-                      <label forhtml="job_title">Job Title</label>
+                      <label forhtml="job_title">Job Title *</label>
 
                       <select
                         className={`form-control ${
@@ -1113,7 +1118,7 @@ function EditSponsors(props) {
                       )}
                     </div>
                     <div className="col-4">
-                      <label forhtml="file">Profile Picture</label>
+                      <label forhtml="file">Profile Picture *</label>
                       <input
                         type="file"
                         className={`form-control ${
@@ -1325,7 +1330,7 @@ function EditSponsors(props) {
 
                   <div className="form-group row">
                     <div className="col-4">
-                      <label forhtml="status">Status</label>
+                      <label forhtml="status">Status *</label>
                       <div className="form-group">
                         <select
                           className={`form-control ${

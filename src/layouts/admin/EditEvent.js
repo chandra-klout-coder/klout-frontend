@@ -13,6 +13,9 @@ function EditEvent(props) {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imageError, setImageErrors] = useState(null);
+
   const currentDate = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
 
   const [countries, setCountries] = useState([]);
@@ -202,10 +205,47 @@ function EditEvent(props) {
   const handleImage = (e) => {
     const file = e.target.files[0];
 
-    setEventInput((prevData) => ({
-      ...prevData,
-      new_image: file,
-    }));
+    const selectedFile = e.target.files[0];
+    const fileSize = selectedFile.size / 1024 / 1024; // in MB
+    const allowedTypes = ["image/png", "image/jpeg"];
+
+    if (!allowedTypes.includes(selectedFile.type)) {
+      setImageErrors("Only JPG and PNG files are allowed.");
+      return;
+    }
+
+    if (fileSize > 5) {
+      setImageErrors("File size exceeds the limit of 5MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      const image = new Image();
+
+      image.src = event.target.result;
+
+      image.onload = () => {
+        const width = image.width;
+        const height = image.height;
+
+        if (width > 500 || height > 500) {
+          setImageErrors("Image dimensions must be less than 500x500 pixels.");
+        } else {
+          setSelectedImage(URL.createObjectURL(selectedFile));
+
+          setEventInput((prevData) => ({
+            ...prevData,
+            new_image: selectedFile,
+          }));
+
+          setErrors("");
+        }
+      };
+    };
+
+    reader.readAsDataURL(selectedFile);
   };
 
   const updateSubmit = (e) => {
@@ -337,7 +377,6 @@ function EditEvent(props) {
     }
 
     if (Object.keys(fieldErrors).length === 0) {
-
       let image = {};
 
       if (eventInput.new_image !== "") {
@@ -531,7 +570,7 @@ function EditEvent(props) {
                   forhtml="title"
                   className="col-12 col-lg-2 col-form-label"
                 >
-                  Event Title
+                  Event Title *
                 </label>
                 <div className="col-10">
                   <input
@@ -569,7 +608,7 @@ function EditEvent(props) {
                   forhtml="description"
                   className="col-12 col-lg-2 col-form-label"
                 >
-                  Event Description
+                  Event Description *
                 </label>
                 <div className="col-10">
                   <textarea
@@ -608,7 +647,7 @@ function EditEvent(props) {
                   forhtml="file"
                   className="col-12 col-lg-2 col-form-label"
                 >
-                  Upload Event Image
+                  Upload Event Image *
                 </label>
                 <div className="col-10 col-lg-6">
                   <input
@@ -638,7 +677,7 @@ function EditEvent(props) {
 
                 <div className="col-10 col-lg-4 col-4">
                   <p style={{ fontSize: "12px" }}>
-                    * Upload Event Banner in JPG and PNG Format Only.
+                  * Upload Event Banner upto 5 MB with JPG and PNG Format Only.
                   </p>
 
                   {eventInput.new_image && (
@@ -677,7 +716,7 @@ function EditEvent(props) {
                   forhtml="venue"
                   className="col-12 col-lg-2 col-form-label"
                 >
-                  Event Venue
+                  Event Venue *
                 </label>
 
                 <div className="col-10 mb-3 mb-sm-0">
@@ -872,7 +911,7 @@ function EditEvent(props) {
                   forhtml="venue"
                   className="col-12 col-lg-2 col-form-label"
                 >
-                  Event Start Date
+                  Event Start Date *
                 </label>
 
                 <div className="col-10 col-lg-2 mb-3 mb-sm-0">
@@ -909,7 +948,7 @@ function EditEvent(props) {
                   forhtml="venue"
                   className="col-12 col-lg-2 col-form-label"
                 >
-                  Event End Date
+                  Event End Date *
                 </label>
 
                 <div className="col-10 col-lg-2 mb-3 mb-sm-0">

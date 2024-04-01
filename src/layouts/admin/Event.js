@@ -10,6 +10,7 @@ function Event() {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [imageError, setImageErrors] = useState(null);
 
   // Get current date in YYYY-MM-DD format
   const currentDate = new Date().toISOString().split("T")[0];
@@ -171,14 +172,51 @@ function Event() {
   const handleImage = (e) => {
     const file = e.target.files[0];
 
-    if (file) {
-      setSelectedImage(URL.createObjectURL(file));
+    const selectedFile = e.target.files[0];
+    const fileSize = selectedFile.size / 1024 / 1024; // in MB
+    const allowedTypes = ["image/png", "image/jpeg"];
+
+    if (!allowedTypes.includes(selectedFile.type)) {
+      setImageErrors("Only JPG and PNG files are allowed.");
+      return;
     }
 
-    setEventInput((prevData) => ({
-      ...prevData,
-      image: file,
-    }));
+    if (fileSize > 5) {
+      setImageErrors("File size exceeds the limit of 5MB.");
+      return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = (event) => {
+      const image = new Image();
+
+      image.src = event.target.result;
+
+      image.onload = () => {
+        const width = image.width;
+        const height = image.height;
+
+        if (width > 500 || height > 500) {
+          setImageErrors("Image dimensions must be less than 500x500 pixels.");
+        } else {
+          setSelectedImage(URL.createObjectURL(selectedFile));
+
+          setEventInput((prevData) => ({
+            ...prevData,
+            image: selectedFile,
+          }));
+
+          setErrors("");
+        }
+      };
+    };
+
+    reader.readAsDataURL(selectedFile);
+
+    // if (file) {
+    //   setSelectedImage(URL.createObjectURL(file));
+    // }
   };
 
   const handleSubmit = (e) => {
@@ -216,6 +254,7 @@ function Event() {
       fieldErrors.image = "Event Banner is required.";
     } else {
       const allowedFormats = ["image/jpeg", "image/png", "image/jpg"];
+
       if (!allowedFormats.includes(eventInput.image.type)) {
         fieldErrors.image =
           "Invalid file format. Only JPEG & PNG formats are allowed.";
@@ -384,6 +423,8 @@ function Event() {
     } else {
       setErrors(fieldErrors);
     }
+    setIsLoading(false);
+
   };
 
   const [countries, setCountries] = useState([]);
@@ -504,7 +545,7 @@ function Event() {
                   forHtml="title"
                   className="col-12 col-lg-2 col-form-label"
                 >
-                  Event Title
+                  Event Title *
                 </label>
 
                 <div className="col-10">
@@ -544,7 +585,7 @@ function Event() {
                   forHtml="description"
                   className="col-12 col-lg-2 col-form-label"
                 >
-                  Event Description
+                  Event Description *
                 </label>
                 <div className="col-10">
                   <textarea
@@ -583,7 +624,7 @@ function Event() {
                   forHtml="file"
                   className="col-12 col-lg-2 col-form-label"
                 >
-                  Upload Event Image
+                  Upload Event Image *
                 </label>
 
                 <div className="col-10 col-lg-6">
@@ -611,6 +652,15 @@ function Event() {
                       {errors.image}
                     </div>
                   )}
+
+                  {imageError && (
+                    <div
+                      className="invalid-feedback"
+                      style={{ textAlign: "left" }}
+                    >
+                      {imageError}
+                    </div>
+                  )}
                 </div>
 
                 <div className="col-4">
@@ -632,7 +682,7 @@ function Event() {
                   forHtml="venue"
                   className="col-12 col-lg-2 col-form-label"
                 >
-                  Event Venue
+                  Event Venue *
                 </label>
 
                 <div className="col-10 mb-3 mb-sm-0">

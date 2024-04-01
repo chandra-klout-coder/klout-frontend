@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import "./CardWithHover.css";
 import swal from "sweetalert";
-import QrCode from "./../assets/img/qr.svg";
+
+// import QrCode from "./../assets/img/qr.svg";
+import QrCode from "./../assets/img/onelinkto_r3fzb9.png";
+
 import Logo from "./../assets/img/Klout-Club.svg";
 import loadingGif from "../assets/images/load.gif";
 // import Logo from "./../assets/img/klout_original_logo.jpg";
@@ -97,7 +100,6 @@ const Home2 = () => {
     const { name, value } = e.target;
     setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
     setFormData((prevValidFields) => ({ ...prevValidFields, [name]: value }));
-    // e.target.classNameList.remove("is-invalid");
   };
 
   const handleNext = async (e) => {
@@ -441,10 +443,18 @@ const Home2 = () => {
                   stage from those <br />
                   who have traversed similar paths before you.
                 </p>
-                <a href="#" className="appao-btn">
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.klout.app&pli=1"
+                  target="_blank"
+                  className="appao-btn"
+                >
                   Google Play
                 </a>
-                <a href="#" className="appao-btn">
+                <a
+                  href="https://apps.apple.com/in/app/klout-club/id6475306206"
+                  target="_blank"
+                  className="appao-btn"
+                >
                   App Store
                 </a>
               </div>
@@ -968,7 +978,7 @@ const Home2 = () => {
               <div>
                 <div className="">
                   <iframe
-                    src="https://www.youtube.com/embed/sc-1TZA6m4o?si=abRC_RbUxjiijwyZ"
+                    src="https://www.youtube.com/embed/dW_593UpsmY?si=Z0YeXbBXdIym-YAF"
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     style={{
@@ -1280,9 +1290,10 @@ const Home2 = () => {
               <ul>
                 <li>
                   <a
-                    href="#"
+                    href="https://play.google.com/store/apps/details?id=com.klout.app&pli=1"
                     className="download-btn flexbox-center"
                     style={{ background: "black", textDecoration: "none" }}
+                    target="_blank"
                   >
                     <div className="download-btn-icon">
                       <i className="icofont icofont-brand-android-robot"></i>
@@ -1295,9 +1306,10 @@ const Home2 = () => {
                 </li>
                 <li>
                   <a
-                    href="#"
+                    href="https://apps.apple.com/in/app/klout-club/id6475306206"
                     className="download-btn flexbox-center"
                     style={{ background: "black", textDecoration: "none" }}
+                    target="_blank"
                   >
                     <div className="download-btn-icon">
                       <i className="icofont icofont-brand-apple"></i>
@@ -1336,7 +1348,7 @@ const Home2 = () => {
                            --> */}
                       </div>
                       <div className="download-btn-text">
-                        <img src={QrCode} alt="QR" width="50%" />
+                        <img src={QrCode} alt="QR" width="100%" />
                       </div>
                     </a>
                   </li>
@@ -1634,14 +1646,11 @@ const Home2 = () => {
                 </p>
 
                 <p>
-                  <a href="/privacy-policy" style={{ textDecoration: "none" }}>
+                  <a href="/privacy-policy" target="_blank">
                     Privacy Policy
                   </a>
                   &nbsp; | &nbsp;
-                  <a
-                    href="/terms-and-condition"
-                    style={{ textDecoration: "none" }}
-                  >
+                  <a href="/terms-and-condition" target="_blank">
                     Terms and Conditions
                   </a>
                 </p>

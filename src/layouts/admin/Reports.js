@@ -221,7 +221,6 @@ function Reports() {
     }
 
     if (Object.keys(fieldErrors).length === 0) {
-
       const formData = new FormData();
 
       formData.append("report_name", formInput.report_name);
@@ -256,6 +255,7 @@ function Reports() {
     } else {
       setErrors(fieldErrors);
     }
+    setIsLoading(false);
   };
 
   return (
@@ -322,7 +322,7 @@ function Reports() {
                 {/* Report Name */}
                 <div className="form-group row">
                   <label forhtml="report_name" className="col-3 col-form-label">
-                    Report Name
+                    Report Name *
                   </label>
 
                   <div className="col-9 mb-3 mb-sm-0">
@@ -358,7 +358,7 @@ function Reports() {
                 {/* Event Name  */}
                 <div className="form-group row">
                   <label forhtml="event_id" className="col-3 col-form-label">
-                    Select Event
+                    Select Event *
                   </label>
                   <div className="col-9 mb-3 mb-sm-0">
                     <div className="form-group">
@@ -400,7 +400,7 @@ function Reports() {
                 {/* Event Date */}
                 <div className="form-group row">
                   <label forhtml="venue" className="col-3 col-form-label">
-                    Event Date
+                    Event Date *
                   </label>
 
                   <div className="col-9 mb-3 mb-sm-0">
@@ -434,31 +434,29 @@ function Reports() {
                 {/* Event Tags */}
                 <div className="form-group row">
                   <label forhtml="email" className="col-3 col-form-label">
-                    Event Tags
+                    Event Tags *
                   </label>
                   <div className="col-9 mb-3 mb-sm-0">
-                    <div className="col-3 mb-3 mb-sm-0">
-                      <div className="form-group">
-                        <div
-                          className="form-check form-check-inline"
-                          style={{ padding: "10px" }}
+                    <div className="form-group">
+                      <div
+                        className="form-check form-check-inline"
+                        style={{ padding: "10px" }}
+                      >
+                        <input
+                          className="form-check-input"
+                          type="radio"
+                          name="event_tags"
+                          value="all"
+                          checked={formInput.event_tags === "all"}
+                          onChange={handleInput}
+                          onFocus={handleInputFocus}
+                        />
+                        <label
+                          className="form-check-label"
+                          forhtml="inlineRadio1"
                         >
-                          <input
-                            className="form-check-input"
-                            type="radio"
-                            name="event_tags"
-                            value="all"
-                            checked={formInput.event_tags === "all"}
-                            onChange={handleInput}
-                            onFocus={handleInputFocus}
-                          />
-                          <label
-                            className="form-check-label"
-                            forhtml="inlineRadio1"
-                          >
-                            All Tags
-                          </label>
-                        </div>
+                          All Tags
+                        </label>
                       </div>
                     </div>
                   </div>
@@ -467,7 +465,7 @@ function Reports() {
                 {/* Event Attribute  */}
                 <div className="form-group row">
                   <label forhtml="email" className="col-3 col-form-label">
-                    Event Attribute
+                    Event Attribute *
                   </label>
                   <div className="col-9 mb-3 mb-sm-0">
                     <div className="form-group">

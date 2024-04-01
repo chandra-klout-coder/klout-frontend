@@ -6,6 +6,7 @@ import MasterLayout from "./layouts/admin/MasterLayout";
 import Page404 from "./errors/Page404";
 
 function AdminPrivateRoute({ ...rest }) {
+  
   const history = useHistory();
 
   const [authenticated, setAuthenticated] = useState(false);
