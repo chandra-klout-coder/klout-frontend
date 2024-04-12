@@ -478,7 +478,7 @@ const TermsAndConditions = () => {
                 </p>
 
                 <p>
-                  <a href="/privacy-policy" target="_blank">
+                  <a href="/privacypolicy.html" target="_blank">
                     Privacy Policy
                   </a>
                   &nbsp; | &nbsp;

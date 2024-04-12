@@ -110,13 +110,11 @@ const PrivacyPolicy = () => {
                     </li>
                     <br />
                     <li>
-                      • Application refers to Klout Club, the software program
-                      provided by the Company.
+                      • Application refers to Klout Club, the software program provided by the Company under the legal entity of Insightner Marketing Services.
                     </li>
                     <br />
                     <li>
-                      • Company (referred to as either "the Company", "We", "Us"
-                      or "Our" in this Agreement) refers to Klout Club.
+                      • Company (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to Klout Club or Insightner Marketing Services.
                     </li>
                     <br />
                     <li>• Country refers to: Delhi, India</li>

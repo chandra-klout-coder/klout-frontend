@@ -34,6 +34,8 @@ function AdminPrivateRoute({ ...rest }) {
     checkAuthenticated();
   }, [history]);
 
+  alert(authenticated);
+
   if (loading) {
     return <h1>Loading...</h1>;
   }
