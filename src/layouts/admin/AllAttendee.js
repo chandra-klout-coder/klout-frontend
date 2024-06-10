@@ -8,7 +8,6 @@ import ReactPaginate from "react-paginate";
 import loadingGif from "../../assets/images/load.gif";
 
 function AllAttendee(props) {
-
   const [loading, setLoading] = useState(false);
   const [attendees, setAddendees] = useState([]);
   const [filteredAttendees, setFilteredAttendees] = useState([]);
@@ -28,6 +27,8 @@ function AllAttendee(props) {
 
   const [event_id, setEventID] = useState(props.match.params.id);
 
+  const [isPast, setIsPast] = useState(false);
+
   useEffect(() => {
     axios.get(`/api/totalattendees/${event_id}`).then((res) => {
       if (res.data.status === 200) {
@@ -41,6 +42,19 @@ function AllAttendee(props) {
     axios.get(`/api/events/${event_id}`).then((res) => {
       if (res.data.status === 200) {
         setEvent(res.data.data);
+
+        // Get the current date
+        const currentDate = new Date();
+
+        // Convert event_end_date to a Date object
+        const eventEndDateObj = new Date(res.data.data.event_end_date);
+
+        // Compare the dates
+        if (eventEndDateObj < currentDate) {
+          setIsPast(true);
+        } else {
+          setIsPast(false);
+        }
       }
     });
   }, []);
@@ -75,7 +89,6 @@ function AllAttendee(props) {
     );
 
     setFilteredAttendees(searchFiltered);
-
   }, [firstNameFilter, emailIDFilter, companyFilter, search, attendees]);
 
   const handlePageChange = (selectedPage) => {
@@ -245,7 +258,8 @@ function AllAttendee(props) {
     <>
       <div className="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 className="h3 mb-0 text-gray-800">
-          All Attendees for Event - {event.title} -  Total Attendee - { attendees.length }
+          All Attendees for Event - {event.title} - Total Attendee -{" "}
+          {attendees.length}
         </h1>
 
         <div className="d-none d-sm-inline-block shadow-sm py-3 px-3">
@@ -278,6 +292,7 @@ function AllAttendee(props) {
           {attendees.length > 0 && (
             <>
               &nbsp; &nbsp;
+              {/* {isPast && ( */}
               <Link
                 // to={`admin/add-attendee/${event_id}`}
                 to={`/admin/send-notification-attendee/${event_id}`}
@@ -289,13 +304,14 @@ function AllAttendee(props) {
                 }}
               >
                 <i className="fa fa-solid fa-paper-plane"></i> &nbsp; Send
-                Invitation Email / SMS
+                Reminder
               </Link>
+              {/* )} */}
               &nbsp; &nbsp;
               <Link
                 // to={`admin/add-attendee/${event_id}`}
                 // to={`/admin/forward-attendee-to-sponsor/${event_id}`}
-              
+
                 onClick={(e) => sendAttendeeListByEmail(e, event_id)}
                 className="btn btn-sm btn-danger shadow-sm my-2"
                 style={{

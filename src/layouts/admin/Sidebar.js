@@ -18,9 +18,12 @@ import { useDispatch } from "react-redux";
 import { logoutSuccess } from "../../authActions";
 
 // import Logo from "../../assets/img/klout_logo.png";
-import Logo from "./../../assets/img/Klout-Club.svg";
+// import Logo from "./../../assets/img/Klout-Club.svg";
+// import mobileLogo from "../../assets/img/klout_mobile_logo.jpg";
 
-import mobileLogo from "../../assets/img/klout_mobile_logo.jpg";
+import Logo from "./../../assets/img/Klout-Club-whitelogo.png";
+
+import mobileLogo from "./../../assets/img/Klout-Club-whitelogo.png";
 
 function Sidebar({ menuOpen, setMenuOpen, toggleMenu }) {
   const history = useHistory();
@@ -81,6 +84,9 @@ function Sidebar({ menuOpen, setMenuOpen, toggleMenu }) {
         <Link
           to="/admin/dashboard"
           className="sidebar-brand d-flex align-items-center justify-content-center"
+          style={{
+            padding: "0px",
+          }}
         >
           <div className="sidebar-brand-icon rotate-n-15"></div>
           <div className="sidebar-brand-text mx-3">
@@ -88,12 +94,12 @@ function Sidebar({ menuOpen, setMenuOpen, toggleMenu }) {
               className="sidebar-card-illustration mb-2"
               src={Logo}
               alt="Klout Club"
-              style={{
-                height: "60px",
-                width: "100%",
-                background: "#efefef",
-                marginTop: "1.5rem",
-              }}
+              // style={{
+              //   height: "60px",
+              //   width: "100%",
+              //   background: "#efefef",
+              //   marginTop: "1.5rem",
+              // }}
             />
           </div>
         </Link>

@@ -27,7 +27,6 @@ function Login() {
     console.log('After removal:', localStorage.getItem('auth_token'));
     console.log('After removal:', localStorage.getItem('auth_name'));
 
-
     // Redirect to the login page
     history.push("/login");
   }, [history]);
@@ -119,7 +118,7 @@ function Login() {
           password,
         })
         .then((res) => {
-          console.log("data", res);
+          // console.log("data", res);
           if (res.data.status === 200) {
 
             dispatch(loginSuccess(res.data.access_token));

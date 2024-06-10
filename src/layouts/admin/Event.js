@@ -3,6 +3,8 @@ import axios from "axios";
 import swal from "sweetalert";
 import { useHistory, Link } from "react-router-dom";
 import loadingGif from "../../assets/images/load.gif";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function Event() {
   const history = useHistory();
@@ -38,8 +40,8 @@ function Event() {
   const [eventInput, setEventInput] = useState({
     title: "",
     description: "",
-    event_start_date: "",
-    event_end_date: "",
+    event_start_date: currentDate,
+    event_end_date: currentDate,
     start_time: "09",
     start_minute_time: "30",
     start_time_type: "am",
@@ -48,16 +50,32 @@ function Event() {
     end_time_type: "pm",
     event_venue_name: "",
     event_venue_address_1: "",
-
     country: "",
     state: "",
     city: "",
     pincode: "",
-
     image: null,
     feedback: "1",
     status: "1",
   });
+
+  const handleStartDateChange = (date) => {
+    const formattedDate = new Date(date).toISOString().split("T")[0];
+
+    setEventInput({
+      ...eventInput,
+      event_start_date: formattedDate,
+    });
+  };
+
+  const handleEndDateChange = (date) => {
+    const formattedDate = new Date(date).toISOString().split("T")[0];
+
+    setEventInput({
+      ...eventInput,
+      event_end_date: formattedDate,
+    });
+  };
 
   const handleInput = (e) => {
     e.persist();
@@ -424,7 +442,6 @@ function Event() {
       setErrors(fieldErrors);
     }
     setIsLoading(false);
-
   };
 
   const [countries, setCountries] = useState([]);
@@ -882,7 +899,21 @@ function Event() {
 
                 <div className="col-10 mb-3 mb-sm-0">
                   <div className="form-group">
-                    <input
+                    <DatePicker
+                      selected={eventInput.event_start_date}
+                      onChange={handleStartDateChange}
+                      dateFormat="yyyy-MM-dd"
+                      className={`form-control ${
+                        errors.start_date ? "is-invalid" : ""
+                      }`}
+                      name="event_start_date"
+                      minDate={new Date()} // or you can use minDate={currentDate}
+                      value={eventInput.event_start_date}
+                      placeholderText="YYYY-MM-DD"
+                      showTimeSelect={false}
+                    />
+
+                    {/* <input
                       type="date"
                       className={`form-control ${
                         errors.event_start_date ? "is-invalid" : ""
@@ -892,7 +923,7 @@ function Event() {
                       value={eventInput.event_start_date}
                       onChange={handleInput}
                       onFocus={handleInputFocus}
-                    />
+                    /> */}
 
                     {errors.event_start_date && (
                       <div
@@ -919,6 +950,21 @@ function Event() {
 
                 <div className="col-10 mb-3 mb-sm-0">
                   <div className="form-group">
+                    <DatePicker
+                      selected={eventInput.event_end_date}
+                      onChange={handleEndDateChange}
+                      dateFormat="yyyy-MM-dd"
+                      className={`form-control ${
+                        errors.event_end_date ? "is-invalid" : ""
+                      }`}
+                      name="event_end_date"
+                      minDate={new Date()} // or you can use minDate={currentDate}
+                      value={eventInput.event_end_date}
+                      placeholderText="YYYY-MM-DD"
+                      showTimeSelect={false}
+                    />
+
+                    {/*                     
                     <input
                       type="date"
                       className={`form-control ${
@@ -929,7 +975,7 @@ function Event() {
                       value={eventInput.event_end_date}
                       onChange={handleInput}
                       onFocus={handleInputFocus}
-                    />
+                    /> */}
 
                     {errors.event_end_date && (
                       <div
@@ -954,7 +1000,7 @@ function Event() {
                   Event Start Time
                 </label>
 
-                <div className="col-3 col-lg-2 mb-3 mb-sm-0">
+                <div className="col-2 mb-3 mb-sm-0">
                   <div className="form-group">
                     <select
                       className={`form-control ${
@@ -971,7 +1017,7 @@ function Event() {
                   </div>
                 </div>
 
-                <div className="col-3 col-lg-2 mb-3 mb-sm-0">
+                <div className="col-2 mb-3 mb-sm-0">
                   <div className="form-group">
                     <select
                       className={`form-control ${
@@ -1040,7 +1086,7 @@ function Event() {
                   Event End Time
                 </label>
 
-                <div className="col-3 col-lg-2 mb-3 mb-sm-0">
+                <div className="col-2 mb-3 mb-sm-0">
                   <div className="form-group">
                     <select
                       className={`form-control ${
@@ -1057,7 +1103,7 @@ function Event() {
                   </div>
                 </div>
 
-                <div className="col-3 col-lg-2 mb-3 mb-sm-0">
+                <div className="col-2  mb-3 mb-sm-0">
                   <div className="form-group">
                     <select
                       className={`form-control ${

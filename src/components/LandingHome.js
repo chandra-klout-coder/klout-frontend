@@ -7,7 +7,10 @@ import swal from "sweetalert";
 // import QrCode from "./../assets/img/qr.svg";
 import QrCode from "./../assets/img/onelinkto_r3fzb9.png";
 
-import Logo from "./../assets/img/Klout-Club.svg";
+// import Logo from "./../assets/img/Klout-Club.svg";
+
+import Logo from "./../assets/img/Klout-Club-whitelogo.png";
+
 import loadingGif from "../assets/images/load.gif";
 // import Logo from "./../assets/img/klout_original_logo.jpg";
 import Author1 from "./../assets/img/author/author1.jpg";

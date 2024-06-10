@@ -4,6 +4,8 @@ import swal from "sweetalert";
 import { useHistory, Link } from "react-router-dom";
 import DefaultBanner from "../../assets/images/default-banner.jpg";
 import loadingGif from "../../assets/images/load.gif";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function EditEvent(props) {
   const history = useHistory();
@@ -90,6 +92,24 @@ function EditEvent(props) {
       }
     });
   }, [history, props.match.params.id]);
+
+  const handleStartDateChange = (date) => {
+    const formattedDate = new Date(date).toISOString().split("T")[0];
+
+    setEventInput({
+      ...eventInput,
+      event_start_date: formattedDate,
+    });
+  };
+
+  const handleEndDateChange = (date) => {
+    const formattedDate = new Date(date).toISOString().split("T")[0];
+
+    setEventInput({
+      ...eventInput,
+      event_end_date: formattedDate,
+    });
+  };
 
   const handleInput = (e) => {
     e.persist();
@@ -677,7 +697,8 @@ function EditEvent(props) {
 
                 <div className="col-10 col-lg-4 col-4">
                   <p style={{ fontSize: "12px" }}>
-                  * Upload Event Banner upto 5 MB with JPG and PNG Format Only.
+                    * Upload Event Banner upto 5 MB with JPG and PNG Format
+                    Only.
                   </p>
 
                   {eventInput.new_image && (
@@ -916,7 +937,7 @@ function EditEvent(props) {
 
                 <div className="col-10 col-lg-2 mb-3 mb-sm-0">
                   <div className="form-group">
-                    <input
+                    {/* <input
                       type="date"
                       className={`form-control ${
                         errors.event_date ? "is-invalid" : ""
@@ -926,6 +947,20 @@ function EditEvent(props) {
                       value={eventInput.event_start_date}
                       onChange={handleInput}
                       onFocus={handleInputFocus}
+                    /> */}
+
+                    <DatePicker
+                      selected={eventInput.event_start_date}
+                      onChange={handleStartDateChange}
+                      dateFormat="yyyy-MM-dd"
+                      className={`form-control ${
+                        errors.start_date ? "is-invalid" : ""
+                      }`}
+                      name="event_start_date"
+                      minDate={new Date()} // or you can use minDate={currentDate}
+                      value={eventInput.event_start_date}
+                      placeholderText="YYYY-MM-DD"
+                      showTimeSelect={false}
                     />
 
                     {errors.event_start_date && (
@@ -953,7 +988,21 @@ function EditEvent(props) {
 
                 <div className="col-10 col-lg-2 mb-3 mb-sm-0">
                   <div className="form-group">
-                    <input
+                    <DatePicker
+                      selected={eventInput.event_end_date}
+                      onChange={handleEndDateChange}
+                      dateFormat="yyyy-MM-dd"
+                      className={`form-control ${
+                        errors.event_end_date ? "is-invalid" : ""
+                      }`}
+                      name="event_end_date"
+                      minDate={new Date()} // or you can use minDate={currentDate}
+                      value={eventInput.event_end_date}
+                      placeholderText="YYYY-MM-DD"
+                      showTimeSelect={false}
+                    />
+
+                    {/* <input
                       type="date"
                       className={`form-control ${
                         errors.event_end_date ? "is-invalid" : ""
@@ -963,7 +1012,7 @@ function EditEvent(props) {
                       value={eventInput.event_end_date}
                       onChange={handleInput}
                       onFocus={handleInputFocus}
-                    />
+                    /> */}
 
                     {errors.event_end_date && (
                       <div
@@ -988,7 +1037,7 @@ function EditEvent(props) {
                   Event Start Time
                 </label>
 
-                <div className="col-3 col-lg-2 mb-3 mb-sm-0">
+                <div className="col-2 mb-3 mb-sm-0">
                   <div className="form-group">
                     <select
                       className={`form-control ${
@@ -1005,7 +1054,7 @@ function EditEvent(props) {
                   </div>
                 </div>
 
-                <div className="col-3 col-lg-2 mb-3 mb-sm-0">
+                <div className="col-2 mb-3 mb-sm-0">
                   <div className="form-group">
                     <select
                       className={`form-control ${
@@ -1073,10 +1122,7 @@ function EditEvent(props) {
 
               {/* Event Start Time */}
               <div className="form-group row">
-                <label
-                  forhtml="venue"
-                  className="col-12 col-lg-2 col-form-label"
-                >
+                <label forhtml="venue" className="col-2 col-form-label">
                   Event End Time
                 </label>
 
@@ -1097,7 +1143,7 @@ function EditEvent(props) {
                   </div>
                 </div>
 
-                <div className="col-3 col-lg-2 mb-3 mb-sm-0">
+                <div className="col-2 mb-3 mb-sm-0">
                   <div className="form-group">
                     <select
                       className={`form-control ${
@@ -1231,7 +1277,7 @@ function EditEvent(props) {
                         type="radio"
                         name="status"
                         value="0"
-                        checked={eventInput.status == "0"}
+                        checked={eventInput.status === "0"}
                         onChange={handleInput}
                       />
                       <label
@@ -1241,13 +1287,14 @@ function EditEvent(props) {
                         Pending
                       </label>
                     </div>
+
                     <div className="form-check form-check-inline d-flex align-items-center justify-content-center">
                       <input
                         className="form-check-input"
                         type="radio"
                         name="status"
                         value="1"
-                        checked={eventInput.status == "1"}
+                        checked={eventInput.status === "1"}
                         onChange={handleInput}
                       />
                       <label
@@ -1264,12 +1311,12 @@ function EditEvent(props) {
                         type="radio"
                         name="status"
                         value="2"
-                        checked={eventInput.status == "2"}
+                        checked={eventInput.status === "2"}
                         onChange={handleInput}
                       />
                       <label
                         className="form-check-label"
-                        forhtml="inlineRadio2"
+                        forhtml="inlineRadio3"
                       >
                         Cancel
                       </label>

@@ -136,7 +136,7 @@ function ViewEvent() {
                           alt="Image"
                         />
                         <a
-                          className="btn btn-sm btn-info shadow-sm"
+                          className="btn btn-sm btn-info shadow-sm mt-4"
                           style={{
                             borderColor: "#0dcaf0",
                             color: "white",
@@ -150,7 +150,10 @@ function ViewEvent() {
                       </>
                     ) : (
                       <>
+                      <div>
                         <img src={QrCode} alt="banner" width="100%" />
+                        </div>
+                        <div>
                         <a
                           className="btn btn-sm btn-info shadow-sm"
                           style={{
@@ -163,6 +166,7 @@ function ViewEvent() {
                         >
                           Click here to download Demo QR Code
                         </a>
+                        </div>
                       </>
                     )}
                   </div>
@@ -244,8 +248,7 @@ function ViewEvent() {
                             borderRadius: "12px",
                           }}
                         >
-                          <i class="fa fa-solid fa-paper-plane"></i> &nbsp; Send
-                          Invitation Email / SMS
+                          <i class="fa fa-solid fa-paper-plane"></i> &nbsp; Send Reminder
                         </Link>
                       </div>
                     </>
